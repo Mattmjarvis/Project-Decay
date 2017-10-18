@@ -25,27 +25,36 @@ public class ChangeWeapon : MonoBehaviour {
     // Gets the user input to change weapon
     private void Update()
     {
-        // Checks for input in order to change weapon
+        GetWeaponChangeInput();
+    }
+
+    // Gets the input to change weapon
+    public void GetWeaponChangeInput()
+    {     
+        // Change to weapon 1
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            print("Weapon changed - Assault Rifle");
             changeWeapon(0);
         }
 
+        // Change to weapon 2
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            print("Weapon changed - Shotgun");
             changeWeapon(1);
         }
 
-        // Enable this code after more weapons have been added
-
+   
+        // Change to weapon 3
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            print("Weapon changed - Pistol");
             changeWeapon(2);
         }
 
+        // Change to Special weapon
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            changeWeapon(3);
+        }
     }
 
     public void changeWeapon(int num)
@@ -71,6 +80,8 @@ public class ChangeWeapon : MonoBehaviour {
                 // Changes weapon icons according to weapon
                 weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Selected;
                 weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Selected;
+
+                Debug.Log("Weapon selected: " + weapons[i].name);
             }
 
 
