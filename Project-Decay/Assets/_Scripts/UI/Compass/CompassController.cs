@@ -38,8 +38,13 @@ public class CompassController : MonoBehaviour
     public void ShowCrateOnCompass()
     {
         // Finds the crate
-        supplyCrate = GameObject.Find("SupplyCrate");
-        
+        supplyCrate = GameObject.FindGameObjectWithTag("SupplyCrate");
+        if(supplyCrate == null)
+        {
+            Debug.Log("Cant find crate");
+            return;
+        }
+
         // Enables the compass sprite
         supplyCrateImage.SetActive(true);
         StartCoroutine(UpdateCompass());
@@ -48,8 +53,14 @@ public class CompassController : MonoBehaviour
 
     IEnumerator UpdateCompass()
     {
+        if(supplyCrate == null)
+        {
+            StopCoroutine(UpdateCompass());
+            Debug.Log("Supply crate null");
+        }
         while (true)
         {
+            Debug.Log("update");
             // Gets the crate position and applies it to compass
             cratePosition = supplyCrate.transform.position;
 
@@ -97,7 +108,7 @@ public class CompassController : MonoBehaviour
             }
         
             // Interval between updating the icon
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
         }
 
     }

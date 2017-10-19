@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 65860174006167690}
   m_Layer: 0
   m_Name: SupplyDrop
-  m_TagString: Untagged
+  m_TagString: SupplyCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

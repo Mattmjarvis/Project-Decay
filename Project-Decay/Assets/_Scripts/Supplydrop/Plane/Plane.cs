@@ -7,6 +7,7 @@ public class Plane : MonoBehaviour
     // Sets the flight path and speed
     public GameObject planeFlightStart;
     public GameObject planeFlightEnd;
+    CompassController compassController;
 
     public float speed;
 
@@ -19,10 +20,6 @@ public class Plane : MonoBehaviour
     public Transform dropSpawn;
     public GameObject supplyDropGO;
 
-    // Use this for initialization
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,10 +35,11 @@ public class Plane : MonoBehaviour
         if (readyToDrop)
         {
             readyToDrop = false;
-            //readyToDrop = false;
             Instantiate(supplyDropGO, dropSpawn.position, Quaternion.identity);
             Debug.Log("Crate dropped!!!");
             hasDropped = true;
+            compassController = FindObjectOfType<CompassController>();
+            compassController.ShowCrateOnCompass();
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - DropZone
   - SpawnPoint
   - Enemy
+  - SupplyCrate
   layers:
   - Default
   - TransparentFX
