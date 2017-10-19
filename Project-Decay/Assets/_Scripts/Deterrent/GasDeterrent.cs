@@ -6,10 +6,11 @@ public class GasDeterrent : MonoBehaviour {
 
     PlayerHealth playerHealth;
     private int gasDamage = 5;
-    public int currentGasMultiplier = 2;
+    //public int currentGasMultiplier = 1;
     //This can be changed in late game to damage the player more.
     private int gasLifeTime = 60;
     private int GasDamageTimer = 5;
+    
 
     public bool playerInRadiation;
 
@@ -29,14 +30,18 @@ public class GasDeterrent : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {           
             //calls the player inRadation method which activates the radiactive sign.
-            playerHealth.inRadiation();           
+            playerHealth.inRadiation();
+            print(GasDamageTimer);   
 
             if (Time.time > GasDamageTimer)
             {
                 //print("Player detected");
                 //calls damage method and resets timer back to timers original value.
-                playerHealth.TakeDamage(gasDamage * currentGasMultiplier);
-                GasDamageTimer += GasDamageTimer;         
+                playerHealth.TakeDamage(gasDamage);
+                
+                GasDamageTimer += 2;
+                print("Time reset");
+
             }                         
         }
     }    

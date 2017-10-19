@@ -8,7 +8,6 @@ public class EnemyHealth : MonoBehaviour {
     public int currentHealth;
     public float sinkSpeed = 2.5f;
     //How fast enemies will sink through the floor
-    public int scoreValue = 10;
     //public AudioClip deathclip;
 
     //Animator anim;
