@@ -39,9 +39,7 @@ public class CompassController : MonoBehaviour
     {
         // Finds the crate
         supplyCrate = GameObject.Find("SupplyCrate");
-       
-
-
+        
         // Enables the compass sprite
         supplyCrateImage.SetActive(true);
         StartCoroutine(UpdateCompass());
@@ -54,26 +52,51 @@ public class CompassController : MonoBehaviour
         {
             // Gets the crate position and applies it to compass
             cratePosition = supplyCrate.transform.position;
-            Debug.Log("player : " + playerPosition);
-            Debug.Log("cratePosition : " + cratePosition);
+
             Vector3 targetDir = cratePosition - playerTransform.position;
-            float y = Vector3.Angle(targetDir, playerTransform.forward);
-            float dist = Vector3.Distance(cratePosition, playerPosition);
-            float z_dist =  playerPosition.z - cratePosition.z;
-            float x_dist = playerPosition.x - cratePosition.x;
-            float angleR = Mathf.Sin(z_dist / dist);
-            float angleD = angleR * 180f / Mathf.PI;
-          
-        
+            // float y = Vector3.Angle(targetDir, playerTransform.forward);
+            double dist = Vector3.Distance(cratePosition, playerPosition);
+            double z_dist = (double)targetDir.z;// playerPosition.z - cratePosition.z;
+            double x_dist = (double)targetDir.x; //playerPosition.x - cratePosition.x;
+            double angleR = Mathf.Asin((float)(z_dist / dist));
+            double angleD = Mathf.PI / 2 - angleR;
+
+            //radian to degree
+            double angleDegrees = playerTransform.eulerAngles.y  + angleD * Mathf.Rad2Deg;
+            if ( targetDir.x >= 0f)
+            {
+                angleDegrees = playerTransform.eulerAngles.y - angleD * Mathf.Rad2Deg;
+            }
+
+
             // Gets the camera rotation (x) to move the local position of the image
-            float xF = 180f - ( (y - playerTransform.eulerAngles.y ) * 360.0f / 360.0f);
-           // float xF =   (playerTransform.eulerAngles.y - angleD * 360.0f / 360.0f) ;
+            if( !double.IsNaN(angleDegrees))
+            {
+                float xF = 360f - ((float)angleDegrees * 360.0f / 360.0f);
+                if (targetDir.z < 0f && targetDir.x > 0f && playerTransform.eulerAngles.y < 270f)
+                {
+                    xF = - ((float)angleDegrees * 360.0f / 360.0f);
+                   // Debug.Log("A angleDegrees: " + angleDegrees + " xf:" + xF + " playerTransform.eulerAngles.y:" + playerTransform.eulerAngles.y + " " + targetDir);
+                }
+                else if (playerTransform.eulerAngles.y < 180f && targetDir.x >= 0f)
+                {
+                    // && targetDir.x > 0
+                    xF = -((float)angleDegrees * 360.0f / 360.0f);
+                   // Debug.Log("B angleDegrees: " + angleDegrees + " xf:" + xF + " playerTransform.eulerAngles.y:" + playerTransform.eulerAngles.y + " " + targetDir);
+                }else if(playerTransform.eulerAngles.y < 90f)
+                {
+                    xF = -((float)angleDegrees * 360.0f / 360.0f);
+                   // Debug.Log("C angleDegrees: " + angleDegrees + " xf:" + xF + " playerTransform.eulerAngles.y:" + playerTransform.eulerAngles.y + " " + targetDir);
+                }
 
+              
+               
 
-            Debug.Log("y:  " + y +  " angleD: " + angleD + " ply: " + playerTransform.eulerAngles.y + " xf:" + xF);
-
-            // Moves the image based on the camera rotation
-            supplyCrateImage.transform.localPosition = new Vector3(xF, supplyCrateImage.transform.localPosition.y, 0);
+                // Moves the image based on the camera rotation
+                supplyCrateImage.transform.localPosition = new Vector3(xF, supplyCrateImage.transform.localPosition.y, 0);
+            }
+        
+            // Interval between updating the icon
             yield return new WaitForSeconds(0.1f);
         }
 

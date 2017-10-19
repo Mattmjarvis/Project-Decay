@@ -57,17 +57,12 @@ public class Shooting : MonoBehaviour
 
         // Gets the mouse position on the screen and converts it to raycast
         Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
-        
-        //Debug the raycast so we can see where the playing is aiming
-        Debug.DrawRay(aimRay.origin, aimRay.direction * 1000, Color.yellow);
-
+     
         // Makes the weapon aim at the mouse position
-        if(Physics.Raycast(aimRay, out hit, 1000))
-        {
-            transform.LookAt(hit.point);
+        Vector3 target;
 
-        }
-        
+        target = aimRay.GetPoint(20);
+        transform.LookAt(target);
     }
 
     public void Fire()
