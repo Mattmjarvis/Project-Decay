@@ -26,15 +26,14 @@ public class GasDeterrent : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        //sets the damaged boolean to true which activates the damage screen effect while player is in gas
-        playerHealth.damaged = true;
-        uiManager.radiationSymbol();
-        radiated = true;
+        //sets the damaged boolean to true which activates the damage screen effect while player is in gas      
 
         if(other.gameObject.tag == "Player")
-        {           
+        {
+            playerHealth.damaged = true;
+            uiManager.turnOnRadiationSymbol();
+            //radiated = true;
             //calls the player inRadation method which activates the radiactive sign.
-            print(GasDamageTimer);   
 
             if (Time.time > GasDamageTimer)
             {
@@ -43,9 +42,15 @@ public class GasDeterrent : MonoBehaviour {
                 playerHealth.TakeDamage(gasDamage);
                 
                 GasDamageTimer += 2;
-                print("Time reset");
-
             }                         
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            uiManager.turnOffRadiationSymbol();
         }
     }
 

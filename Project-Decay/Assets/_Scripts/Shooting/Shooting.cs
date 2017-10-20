@@ -52,12 +52,11 @@ public class Shooting : MonoBehaviour
     public void Aim()
     {
         // This sets the weapon to raycast and aim towards where the mouse position is.
-        RaycastHit hit;
- 
+        RaycastHit hit;      
 
         // Gets the mouse position on the screen and converts it to raycast
-        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
-     
+        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);        
+
         // Makes the weapon aim at the mouse position
         Vector3 target;
 

@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
         cameraLook = FindObjectOfType<CameraLook>();
         rb = GetComponent<Rigidbody>();
         Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
         weaponReloader = FindObjectOfType<WeaponReloader>();
     }
 	
