@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: 64c2da68d6dab7a4eabb5c311f94f547
+timeCreated: 1508522878
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Weaponbox1_Normal
+    21300002: Weaponbox2_Normal
+    21300004: Weaponbox3_Normal
+    21300006: Weaponbox4_Normal
+    21300008: Weaponbox1_Outline
+    21300010: Weaponbox2_Outline
+    21300012: Weaponbox3_Outline
+    21300014: Weaponbox4_Outline
+    21300016: WeaponIconSpritesheet_8
+    21300018: Ammo Divider
+    21300020: WeaponIconSpritesheet_10
+    21300022: WeaponIconSpritesheet_11
+    21300024: WeaponIconSpritesheet_12
+    21300026: Weapon_Pistol_Normal
+    21300028: Weapon_Pistol_Outline
+    21300030: Weapon_Rifle_Normal
+    21300032: Weapon_Sniper_Normal
+    21300034: Weapon_Shotgun_Normal
+    21300036: Weapon_Rifle_Outline
+    21300038: Weapon_Sniper_Outline
+    21300040: Weapon_Shotgun_Outline
+    21300042: WeaponIconSpritesheet_21
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Weaponbox1_Normal
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 658
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weaponbox2_Normal
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 658
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weaponbox3_Normal
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 658
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weaponbox4_Normal
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 659
+        width: 101
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weaponbox1_Outline
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 692
+        width: 109
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weaponbox2_Outline
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 692
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weaponbox3_Outline
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 692
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weaponbox4_Outline
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 692
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponIconSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 588
+        width: 252
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Ammo Divider
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 525
+        width: 244
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponIconSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 522
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponIconSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 523
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponIconSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 463
+        width: 61
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Pistol_Normal
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 404
+        width: 68
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Pistol_Outline
+      rect:
+        serializedVersion: 2
+        x: 1742
+        y: 406
+        width: 76
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Rifle_Normal
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 304
+        width: 140
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Sniper_Normal
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 309
+        width: 216
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Shotgun_Normal
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 312
+        width: 169
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Rifle_Outline
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 306
+        width: 148
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Sniper_Outline
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 312
+        width: 222
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapon_Shotgun_Outline
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 317
+        width: 177
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponIconSpritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 179
+        width: 50
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

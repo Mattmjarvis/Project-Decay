@@ -36,7 +36,7 @@ public class Plane : MonoBehaviour
         {
             readyToDrop = false;
             Instantiate(supplyDropGO, dropSpawn.position, Quaternion.identity);
-            Debug.Log("Crate dropped!!!");
+             //Debug.Log("Crate dropped!");
             hasDropped = true;
             compassController = FindObjectOfType<CompassController>();
             compassController.ShowCrateOnCompass();
@@ -55,7 +55,7 @@ public class Plane : MonoBehaviour
     {
         // Chooses time to wait to drop
         int secondsToDrop = Random.Range(3, 15);
-        Debug.Log("Crate will drop in: " + secondsToDrop + " seconds");
+        // Debug.Log("Crate will drop in: " + secondsToDrop + " seconds");
     
         yield return new WaitForSeconds(secondsToDrop); // drop after so much time
         supplyDrop();

@@ -17,8 +17,6 @@ public class CompassController : MonoBehaviour
     {
         
         playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-        Debug.Log("playerTransform ys: " + playerTransform.eulerAngles.y);
-        ShowCrateOnCompass();
     }
 
     // Moves the image in relation to the camera
@@ -72,7 +70,7 @@ public class CompassController : MonoBehaviour
             double angleR = Mathf.Asin((float)(z_dist / dist));
             double angleD = Mathf.PI / 2 - angleR;
 
-            //radian to degree
+            // Radian to degree
             double angleDegrees = playerTransform.eulerAngles.y  + angleD * Mathf.Rad2Deg;
             if ( targetDir.x >= 0f)
             {

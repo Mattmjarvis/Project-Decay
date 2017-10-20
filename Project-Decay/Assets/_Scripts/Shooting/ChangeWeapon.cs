@@ -19,7 +19,7 @@ public class ChangeWeapon : MonoBehaviour {
     private void Start()
     {
         weaponReloader = gameObject.GetComponent<WeaponReloader>();
-        changeWeapon(2);
+        changeWeapon(2); // Sets the starting weapon to pistol
     }
 
     // Gets the user input to change weapon
@@ -28,37 +28,63 @@ public class ChangeWeapon : MonoBehaviour {
         GetWeaponChangeInput();
     }
 
+#region Function to get input from the user to change weapon
     // Gets the input to change weapon
     public void GetWeaponChangeInput()
     {     
         // Change to weapon 1
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            changeWeapon(0);
+            // Checks if weapon is available
+            if (weapons[0] != null)
+            {
+                changeWeapon(0);
+            }
         }
 
         // Change to weapon 2
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            changeWeapon(1);
+            // Checks if weapon is available
+            if (weapons[1] != null)
+            {
+                changeWeapon(1);
+            }
         }
 
    
         // Change to weapon 3
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            changeWeapon(2);
+                if (weapons[2] != null)
+                {
+                    changeWeapon(2);
+                }        
         }
 
         // Change to Special weapon
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            changeWeapon(3);
+            // Checks if weapon is available
+            if (weapons[4] != null)
+            {
+                changeWeapon(3);
+            }           
         }
     }
+    #endregion
 
+#region Function to change the weapon and pass stats to the weapon reloader
     public void changeWeapon(int num)
     {
+   
+        // Returns if number pressed is already same weapon being held
+        if(num == currentWeapon)
+        {
+            Debug.Log("Already equipped");
+            return;
+        }
+
         // Passes the number of the current weapon
         currentWeapon = num;
         for (int i = 0; i < weapons.Length; i++)
@@ -94,8 +120,8 @@ public class ChangeWeapon : MonoBehaviour {
                 weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Unselected;
                 weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Unselected;
             }
+#endregion
 
-                    
         }
     }
 
