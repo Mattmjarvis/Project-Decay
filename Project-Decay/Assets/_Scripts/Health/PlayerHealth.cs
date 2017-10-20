@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour {
-
-    GasDeterrent gasDeterrent;
+public class PlayerHealth : MonoBehaviour {   
      
     public delegate void HealthBarDelegate(int health);
     public static event HealthBarDelegate OnHealthChanged;
@@ -15,22 +13,18 @@ public class PlayerHealth : MonoBehaviour {
     public bool damaged;
     public Image damageImage;
     private float damageFlashSpeed = 5f;
-    public Color damageFlashColor;
-
-    public GameObject radiationSymbol;  
+    public Color damageFlashColor;     
     
     void Start()
     {
         health = Rules.MAX_PLAYER_HEALTH;
         //Health will be set in a function within the Rules script  
         damageFlashColor = new Color(255f, 0f, 0f, 180f);
-
-        gasDeterrent = FindObjectOfType<GasDeterrent>();
+        //sets the color we would like to switch the damage screen to here, is changed to this when damaged = true
     }
 
     void Update()
-    {
-        
+    {        
         DamageFlash();
         Death();
     }
@@ -79,12 +73,7 @@ public class PlayerHealth : MonoBehaviour {
         }
 
          damaged = false;
-    }
-
-    public void inRadiation()
-    {
-        radiationSymbol.SetActive(true);       
-    }
+    }    
 
     void Death()
     {

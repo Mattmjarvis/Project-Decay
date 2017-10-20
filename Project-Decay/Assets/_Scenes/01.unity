@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -187,34 +187,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 30918231}
---- !u!1 &43501391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 43501392}
-  m_Layer: 0
-  m_Name: MouseManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &43501392
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 43501391}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2046415423}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &63510027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,7 +1978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &409105366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2058,7 +2030,7 @@ Transform:
   - {fileID: 1163636404}
   - {fileID: 1306857616}
   m_Father: {fileID: 2046415423}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &429457036
 GameObject:
@@ -2749,7 +2721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93bdf93d9e033b04d90bf456338b9f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInRadiation: 0
+  radiated: 0
 --- !u!1 &667038795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3460,47 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 940008237}
+--- !u!1 &941889110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 941889111}
+  - component: {fileID: 941889112}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &941889111
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941889110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2046415423}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &941889112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941889110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3122e8a3df64146bf643bed6823640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiationImage: {fileID: 1424632985}
 --- !u!1001 &978801765
 Prefab:
   m_ObjectHideFlags: 0
@@ -4676,7 +4689,6 @@ MonoBehaviour:
   damaged: 0
   damageImage: {fileID: 1694162366}
   damageFlashColor: {r: 1, g: 0, b: 0, a: 0.1}
-  radiationSymbol: {fileID: 1424632985}
 --- !u!1 &1294074829
 GameObject:
   m_ObjectHideFlags: 0
@@ -5046,7 +5058,7 @@ GameObject:
   - component: {fileID: 1424632987}
   m_Layer: 0
   m_Name: Radiation_Symbol
-  m_TagString: Untagged
+  m_TagString: RadiationImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6674,6 +6686,10 @@ Prefab:
       propertyPath: speed
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 1792922643712030, guid: 2d2350951cba2fe4b9d80a5e4284b8ce, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d2350951cba2fe4b9d80a5e4284b8ce, type: 2}
   m_IsPrefabParent: 0
@@ -7123,8 +7139,8 @@ Transform:
   m_LocalPosition: {x: 343.9646, y: -57, z: 279.9361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 43501392}
   - {fileID: 409105367}
+  - {fileID: 941889111}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -93,6 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93bdf93d9e033b04d90bf456338b9f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radiationImage: {fileID: 0}
+  radiationFlashColor: {r: 0, g: 0, b: 0, a: 0}
+  radiated: 0
+  playerInRadiation: 0
 --- !u!135 &135538548245103612
 SphereCollider:
   m_ObjectHideFlags: 1

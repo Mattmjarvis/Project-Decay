@@ -9,6 +9,7 @@ TagManager:
   - SpawnPoint
   - Enemy
   - SupplyCrate
+  - RadiationImage
   layers:
   - Default
   - TransparentFX
