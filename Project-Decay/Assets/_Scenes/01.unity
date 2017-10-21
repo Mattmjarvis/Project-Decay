@@ -3516,6 +3516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radiationImage: {fileID: 1424632985}
+  weaponBoxImage: {fileID: 0}
 --- !u!1001 &978801765
 Prefab:
   m_ObjectHideFlags: 0

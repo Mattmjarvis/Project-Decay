@@ -19,6 +19,7 @@ public class WeaponReloader : MonoBehaviour {
     public Text maxAmmoTextBox;
     public Text ammoInClipTextBox;
 
+    UIManager uiManager;
     PlayerShoot playerShoot;
     Shooting shooting;
     [SerializeField] WeaponStats currentWeapon;
@@ -26,6 +27,7 @@ public class WeaponReloader : MonoBehaviour {
     void Start()
     {
         playerShoot = FindObjectOfType<PlayerShoot>();
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     void update()
@@ -134,5 +136,9 @@ public class WeaponReloader : MonoBehaviour {
         shotsFiredInClip += amount;
         currentWeapon.AmmoInClip -= amount;
         ammoInClipTextBox.text = currentWeapon.AmmoInClip.ToString();
+        if (currentWeapon.AmmoInClip == 0 && currentWeapon.maxAmmo == 0)
+        {
+            uiManager.weaponNoAmmo();
+        }
     }
 }

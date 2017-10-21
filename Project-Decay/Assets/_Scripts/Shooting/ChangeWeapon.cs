@@ -6,19 +6,21 @@ using UnityEngine.UI;
 public class ChangeWeapon : MonoBehaviour {
 
     // Weapon variables
-
     public int currentWeapon;
     public Transform[] weapons;
 
     // UI Variables
     public GameObject[] weaponBoxImage;
     public GameObject[] weaponIcon;
+    UIManager uiManager;
 
     WeaponReloader weaponReloader;
 
     private void Start()
     {
         weaponReloader = gameObject.GetComponent<WeaponReloader>();
+        uiManager = FindObjectOfType<UIManager>();
+
         changeWeapon(2); // Sets the starting weapon to pistol
     }
 
@@ -106,6 +108,7 @@ public class ChangeWeapon : MonoBehaviour {
                 // Changes weapon icons according to weapon
                 weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Selected;
                 weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Selected;
+                uiManager.weaponBoxImage = weaponBoxImage[i].gameObject.GetComponent<Image>();
 
                 Debug.Log("Weapon selected: " + weapons[i].name);
             }
