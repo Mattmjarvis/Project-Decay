@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour {
     public GameObject radiationImage;
 
     // Weaponbox UI Variables
-    public Image weaponBoxImage;
+    public Image[] weaponBoxImage;
     WeaponReloader weaponReloader;
     // Text box for ammo Count
     public Text maxAmmoTextBox;
@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour {
     void Start ()
     {
         weaponReloader = FindObjectOfType<WeaponReloader>();
+        updateAmmoTextbox();
     }
 
     /// <summary>
@@ -36,22 +37,21 @@ public class UIManager : MonoBehaviour {
     public void turnOffRadiationSymbol()
     {
         radiationImage.SetActive(false);
-
     }
 
     /// <summary>
     /// Changes the colours of the weapon box if they have no ammo
     /// </summary>
     // Changes the weaponbox colour to red if out of ammo
-    public void weaponNoAmmo()
+    public void weaponNoAmmo(int weaponNo)
     {
-        weaponBoxImage.color = Color.red;
+        weaponBoxImage[weaponNo].color = Color.red;
     }
 
     // Changes the weaponbox colour to normal if has ammo
-    public void weaponHasAmmo()
+    public void weaponHasAmmo(int weaponNo)
     {
-        weaponBoxImage.color = normalColour;
+        weaponBoxImage[weaponNo].color = normalColour;
     }
 
     public void updateAmmoTextbox()

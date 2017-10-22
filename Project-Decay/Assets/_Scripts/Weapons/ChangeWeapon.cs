@@ -20,7 +20,7 @@ public class ChangeWeapon : MonoBehaviour {
     {
         weaponReloader = gameObject.GetComponent<WeaponReloader>();
         uiManager = FindObjectOfType<UIManager>();
-
+        Debug.Log(weapons.Length);
         changeWeapon(2); // Sets the starting weapon to pistol
     }
 
@@ -45,7 +45,7 @@ public class ChangeWeapon : MonoBehaviour {
         }
 
         // Change to weapon 2
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             // Checks if weapon is available
             if (weapons[1] != null)
@@ -56,7 +56,7 @@ public class ChangeWeapon : MonoBehaviour {
 
    
         // Change to weapon 3
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
                 if (weapons[2] != null)
                 {
@@ -68,10 +68,10 @@ public class ChangeWeapon : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             // Checks if weapon is available
-            if (weapons[4] != null)
+            if (weapons[3] != null)
             {
                 changeWeapon(3);
-            }           
+            }
         }
     }
     #endregion
@@ -82,8 +82,7 @@ public class ChangeWeapon : MonoBehaviour {
    
         // Returns if number pressed is already same weapon being held
         if(num == currentWeapon)
-        {
-            Debug.Log("Already equipped");
+        { 
             return;
         }
 
@@ -108,7 +107,7 @@ public class ChangeWeapon : MonoBehaviour {
                 // Changes weapon icons according to weapon
                 weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Selected;
                 weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Selected;
-                uiManager.weaponBoxImage = weaponBoxImage[i].gameObject.GetComponent<Image>();
+                //uiManager.weaponBoxImage[] = weaponBoxImage[i].gameObject.GetComponent<Image>();
 
                 Debug.Log("Weapon selected: " + weapons[i].name);
             }
@@ -117,11 +116,17 @@ public class ChangeWeapon : MonoBehaviour {
             // Disables any other weapons
             else
             {
-                weapons[i].gameObject.SetActive(false);
+                if(weapons[i] != null)
+                {
+                    weapons[i].gameObject.SetActive(false);
 
-                // Changes the weaponUI and sets the icons appropriately
-                weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Unselected;
-                weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Unselected;
+                    // Changes the weaponUI and sets the icons appropriately
+                    weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Unselected;
+                    weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Unselected;
+                }
+
+
+
             }
 #endregion
 

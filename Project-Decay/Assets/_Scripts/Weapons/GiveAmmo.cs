@@ -13,7 +13,12 @@ public class GiveAmmo : MonoBehaviour {
     UIManager uiManager;
     public AmmoType ammoType;
     public int ammoToGive;
-    WeaponStats weaponStats;
+
+    // Each stats are needed to be assigned manually so it can find inactive objects
+    public WeaponStats weaponStatsAR;
+    public WeaponStats weaponStatsSG;
+    public WeaponStats weaponStatsPS;
+
     WeaponReloader reloader;
     private string sWeaponType;
 
@@ -35,6 +40,7 @@ public class GiveAmmo : MonoBehaviour {
             GiveWeaponAmmo();            
             Destroy(gameObject);
             uiManager.updateAmmoTextbox();
+
             
         }
     }
@@ -45,23 +51,24 @@ public class GiveAmmo : MonoBehaviour {
         // Gives ammo to assault Rifle
         if (ammoType == AmmoType.AssaultRifle)
         {
-            weaponStats = GameObject.Find("AssaultRifle").GetComponent<WeaponStats>();
-            weaponStats.maxAmmo += ammoToGive;
+            weaponStatsAR.maxAmmo += ammoToGive;
+            uiManager.weaponHasAmmo(0);
         }
 
         // Gives ammo to Shotgun
         else if(ammoType == AmmoType.Shotgun)
         {
-            weaponStats = GameObject.Find("Shotgun").GetComponent<WeaponStats>();
-            weaponStats.maxAmmo += ammoToGive;
+            weaponStatsSG.maxAmmo += ammoToGive;
+            uiManager.weaponHasAmmo(1);
         }
 
         // Gives ammo to pistol
         else if(ammoType == AmmoType.Pistol)
         {
-            weaponStats = GameObject.Find("Pistol").GetComponent<WeaponStats>();
-            weaponStats.maxAmmo += ammoToGive;
+            weaponStatsPS.maxAmmo += ammoToGive;
+            uiManager.weaponHasAmmo(2);
         }
+
 
         
     }

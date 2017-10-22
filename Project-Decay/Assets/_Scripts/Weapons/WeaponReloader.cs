@@ -15,10 +15,6 @@ public class WeaponReloader : MonoBehaviour {
     public FiringType firingType;
     public float rateOfFire;
 
-    // Text box for ammo Count
-    public Text maxAmmoTextBox;
-    public Text ammoInClipTextBox;
-
     UIManager uiManager;
     PlayerShoot playerShoot;
     Shooting shooting;
@@ -86,8 +82,7 @@ public class WeaponReloader : MonoBehaviour {
         isReloading = false;
         //ammoInClip -= shotsFiredInClip;
 
-        // Reduces max ammo
-        
+        // Reduces max ammo       
         currentWeapon.maxAmmo -= shotsFiredInClip;
         if(currentWeapon.maxAmmo < 0)
         {
@@ -129,15 +124,16 @@ public class WeaponReloader : MonoBehaviour {
 
 
 
-    // Reduces the amount off ammo in the clip and saves remaining ammo for weapon change.
+    // Reduces the amount of ammo in the clip and saves remaining ammo for weapon change.
     public void TakeFromClip(int amount)
     {
         shotsFiredInClip += amount;
         currentWeapon.AmmoInClip -= amount;
-        ammoInClipTextBox.text = currentWeapon.AmmoInClip.ToString();
+ 
+        uiManager.updateAmmoTextbox();
         if (currentWeapon.AmmoInClip == 0 && currentWeapon.maxAmmo == 0)
         {
-            uiManager.weaponNoAmmo();
+            uiManager.weaponNoAmmo(currentWeapon.weaponID);
         }
     }
 }

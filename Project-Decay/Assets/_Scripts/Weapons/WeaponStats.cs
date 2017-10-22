@@ -11,6 +11,7 @@ public enum FiringType
 
 public class WeaponStats : MonoBehaviour {
 
+    public int weaponID;
     public int clipSize;
     public int maxAmmo;    
     public float ReloadSpeed;
