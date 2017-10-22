@@ -22,7 +22,8 @@ public class WeaponReloader : MonoBehaviour {
     UIManager uiManager;
     PlayerShoot playerShoot;
     Shooting shooting;
-    [SerializeField] WeaponStats currentWeapon;
+    
+    public WeaponStats currentWeapon;
 
     void Start()
     {
@@ -91,7 +92,7 @@ public class WeaponReloader : MonoBehaviour {
         if(currentWeapon.maxAmmo < 0)
         {
             currentWeapon.maxAmmo = 0;
-            maxAmmoTextBox.text = currentWeapon.maxAmmo.ToString();
+            uiManager.updateAmmoTextbox();
         }
 
         //Deducts shots fired from the clip
@@ -99,8 +100,7 @@ public class WeaponReloader : MonoBehaviour {
         currentWeapon.AmmoInClip = currentWeapon.clipSize;
 
         // Sets text box for ammo
-        ammoInClipTextBox.text = currentWeapon.AmmoInClip.ToString();
-        maxAmmoTextBox.text = currentWeapon.maxAmmo.ToString();
+        uiManager.updateAmmoTextbox();
 
 
         if (ammoInClip < 0)
@@ -124,8 +124,7 @@ public class WeaponReloader : MonoBehaviour {
         currentWeapon = CurrentWeapon;
 
         // Sets the ammo textbox indicator
-        maxAmmoTextBox.text = currentWeapon.maxAmmo.ToString();
-        ammoInClipTextBox.text = AmmoInClip.ToString();
+        uiManager.updateAmmoTextbox();
     }
 
 

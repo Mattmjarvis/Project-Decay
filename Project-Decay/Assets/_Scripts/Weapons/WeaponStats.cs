@@ -23,10 +23,8 @@ public class WeaponStats : MonoBehaviour {
     public Sprite weaponIcon_Selected;
 
 
-
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
 		        
 	}
