@@ -63,10 +63,8 @@ public class CompassController : MonoBehaviour
             cratePosition = supplyCrate.transform.position;
 
             Vector3 targetDir = cratePosition - playerTransform.position;
-            // float y = Vector3.Angle(targetDir, playerTransform.forward);
             double dist = Vector3.Distance(cratePosition, playerPosition);
             double z_dist = (double)targetDir.z;// playerPosition.z - cratePosition.z;
-            double x_dist = (double)targetDir.x; //playerPosition.x - cratePosition.x;
             double angleR = Mathf.Asin((float)(z_dist / dist));
             double angleD = Mathf.PI / 2 - angleR;
 

@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour {
     // Text box for ammo Count
     public Text maxAmmoTextBox;
     public Text ammoInClipTextBox;
-    private Color redColour =  new Color(255, 0, 0);
     private Color normalColour = new Color(255, 255, 255);
 
     // Use this for initialization

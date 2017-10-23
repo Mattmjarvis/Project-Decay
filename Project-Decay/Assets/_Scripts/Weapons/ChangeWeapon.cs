@@ -12,15 +12,12 @@ public class ChangeWeapon : MonoBehaviour {
     // UI Variables
     public GameObject[] weaponBoxImage;
     public GameObject[] weaponIcon;
-    UIManager uiManager;
 
     WeaponReloader weaponReloader;
 
     private void Start()
     {
         weaponReloader = gameObject.GetComponent<WeaponReloader>();
-        uiManager = FindObjectOfType<UIManager>();
-        Debug.Log(weapons.Length);
         changeWeapon(2); // Sets the starting weapon to pistol
     }
 

@@ -73,42 +73,57 @@ public class WeaponReloader : MonoBehaviour {
         StartCoroutine("Reload", reloadSpeed);        
     }
 
+    // Coroutine reloads the weapon after the weapons reload speed variable
     IEnumerator Reload(float reloadTime)
     {
         print("Reload Started!");
         yield return new WaitForSeconds(reloadTime);
         //will wait for the time given in the reloadTime variable to run this code
         print("Reload Executed!");
-        isReloading = false;
-        //ammoInClip -= shotsFiredInClip;
+        isReloading = false; 
 
-        // Reduces max ammo       
-        currentWeapon.maxAmmo -= shotsFiredInClip;
-        if(currentWeapon.maxAmmo < 0)
-        {
-            currentWeapon.maxAmmo = 0;
-        }        
 
-        // Checks if max ammo is less than the clip size and add ammo accordingly
-        if(currentWeapon.maxAmmo < currentWeapon.clipSize)
+        // If player has max ammo, check if max ammo is less than the clip size, and add ammo accordingly
+        if((currentWeapon.maxAmmo <= currentWeapon.clipSize) && currentWeapon.maxAmmo > 0 && (currentWeapon.maxAmmo + currentWeapon.AmmoInClip) < currentWeapon.clipSize)
         {
-            Debug.Log("max ammo: " + currentWeapon.maxAmmo);
+            Debug.Log(currentWeapon.maxAmmo + currentWeapon.AmmoInClip);
+            Debug.Log("Ammo in clip before: " + currentWeapon.AmmoInClip); 
+
             currentWeapon.AmmoInClip += currentWeapon.maxAmmo;
+            Debug.Log("Ammo in clip after : " + currentWeapon.AmmoInClip);
+
+            // Sets max ammo to 0 as all has been used
+            currentWeapon.maxAmmo = 0;
+
+            //Resets the shots fired in clip based on how much ammo is remaining
+            shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
+
         }
 
-        currentWeapon.AmmoInClip = currentWeapon.clipSize;
-        //Deducts shots fired from the clip
-        shotsFiredInClip = 0;
+        // Deducts max ammo based on how many shots have been fired and reset
+        else
+        {
+            currentWeapon.maxAmmo -= shotsFiredInClip; // Reduces max ammo
+            currentWeapon.AmmoInClip = currentWeapon.clipSize; // Sets current ammo to full clipsize
+            shotsFiredInClip = 0; // Reset shots fired
 
-        // Sets text box for ammo
-        uiManager.updateAmmoTextbox();
 
+        }
 
+        // Prevents ammo in clip from going below 0
         if (ammoInClip < 0)
         {
             ammoInClip = 0;
-            shotsFiredInClip -= ammoInClip;
         }
+
+        // Prevents max ammo from going below 0
+        if (currentWeapon.maxAmmo < 0)
+        {
+            currentWeapon.maxAmmo = 0;
+        }
+
+        // Sets text box for ammo
+        uiManager.updateAmmoTextbox();
     }
 
     // Gets the corresponding weapon variables for when the weapon gets changed
