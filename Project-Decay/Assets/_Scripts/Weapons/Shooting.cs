@@ -39,7 +39,7 @@ public class Shooting : MonoBehaviour
             //if not it will return
             return;
         }
-        reloader.Reload();
+        reloader.ReloadCheck();
         //calls the Reload method which will then call the executeReload method
         print("reloader was not null and Reload has been called");
     }

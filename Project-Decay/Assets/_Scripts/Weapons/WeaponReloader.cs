@@ -48,7 +48,7 @@ public class WeaponReloader : MonoBehaviour {
         }
     }
 
-    public void Reload()
+    public void ReloadCheck()
     {
         if (isReloading)
         {
@@ -70,10 +70,10 @@ public class WeaponReloader : MonoBehaviour {
             return;
         }
 
-        StartCoroutine("ReloadTime", reloadSpeed);        
+        StartCoroutine("Reload", reloadSpeed);        
     }
 
-    IEnumerator ReloadTime(float reloadTime)
+    IEnumerator Reload(float reloadTime)
     {
         print("Reload Started!");
         yield return new WaitForSeconds(reloadTime);
@@ -87,12 +87,18 @@ public class WeaponReloader : MonoBehaviour {
         if(currentWeapon.maxAmmo < 0)
         {
             currentWeapon.maxAmmo = 0;
-            uiManager.updateAmmoTextbox();
+        }        
+
+        // Checks if max ammo is less than the clip size and add ammo accordingly
+        if(currentWeapon.maxAmmo < currentWeapon.clipSize)
+        {
+            Debug.Log("max ammo: " + currentWeapon.maxAmmo);
+            currentWeapon.AmmoInClip += currentWeapon.maxAmmo;
         }
 
+        currentWeapon.AmmoInClip = currentWeapon.clipSize;
         //Deducts shots fired from the clip
         shotsFiredInClip = 0;
-        currentWeapon.AmmoInClip = currentWeapon.clipSize;
 
         // Sets text box for ammo
         uiManager.updateAmmoTextbox();

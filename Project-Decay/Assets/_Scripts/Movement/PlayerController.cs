@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log("Reload Pressed");
-            weaponReloader.Reload();
+            weaponReloader.ReloadCheck();
         }
     }
 

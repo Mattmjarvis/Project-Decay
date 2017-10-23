@@ -52,6 +52,7 @@ public class GiveAmmo : MonoBehaviour {
         if (ammoType == AmmoType.AssaultRifle)
         {
             weaponStatsAR.maxAmmo += ammoToGive;
+            print("MaxAmmo is " + weaponStatsAR.maxAmmo);
             uiManager.weaponHasAmmo(0);
         }
 
