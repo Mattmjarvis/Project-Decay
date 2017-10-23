@@ -120,14 +120,12 @@ public class PlayerController : MonoBehaviour {
             if (mouseEnabled)
             {
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
             }
             mouseEnabled = false;
         }
         else if (mouseEnabled == false)
         {
             Cursor.visible = false;
-            //Cursor.lockState = CursorLockMode.Locked;
         }
 
     }
