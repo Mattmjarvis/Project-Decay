@@ -58,7 +58,6 @@ public class CompassController : MonoBehaviour
         }
         while (true)
         {
-            Debug.Log("update");
             // Gets the crate position and applies it to compass
             cratePosition = supplyCrate.transform.position;
 

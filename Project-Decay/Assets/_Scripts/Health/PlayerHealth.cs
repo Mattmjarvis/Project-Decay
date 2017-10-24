@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour {
 
         for (int i = 0; i < dmg; i++)
         {
-            //This function must be give a dmg variable/amount when called.
+            //This function must be given a dmg variable/amount when called.
             health -= 1;
             ClampHealth();
             //This will be called to clamp the health and ensure it does not go over the max amount
@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour {
 
     void Death()
     {
-        if(health == 0)
+        if(health <= 0)
         {
             Debug.Log("Player is dead");
             Destroy(this.gameObject);

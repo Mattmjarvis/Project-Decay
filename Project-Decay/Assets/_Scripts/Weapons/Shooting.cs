@@ -57,7 +57,7 @@ public class Shooting : MonoBehaviour
         // Makes the weapon aim at the mouse position
         Vector3 target;
 
-        target = aimRay.GetPoint(20);
+        target = aimRay.GetPoint(50);
         transform.LookAt(target);
     }
 
