@@ -10,6 +10,9 @@ public class Shooting : MonoBehaviour
     //Rate of fire of the weapon, can be changed in the weapons personal script
     public GameObject projectile;
 
+    public GameObject crosshair;
+
+
     [HideInInspector]
     public Transform muzzle;
     private WeaponReloader reloader;
@@ -52,7 +55,7 @@ public class Shooting : MonoBehaviour
     public void Aim()
     {
         // Gets the mouse position on the screen and converts it to raycast
-        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);        
+        Ray aimRay = cam.ScreenPointToRay(crosshair.transform.position);        
 
         // Makes the weapon aim at the mouse position
         Vector3 target;
