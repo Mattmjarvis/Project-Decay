@@ -15,7 +15,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
     private float turningSpeed = 4.0f;
 
     //Defines move speed
-    private float moveSpeed = 20f;    
+    public float moveSpeed;    
 
     private float horizontal;
 
