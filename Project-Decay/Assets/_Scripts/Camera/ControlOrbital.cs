@@ -49,7 +49,7 @@ public class ControlOrbital : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(origin, InvCemForward, out hit))
         {
-            if (!hit.transform.CompareTag("PlayerObject") && !hit.transform.CompareTag("Player"))
+            if (!hit.transform.CompareTag("Player"))
             {
                 if (hit.distance < clippingDistance)
                 {
