@@ -7,6 +7,11 @@ public class EnemyAttack : MonoBehaviour {
     public float timeBetweenAttacks = 2f;
     public int attackDamage = 5;
 
+    public float timeBetweenSpecialAttacks = 5f;
+    public int specialattackDamage = 20;
+    public float specialAttackDistance;
+    bool playerInSpecialRange;
+
     //Animator anim;
     GameObject player;
     PlayerHealth playerHealth;
@@ -36,34 +41,7 @@ public class EnemyAttack : MonoBehaviour {
         
         //enemyAudio = GetComponent<AudioSource>();
 	}
-
-    #region Old Attack code
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    //If something that is not the enemy gameObject enters the collider this will be called
-    //    if(other.gameObject == player)
-    //    {
-    //        //check is whatever collided is the player
-    //        anim.SetBool("isAttacking", true);
-    //        playerInRange = true;
-    //        nav.speed = 0;
-    //        //if so, playerInRange is equal to true
-    //    }
-    //}	
-
-    //void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject == player)
-    //    {
-    //        //check is whatever left the collider is the player
-    //        playerInRange = false;
-    //        anim.SetBool("isAttacking", false);
-    //        nav.speed = 3.5f;
-    //        //if so, set playerInRange to false
-    //    }
-    //}
-    #endregion
-
+   
     void Update()
     {
         if(player == null)
@@ -77,9 +55,10 @@ public class EnemyAttack : MonoBehaviour {
         if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
         {
             //check if the timer is greater than the timeBetweenAttacks limit and the player is in range and the enemie is not dead
-            Attack();
+            Attack();            
             //Call attack
         }
+       
         //if(playerHealth.currentHealth <= 0)
         //{
         //    //enemyMovement.MoveEnemy();

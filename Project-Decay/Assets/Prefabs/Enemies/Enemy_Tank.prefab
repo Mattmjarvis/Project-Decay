@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsTargetDistance: 0
-  enemyLookDistance: 10
+  enemyLookDistance: 15
   stopDistance: 0
 --- !u!114 &114407071311286014
 MonoBehaviour:
@@ -142,6 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 3
   attackDamage: 20
+  timeBetweenSpecialAttacks: 5
+  specialattackDamage: 40
+  specialAttackDistance: 0
   attackDistance: 4
 --- !u!136 &136772890662042166
 CapsuleCollider:

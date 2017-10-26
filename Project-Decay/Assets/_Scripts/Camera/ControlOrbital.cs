@@ -23,7 +23,7 @@ public class ControlOrbital : MonoBehaviour {
     {
         var mouseVertical = Input.GetAxis("Mouse Y");
         vertical = (vertical - turningSpeed * mouseVertical) % 360f;
-        vertical = Mathf.Clamp(vertical, -10, 40);
+        vertical = Mathf.Clamp(vertical, -20, 30);
         transform.localRotation = Quaternion.AngleAxis(vertical, Vector3.right);
     }
 
