@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour {
     Wallet wallet;
     #endregion  
 
+    public GameObject UpgradeInterface;
+
     // Use this for initialization
     void Start ()
     {
@@ -84,4 +86,9 @@ public class UIManager : MonoBehaviour {
     }
     #endregion
 
+    // Enables the upgrade interface
+    public void EnableUpgradeInterface()
+    {
+        UpgradeInterface.SetActive(true);
+    }
 }
