@@ -36,10 +36,14 @@ public class Plane : MonoBehaviour
         {
             readyToDrop = false;
             Instantiate(supplyDropGO, dropSpawn.position, Quaternion.identity);
-             //Debug.Log("Crate dropped!");
+            //Debug.Log("Crate dropped!");
             hasDropped = true;
             compassController = FindObjectOfType<CompassController>();
-            compassController.ShowCrateOnCompass();
+
+            if (compassController != null)
+            { 
+                    compassController.ShowCrateOnCompass();
+             }
         }
     }
 
