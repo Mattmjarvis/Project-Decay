@@ -12,19 +12,25 @@ public class ControlOrbital : MonoBehaviour {
     public float clippingAdjustPos = 0.5f;
 
     private GameObject compass;
+    private ThirdPersonShooterController playerController;
 
     void Start ()
     {
         vertical = transform.eulerAngles.x;
         compass = GameObject.Find("Compass");
+        playerController = FindObjectOfType<ThirdPersonShooterController>();
     }
 
     void Update ()
     {
+        if(playerController.blockControl == false)
+        {
         var mouseVertical = Input.GetAxis("Mouse Y");
         vertical = (vertical - turningSpeed * mouseVertical) % 360f;
         vertical = Mathf.Clamp(vertical, -20, 30);
         transform.localRotation = Quaternion.AngleAxis(vertical, Vector3.right);
+        }
+
     }
 
     void LateUpdate()

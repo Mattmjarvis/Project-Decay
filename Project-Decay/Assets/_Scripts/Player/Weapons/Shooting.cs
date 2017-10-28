@@ -16,6 +16,7 @@ public class Shooting : MonoBehaviour
     [HideInInspector]
     public Transform muzzle;
     private WeaponReloader reloader;
+    private ThirdPersonShooterController playerController;
 
     Camera cam;
 
@@ -29,7 +30,7 @@ public class Shooting : MonoBehaviour
         
         //Instantiation point of the projectile.
         reloader = FindObjectOfType<WeaponReloader>();
-
+        playerController = FindObjectOfType<ThirdPersonShooterController>();
         cam = FindObjectOfType<Camera>();
     }
 
@@ -49,7 +50,11 @@ public class Shooting : MonoBehaviour
 
     public void Update()
     {
-        Aim();
+        if(playerController.blockControl == false)
+        {
+            Aim();
+        }
+
     }
 
     public void Aim()
@@ -59,14 +64,14 @@ public class Shooting : MonoBehaviour
 
         // Makes the weapon aim at the mouse position
         Vector3 target;
-
         target = aimRay.GetPoint(50);
         transform.LookAt(target);
     }
 
     public void Fire()
     {
-        if (canFire)
+
+        if (canFire && playerController.blockControl == false)
         {
             
             canFire = false;

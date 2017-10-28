@@ -10,7 +10,6 @@ public class WeaponReloader : MonoBehaviour {
     int ammoInClip;
     public int shotsFiredInClip;
     bool isReloading;
-    public float reloadSpeed;
     public int clipSize;
     public FiringType firingType;
     public float rateOfFire;
@@ -70,7 +69,7 @@ public class WeaponReloader : MonoBehaviour {
             return;
         }
 
-        StartCoroutine("Reload", reloadSpeed);        
+        StartCoroutine("Reload", currentWeapon.ReloadSpeed);        
     }
 
     // Coroutine reloads the weapon after the weapons reload speed variable
@@ -106,14 +105,12 @@ public class WeaponReloader : MonoBehaviour {
             currentWeapon.maxAmmo -= shotsFiredInClip; // Reduces max ammo
             currentWeapon.AmmoInClip = currentWeapon.clipSize; // Sets current ammo to full clipsize
             shotsFiredInClip = 0; // Reset shots fired
-
-
         }
 
         // Prevents ammo in clip from going below 0
-        if (ammoInClip < 0)
+        if (currentWeapon.AmmoInClip < 0)
         {
-            ammoInClip = 0;
+            currentWeapon.AmmoInClip = 0;
         }
 
         // Prevents max ammo from going below 0
@@ -131,7 +128,6 @@ public class WeaponReloader : MonoBehaviour {
         FiringType ft, Shooting Shooting, WeaponStats CurrentWeapon)
     {
         clipSize = ClipSize;
-        reloadSpeed = ReloadSpeed;
         ammoInClip = AmmoInClip;
         rateOfFire = RateOfFire;
         firingType = ft;

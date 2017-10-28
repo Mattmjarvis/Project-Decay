@@ -27,6 +27,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
     public bool blockControl;
 
     private WeaponReloader weaponReloader;
+    private InputManager inputManager;
 
 
     //Get the camera properties.
@@ -44,6 +45,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
         horizontal = transform.eulerAngles.y;
 
         weaponReloader = FindObjectOfType<WeaponReloader>();
+        inputManager = FindObjectOfType<InputManager>();
     }
 
     void Update ()
@@ -53,12 +55,14 @@ public class ThirdPersonShooterController : MonoBehaviour {
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+           
             Control();
+            MovePlayer();
+            //AnimatePlayer();
+            FocusCamera();
+            ReloadPressed();
         }
-        MovePlayer();
-        //AnimatePlayer();
-        FocusCamera();
-        ReloadPressed();
+
     }
 
     //private void AnimatePlayer()
