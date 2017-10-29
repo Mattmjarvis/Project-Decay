@@ -24,7 +24,7 @@ public class Wallet : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         uiManager = FindObjectOfType<UIManager>(); //Gets UI Manager to update textbox
-        IncreaseFunds(10);
+        IncreaseFunds(100000);
 	}
 	
 	// Update is called once per frame

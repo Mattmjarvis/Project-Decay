@@ -27,7 +27,6 @@ public class ThirdPersonShooterController : MonoBehaviour {
     public bool blockControl;
 
     private WeaponReloader weaponReloader;
-    private InputManager inputManager;
 
 
     //Get the camera properties.
@@ -45,7 +44,6 @@ public class ThirdPersonShooterController : MonoBehaviour {
         horizontal = transform.eulerAngles.y;
 
         weaponReloader = FindObjectOfType<WeaponReloader>();
-        inputManager = FindObjectOfType<InputManager>();
     }
 
     void Update ()
@@ -169,8 +167,8 @@ public class ThirdPersonShooterController : MonoBehaviour {
 
     private void FocusRaycast()
     {
-        RaycastHit hitInfo;
-        Ray cameraRay = camera.ViewportPointToRay(screenCentre);
+        //RaycastHit hitInfo;
+        //Ray cameraRay = camera.ViewportPointToRay(screenCentre);
     }
     
     private void MovePlayer()

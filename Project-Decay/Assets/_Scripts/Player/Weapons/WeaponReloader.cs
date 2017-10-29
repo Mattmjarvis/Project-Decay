@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class WeaponReloader : MonoBehaviour {
     
      //Player max ammo, will deduct clip size from this when clip is empty.        
-    int ammoInClip;
     public int shotsFiredInClip;
     bool isReloading;
     public int clipSize;
@@ -16,7 +15,6 @@ public class WeaponReloader : MonoBehaviour {
 
     UIManager uiManager;
     PlayerShoot playerShoot;
-    Shooting shooting;
     
     public WeaponStats currentWeapon;
 
@@ -35,7 +33,9 @@ public class WeaponReloader : MonoBehaviour {
     {
         get
         {
-            return clipSize - shotsFiredInClip;
+            shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
+            Debug.Log(shotsFiredInClip);
+            return currentWeapon.clipSize - shotsFiredInClip;
         }
     }
 
@@ -79,11 +79,11 @@ public class WeaponReloader : MonoBehaviour {
         yield return new WaitForSeconds(reloadTime);
         //will wait for the time given in the reloadTime variable to run this code
         print("Reload Executed!");
-        isReloading = false; 
-
+        isReloading = false;
+        shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
 
         // If player has max ammo, check if max ammo is less than the clip size, and add ammo accordingly
-        if((currentWeapon.maxAmmo <= currentWeapon.clipSize) && currentWeapon.maxAmmo > 0 && (currentWeapon.maxAmmo + currentWeapon.AmmoInClip) < currentWeapon.clipSize)
+        if ((currentWeapon.maxAmmo <= currentWeapon.clipSize) && currentWeapon.maxAmmo > 0 && (currentWeapon.maxAmmo + currentWeapon.AmmoInClip) < currentWeapon.clipSize)
         {
             Debug.Log(currentWeapon.maxAmmo + currentWeapon.AmmoInClip);
             Debug.Log("Ammo in clip before: " + currentWeapon.AmmoInClip); 
@@ -128,7 +128,6 @@ public class WeaponReloader : MonoBehaviour {
         FiringType ft, Shooting Shooting, WeaponStats CurrentWeapon)
     {
         clipSize = ClipSize;
-        ammoInClip = AmmoInClip;
         rateOfFire = RateOfFire;
         firingType = ft;
         shotsFiredInClip = ClipSize - AmmoInClip;

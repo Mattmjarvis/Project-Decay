@@ -8,7 +8,9 @@ public class Projectile : MonoBehaviour {
     #region variables
     [SerializeField]float speed;
     [SerializeField]float lifeSpan;
-    [SerializeField]int damage;
+    public WeaponStats weapon;
+ 
+
 
     //EnemyHealth enemyHealth;
     #endregion
@@ -29,7 +31,7 @@ public class Projectile : MonoBehaviour {
     {
         if(other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(damage);
+            other.GetComponent<EnemyHealth>().TakeDamage(weapon.bulletDamage);
             print("take damage called");
             Destroy(gameObject);
         }

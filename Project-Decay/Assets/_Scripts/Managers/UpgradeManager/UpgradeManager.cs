@@ -43,6 +43,8 @@ public class UpgradeManager : MonoBehaviour {
         // Begin by setting weapon of menu to AR
         previouslySelected = weaponSelection[1];
         currentlySelected = weaponSelection[0];
+        inputManger = FindObjectOfType<InputManager>();
+
         ClickUpgradeAR();
     }
 
@@ -169,4 +171,34 @@ public class UpgradeManager : MonoBehaviour {
         }
     }
 
+    // Makes the Army man say some witty comments after a purchase
+    public void ArmyDudeJoke()
+    {
+        // List of quotes to choose from
+        string previousJoke;
+        string[] quotes = {"You call that a weapon?",
+            "My grandma can shoot better than you!",
+            "Good purchase....NOT!",
+            "When in doubt, empty the magazine.",
+            "Cough it up, Maggot!",
+            "Upgrade? More like downgrade!",
+            "If you miss... Pretend it's the target"
+            };
+
+        // Choose a random quote
+        previousJoke = ArmyDudeText.text;
+        ArmyDudeText.text = quotes[Random.Range(1, quotes.Length)];
+        while (ArmyDudeText.text == previousJoke)
+        {
+            ArmyDudeText.text = quotes[Random.Range(1, quotes.Length)];
+        }
+
+    }
+
+    // If the player can't afford then display message
+    public void ArmyDudeInsufficientFunds()
+    {
+        Debug.Log("insufficient funds");
+        ArmyDudeText.text = "Insufficient funds, Private!";
+    }
 }
