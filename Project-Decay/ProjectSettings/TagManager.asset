@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - SupplyCrate
   - RadiationImage
+  - Upgrade
   layers:
   - Default
   - TransparentFX

@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1718572041533922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -175.94852, y: -88.54408, z: 125.946}
+  m_LocalPosition: {x: 25.08, y: 1, z: 13.705109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,6 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 2
   attackDamage: 5
+  timeBetweenSpecialAttacks: 5
+  specialattackDamage: 20
+  specialAttackDistance: 0
   attackDistance: 2
 --- !u!114 &114630428796872688
 MonoBehaviour:
@@ -126,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c196be4a8784947a7646a269cb2a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 50
   currentHealth: 0
   sinkSpeed: 2.5
 --- !u!114 &114689251836015990

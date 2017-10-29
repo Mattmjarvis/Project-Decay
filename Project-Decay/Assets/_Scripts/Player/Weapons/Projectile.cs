@@ -19,6 +19,8 @@ public class Projectile : MonoBehaviour {
         //enemyHealth = FindObjectOfType<EnemyHealth>();
         //GameObject is destroyed after specified lifetime, change to the an ObjectPool later in game.
         Destroy(gameObject, lifeSpan);
+        // Finds the active weapon to apply bullet damage
+        weapon = FindObjectOfType<WeaponStats>();
     }
 
     void Update()

@@ -50,18 +50,18 @@ public class Shooting : MonoBehaviour
 
     public void Update()
     {
+
+        // If the player has controll then the weapon aiming will follow the mouse position
         if(playerController.blockControl == false)
         {
             Aim();
         }
-
     }
 
     public void Aim()
     {
         // Gets the mouse position on the screen and converts it to raycast
         Ray aimRay = cam.ScreenPointToRay(crosshair.transform.position);        
-
         // Makes the weapon aim at the mouse position
         Vector3 target;
         target = aimRay.GetPoint(50);

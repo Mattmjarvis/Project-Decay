@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-
+    #region UI Images
     public GameObject radiationImage;
+    public GameObject interactImage;
+    #endregion
 
 
     #region WeaponUI Variables
@@ -24,6 +26,7 @@ public class UIManager : MonoBehaviour {
     #endregion  
 
     public GameObject UpgradeInterface;
+    private InputManager inputManager;
 
     // Use this for initialization
     void Start ()
@@ -31,6 +34,7 @@ public class UIManager : MonoBehaviour {
         // Get components
         wallet = FindObjectOfType<Wallet>().GetComponent<Wallet>() ;
         weaponReloader = FindObjectOfType<WeaponReloader>();
+        inputManager = FindObjectOfType<InputManager>();
         updateAmmoTextbox();
     }
 
@@ -86,9 +90,33 @@ public class UIManager : MonoBehaviour {
     }
     #endregion
 
-    // Enables the upgrade interface
+    /// <summary>
+    /// Enables the upgrade interface
+    /// </summary>
+    #region UpgradeInterface
     public void EnableUpgradeInterface()
     {
         UpgradeInterface.SetActive(true);
+        inputManager.PauseGameplay();
+        
     }
+       #endregion
+
+   ///<summary> 
+   /// Opens and closes the interact UI image
+   ///</summary>
+   #region interactTip
+   public void enableInteractTip()
+    {
+        interactImage.SetActive(true);
+    }
+    public void disableInteractTip()
+    {
+        interactImage.SetActive(false);
+    }
+    #endregion  
+
+
+
+
 }

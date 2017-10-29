@@ -53,14 +53,13 @@ public class ThirdPersonShooterController : MonoBehaviour {
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-           
+
             Control();
             MovePlayer();
             //AnimatePlayer();
             FocusCamera();
             ReloadPressed();
         }
-
     }
 
     //private void AnimatePlayer()
@@ -180,9 +179,9 @@ public class ThirdPersonShooterController : MonoBehaviour {
         if (state == 0) { transform.Translate(0, 0, 0); }
         if (state == 1) { transform.Translate(0, 0, 3.0f * Time.deltaTime * moveSpeed); }
         if (state == 2) { transform.Translate(0, 0, 5.0f * Time.deltaTime * moveSpeed); }
-        if (state == 3) { transform.Translate(0, 0, -2.5f * Time.deltaTime * moveSpeed); }
-        if (state == 4) { transform.Translate(2.5f * Time.deltaTime, 0, 0 * moveSpeed); }
-        if (state == 5) { transform.Translate(-2.5f * Time.deltaTime, 0, 0 * moveSpeed); }
+        if (state == 3) { transform.Translate(0, 0, -3f * Time.deltaTime * moveSpeed); }
+        if (state == 4) { transform.Translate(3f * Time.deltaTime, 0, 0 * moveSpeed); }
+        if (state == 5) { transform.Translate(3f * Time.deltaTime, 0, 0 * moveSpeed); }
     }
 
     public bool ReturnLooking()

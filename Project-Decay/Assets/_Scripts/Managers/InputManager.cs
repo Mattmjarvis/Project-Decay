@@ -12,14 +12,8 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PauseGameplay();
-        }
-        else if (Input.GetKeyDown(KeyCode.F))
-        {
-            ResumeGameplay();
-        }
+
+
 	}
 
     // Pauses game and unlocks mouse control
