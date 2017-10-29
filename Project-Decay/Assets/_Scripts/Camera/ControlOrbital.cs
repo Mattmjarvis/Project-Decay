@@ -5,8 +5,8 @@ using System.Collections;
 public class ControlOrbital : MonoBehaviour {
 
     private float vertical;
-    private float turningSpeed = 2.0f;
-
+    private float turningSpeed = 1.0f;
+      
     public float distanceFromTarget = 3.5f;
     public float clippingDistance = 3.5f;
     public float clippingAdjustPos = 0.5f;
@@ -54,7 +54,7 @@ public class ControlOrbital : MonoBehaviour {
 
         RaycastHit hit;
         if (Physics.Raycast(origin, InvCemForward, out hit))
-        {
+        {            
             if (!hit.transform.CompareTag("Player"))
             {
                 if (hit.distance < clippingDistance)

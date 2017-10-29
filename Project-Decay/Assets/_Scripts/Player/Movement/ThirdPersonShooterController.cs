@@ -149,14 +149,17 @@ public class ThirdPersonShooterController : MonoBehaviour {
                 state = 1;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1)) { looking = false; }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            looking = false;
+        }
     }
 
     private void FocusCamera()
     {
-        if (looking == true && camera.fieldOfView > 37)
+        if (looking == true && camera.fieldOfView > 50)
         {
-            camera.fieldOfView = camera.fieldOfView - 65.0f * Time.deltaTime;
+            camera.fieldOfView = camera.fieldOfView - 65f * Time.deltaTime;
         }
         if (looking == false && camera.fieldOfView < 60)
         {
@@ -180,8 +183,8 @@ public class ThirdPersonShooterController : MonoBehaviour {
         if (state == 1) { transform.Translate(0, 0, 3.0f * Time.deltaTime * moveSpeed); }
         if (state == 2) { transform.Translate(0, 0, 5.0f * Time.deltaTime * moveSpeed); }
         if (state == 3) { transform.Translate(0, 0, -3f * Time.deltaTime * moveSpeed); }
-        if (state == 4) { transform.Translate(3f * Time.deltaTime, 0, 0 * moveSpeed); }
-        if (state == 5) { transform.Translate(3f * Time.deltaTime, 0, 0 * moveSpeed); }
+        if (state == 4) { transform.Translate(8f * Time.deltaTime, 0, 0 * moveSpeed); }
+        if (state == 5) { transform.Translate(-8f * Time.deltaTime, 0, 0 * moveSpeed); }
     }
 
     public bool ReturnLooking()
@@ -193,7 +196,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("Reload Pressed");
+            //Debug.Log("Reload Pressed");
             weaponReloader.ReloadCheck();
         }
     }

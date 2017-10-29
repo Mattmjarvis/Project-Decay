@@ -106,7 +106,7 @@ public class ChangeWeapon : MonoBehaviour {
                 weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Selected;
                 //uiManager.weaponBoxImage[] = weaponBoxImage[i].gameObject.GetComponent<Image>();
 
-                Debug.Log("Weapon selected: " + weapons[i].name);
+                //Debug.Log("Weapon selected: " + weapons[i].name);
             }
 
 

@@ -34,7 +34,7 @@ public class WeaponReloader : MonoBehaviour {
         get
         {
             shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
-            Debug.Log(shotsFiredInClip);
+            //Debug.Log(shotsFiredInClip);
             return currentWeapon.clipSize - shotsFiredInClip;
         }
     }
@@ -75,10 +75,10 @@ public class WeaponReloader : MonoBehaviour {
     // Coroutine reloads the weapon after the weapons reload speed variable
     IEnumerator Reload(float reloadTime)
     {
-        print("Reload Started!");
+        //print("Reload Started!");
         yield return new WaitForSeconds(reloadTime);
         //will wait for the time given in the reloadTime variable to run this code
-        print("Reload Executed!");
+        //print("Reload Executed!");
         isReloading = false;
         shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
 

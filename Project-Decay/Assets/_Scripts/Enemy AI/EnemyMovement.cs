@@ -36,7 +36,7 @@ public class EnemyMovement : MonoBehaviour {
             return;
         }
         fpsTargetDistance = Vector3.Distance(player.position, transform.position);
-        if (enemyHealth.currentHealth > 0 && fpsTargetDistance < enemyLookDistance)
+        if (enemyHealth.currentHealth > 0 && (fpsTargetDistance < enemyLookDistance) || enemyHealth.enemyTriggered == true)
         {
             if (fpsTargetDistance <= stopDistance)
             {
@@ -46,6 +46,10 @@ public class EnemyMovement : MonoBehaviour {
             else
             {
                 //anim.SetBool("isChasing", true);
+                if(enemyHealth.isDead == true)
+                {
+                    return;
+                }
                 nav.SetDestination(player.position);
             }
         }

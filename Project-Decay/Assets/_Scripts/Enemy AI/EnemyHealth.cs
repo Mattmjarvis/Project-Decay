@@ -13,11 +13,10 @@ public class EnemyHealth : MonoBehaviour {
     //Animator anim;
     //AudioSource enemyAudio;
     //ParticleSystem hitParticles;
-    bool isDead;
+    public bool isDead;
     bool isSinking;
-
-
-
+    public bool enemyTriggered;
+    
     // Use this for initialization
     void Awake ()
     {
@@ -52,10 +51,10 @@ public class EnemyHealth : MonoBehaviour {
 
         currentHealth -= amount;
         //Plays the hurt sound and take the amount of damage from the currentHealth
-        
+        enemyTriggered = true;
         //hitParticles.Play();
         //The particles will be transformed whereve the HitPoint is and play from that origin
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Death();
             //if health is less than or equal to zero. Call death function.
