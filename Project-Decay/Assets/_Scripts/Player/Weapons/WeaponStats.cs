@@ -11,6 +11,8 @@ public enum FiringType
 
 public class WeaponStats : MonoBehaviour {
 
+    public bool infiniteAmmo;
+
     public int weaponID;
     public int bulletDamage;
     public int clipSize;

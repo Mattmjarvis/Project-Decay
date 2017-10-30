@@ -64,7 +64,7 @@ public class EnemyHealth : MonoBehaviour {
     void Death()
     {
 
-        Debug.Log("Enemy is dead");
+        //Debug.Log("Enemy is dead");
         isDead = true;
 
         CapsuleCollider col = GetComponent<CapsuleCollider>();

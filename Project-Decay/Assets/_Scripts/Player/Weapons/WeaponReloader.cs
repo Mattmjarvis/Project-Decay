@@ -72,8 +72,13 @@ public class WeaponReloader : MonoBehaviour {
         StartCoroutine("Reload", currentWeapon.ReloadSpeed);        
     }
 
+    public void StopReload()
+    {
+        StopCoroutine(Reload(0f));
+    }
+
     // Coroutine reloads the weapon after the weapons reload speed variable
-    IEnumerator Reload(float reloadTime)
+    public IEnumerator Reload(float reloadTime)
     {
         //print("Reload Started!");
         yield return new WaitForSeconds(reloadTime);
@@ -82,43 +87,53 @@ public class WeaponReloader : MonoBehaviour {
         isReloading = false;
         shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
 
-        // If player has max ammo, check if max ammo is less than the clip size, and add ammo accordingly
-        if ((currentWeapon.maxAmmo <= currentWeapon.clipSize) && currentWeapon.maxAmmo > 0 && (currentWeapon.maxAmmo + currentWeapon.AmmoInClip) < currentWeapon.clipSize)
+        // Only effect the current ammo if weapon has infinite ammo (This should only be the pistol)
+        if (currentWeapon.infiniteAmmo)
         {
-            Debug.Log(currentWeapon.maxAmmo + currentWeapon.AmmoInClip);
-            Debug.Log("Ammo in clip before: " + currentWeapon.AmmoInClip); 
-
-            currentWeapon.AmmoInClip += currentWeapon.maxAmmo;
-            Debug.Log("Ammo in clip after : " + currentWeapon.AmmoInClip);
-
-            // Sets max ammo to 0 as all has been used
-            currentWeapon.maxAmmo = 0;
-
-            //Resets the shots fired in clip based on how much ammo is remaining
-            shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
-
+            shotsFiredInClip = 0;
+            currentWeapon.AmmoInClip = currentWeapon.clipSize;
         }
 
-        // Deducts max ammo based on how many shots have been fired and reset
         else
         {
-            currentWeapon.maxAmmo -= shotsFiredInClip; // Reduces max ammo
-            currentWeapon.AmmoInClip = currentWeapon.clipSize; // Sets current ammo to full clipsize
-            shotsFiredInClip = 0; // Reset shots fired
-        }
+            // If the player doesn't have infinite ammo then update max ammo accordingly
+            // If player has max ammo, check if max ammo is less than the clip size, and add ammo accordingly
+            if ((currentWeapon.maxAmmo <= currentWeapon.clipSize) && currentWeapon.maxAmmo > 0 && (currentWeapon.maxAmmo + currentWeapon.AmmoInClip) < currentWeapon.clipSize)
+            {
+                Debug.Log(currentWeapon.maxAmmo + currentWeapon.AmmoInClip);
+                Debug.Log("Ammo in clip before: " + currentWeapon.AmmoInClip);
 
-        // Prevents ammo in clip from going below 0
-        if (currentWeapon.AmmoInClip < 0)
-        {
-            currentWeapon.AmmoInClip = 0;
-        }
+                currentWeapon.AmmoInClip += currentWeapon.maxAmmo;
+                Debug.Log("Ammo in clip after : " + currentWeapon.AmmoInClip);
 
-        // Prevents max ammo from going below 0
-        if (currentWeapon.maxAmmo < 0)
-        {
-            currentWeapon.maxAmmo = 0;
-        }
+                // Sets max ammo to 0 as all has been used
+                currentWeapon.maxAmmo = 0;
 
+                //Resets the shots fired in clip based on how much ammo is remaining
+                shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
+
+            }
+
+            // Deducts max ammo based on how many shots have been fired and reset
+            else
+            {
+                currentWeapon.maxAmmo -= shotsFiredInClip; // Reduces max ammo
+                currentWeapon.AmmoInClip = currentWeapon.clipSize; // Sets current ammo to full clipsize
+                shotsFiredInClip = 0; // Reset shots fired
+            }
+
+            // Prevents ammo in clip from going below 0
+            if (currentWeapon.AmmoInClip < 0)
+            {
+                currentWeapon.AmmoInClip = 0;
+            }
+
+            // Prevents max ammo from going below 0
+            if (currentWeapon.maxAmmo < 0)
+            {
+                currentWeapon.maxAmmo = 0;
+            }
+        }
         // Sets text box for ammo
         uiManager.updateAmmoTextbox();
     }

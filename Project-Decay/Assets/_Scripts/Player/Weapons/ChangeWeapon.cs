@@ -89,8 +89,10 @@ public class ChangeWeapon : MonoBehaviour {
         {
             // Change to the weapon related to the number
             if (i == num)
-            {                              
+            {
+                weaponReloader.StopReload();
                 weapons[i].gameObject.SetActive(true);
+
 
                 // Gets all the weapons stats and variables for the weapon reloader
                 weaponReloader.GetWeaponVariables(weapons[i].gameObject.GetComponent<WeaponStats>().clipSize,

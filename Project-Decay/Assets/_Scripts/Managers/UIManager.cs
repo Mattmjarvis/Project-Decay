@@ -75,7 +75,17 @@ public class UIManager : MonoBehaviour {
     public void updateAmmoTextbox()
     {
         ammoInClipTextBox.text = weaponReloader.currentWeapon.AmmoInClip.ToString();
-        maxAmmoTextBox.text = weaponReloader.currentWeapon.maxAmmo.ToString();
+
+        // If the weapon has infinite ammo then show infinite ammo symbol
+        if (weaponReloader.currentWeapon.infiniteAmmo)
+        {
+            maxAmmoTextBox.text = "∞";
+        }
+        // Else show max ammo accordingly
+        else
+        {
+            maxAmmoTextBox.text = weaponReloader.currentWeapon.maxAmmo.ToString();
+        }
     }
     #endregion
 

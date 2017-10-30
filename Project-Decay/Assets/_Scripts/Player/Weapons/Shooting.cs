@@ -26,7 +26,7 @@ public class Shooting : MonoBehaviour
 
     void Awake()
     {
-        muzzle = transform.Find("Muzzle");
+        muzzle = transform.Find("Model").transform.Find("Muzzle");
         
         //Instantiation point of the projectile.
         reloader = FindObjectOfType<WeaponReloader>();
@@ -35,7 +35,7 @@ public class Shooting : MonoBehaviour
     }
 
     public void ReloadGun()
-    {
+    {              
         //Checks if the reloader/WeaponReloader script is available
         if (reloader == null)
         {
