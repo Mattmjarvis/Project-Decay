@@ -30,7 +30,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
 
 
     //Get the camera properties.
-    public Camera camera; 
+    public new Camera camera;
 
     void Start ()
     {
@@ -155,7 +155,7 @@ public class ThirdPersonShooterController : MonoBehaviour {
         }
     }
 
-    private void FocusCamera()
+    public void FocusCamera()
     {
         if (looking == true && camera.fieldOfView > 50)
         {
