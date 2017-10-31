@@ -11,6 +11,7 @@ TagManager:
   - SupplyCrate
   - RadiationImage
   - Upgrade
+  - PatrolWaypoints
   layers:
   - Default
   - TransparentFX
