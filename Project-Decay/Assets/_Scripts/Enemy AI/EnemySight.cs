@@ -9,6 +9,7 @@ public class EnemySight : MonoBehaviour
 
     NavMeshAgent agent;
     ThirdPersonShooterController character;
+    EnemyHealth enemyHealth;
 
     public enum State
     {
@@ -44,11 +45,12 @@ public class EnemySight : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         character = GetComponent<ThirdPersonShooterController>();
+        enemyHealth = GetComponent<EnemyHealth>();
 
         agent.updatePosition = true;
         agent.updateRotation = false;
 
-        waypoints = GameObject.FindGameObjectsWithTag("PatrolWaypoints");
+        //waypoints = GameObject.FindGameObjectsWithTag("PatrolWaypoints");
         waypointInd = Random.Range(0, waypoints.Length);
 
         state = EnemySight.State.PATROL;
@@ -87,8 +89,17 @@ public class EnemySight : MonoBehaviour
         //Sets the NavMesh speed to be the patrol speed
         if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
         {
+            if(enemyHealth.isDead == true)
+            {
+                return;
+            }
             agent.SetDestination(waypoints[waypointInd].transform.position);
-            //character.Move(agent.desiredVelocity, false, false);            
+            Vector3 targetPoint= new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
+            //Steering point tells unity to make the AI face the point in which the agent is moving too
+            //character.Move(agent.desiredVelocity, false, false);                      
+            var targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
+            //Smooth rotation based on the position it is moving towards.
         }
         else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
         {
@@ -109,37 +120,7 @@ public class EnemySight : MonoBehaviour
 
     void Investigate()
     {
-        timer += Time.deltaTime;
-        RaycastHit hit;
-        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, transform.forward * sightDist, Color.green);
-        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized * sightDist, Color.green);
-        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized * sightDist, Color.green);
-
-        if(Physics.Raycast (transform.position + Vector3.up * heightMultiplier, transform.forward, out hit, sightDist))
-        {
-            if(hit.collider.gameObject.tag == "Player")
-            {
-                state = EnemySight.State.CHASE;
-                target = hit.collider.gameObject;
-            }
-        }
-        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized, out hit, sightDist))
-        {
-            if (hit.collider.gameObject.tag == "Player")
-            {
-                state = EnemySight.State.CHASE;
-                target = hit.collider.gameObject;
-            }
-        }
-        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized, out hit, sightDist))
-        {
-            if (hit.collider.gameObject.tag == "Player")
-            {
-                state = EnemySight.State.CHASE;
-                target = hit.collider.gameObject;
-            }
-        }
-
+        timer += Time.deltaTime;      
         //Enemy will stop moving
         agent.SetDestination(this.transform.position);
         //Ensures player movement is zero
@@ -150,7 +131,6 @@ public class EnemySight : MonoBehaviour
             state = EnemySight.State.PATROL;
             timer = 0;
         }
-
     }
 
     void OnTriggerEnter(Collider coll)
@@ -161,5 +141,41 @@ public class EnemySight : MonoBehaviour
             investigateSpot = coll.gameObject.transform.position;
         }
     }
-    //Currently invesitgate mode is not detecting player. Sort this tomorrow by using debugs.
+
+    void FixedUpdate()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, transform.forward * sightDist, Color.green);
+        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized * sightDist, Color.green);
+        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized * sightDist, Color.green);
+
+        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, transform.forward, out hit, sightDist))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                state = EnemySight.State.CHASE;
+                target = hit.collider.gameObject;
+                print("Player hit");
+            }
+        }
+        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized, out hit, sightDist))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                state = EnemySight.State.CHASE;
+                target = hit.collider.gameObject;
+                print("Player hit");
+
+            }
+        }
+        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized, out hit, sightDist))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                state = EnemySight.State.CHASE;
+                target = hit.collider.gameObject;
+                print("Player hit");
+            }
+        }
+    }
 }
