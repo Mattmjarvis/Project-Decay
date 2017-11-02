@@ -114,12 +114,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   waypoints: []
-  patrolSpeed: 0.5
-  chaseSpeed: 1
+  patrolSpeed: 1
+  chaseSpeed: 5
   target: {fileID: 0}
   investigateWait: 10
   heightMultiplier: 0
-  sightDist: 10
+  sightDist: 15
 --- !u!114 &114526285998975538
 MonoBehaviour:
   m_ObjectHideFlags: 1

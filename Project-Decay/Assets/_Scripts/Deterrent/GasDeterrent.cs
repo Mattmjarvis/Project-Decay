@@ -30,7 +30,7 @@ public class GasDeterrent : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             GasDamageTimer = Time.time + 2;
-            Debug.Log(GasDamageTimer);
+            //Debug.Log(GasDamageTimer);
         }
     }
 

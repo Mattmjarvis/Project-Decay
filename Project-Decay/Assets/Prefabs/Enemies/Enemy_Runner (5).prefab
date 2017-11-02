@@ -123,7 +123,7 @@ MonoBehaviour:
   target: {fileID: 0}
   investigateWait: 10
   heightMultiplier: 0
-  sightDist: 10
+  sightDist: 20
 --- !u!114 &114644206579192670
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,10 +6,11 @@ using UnityEngine.AI;
 
 public class EnemySight : MonoBehaviour
 {
-
     NavMeshAgent agent;
-    ThirdPersonShooterController character;
+    ThirdPersonShooterController player;
+    PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
+    Transform playerTransform;
 
     public enum State
     {
@@ -29,6 +30,7 @@ public class EnemySight : MonoBehaviour
     //Variables for Chasing
     public float chaseSpeed = 1f;
     public GameObject target;
+    float targetDistance;
 
     //Variables for Investigating
     private Vector3 investigateSpot;
@@ -37,14 +39,16 @@ public class EnemySight : MonoBehaviour
 
     //Variables for Sight
     public float heightMultiplier;
-    public float sightDist = 10f;
+    public float sightDist = 20f;
 
 
     // Use this for initialization
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        character = GetComponent<ThirdPersonShooterController>();
+        player = GetComponent<ThirdPersonShooterController>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerHealth = FindObjectOfType<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
 
         agent.updatePosition = true;
@@ -62,6 +66,15 @@ public class EnemySight : MonoBehaviour
         StartCoroutine("FSN");
     }
 
+    void Update()
+    {
+        if(playerHealth.health <= 0)
+        {
+            return;
+        }
+        targetDistance = Vector3.Distance(playerTransform.transform.position, transform.position);
+        //target distance is equal to the distance between the target and this enemies transform
+    }
     IEnumerator FSN()
     {
         //State machine, organises whichs state the enemy AI is in.
@@ -94,28 +107,37 @@ public class EnemySight : MonoBehaviour
                 return;
             }
             agent.SetDestination(waypoints[waypointInd].transform.position);
-            Vector3 targetPoint= new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
+            Vector3 targetWayPoint = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
             //Steering point tells unity to make the AI face the point in which the agent is moving too
-            //character.Move(agent.desiredVelocity, false, false);                      
-            var targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
+            var targetRotation = Quaternion.LookRotation(targetWayPoint - transform.position, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
             //Smooth rotation based on the position it is moving towards.
         }
         else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
         {
             waypointInd = Random.Range(0, waypoints.Length);
-        }
-        //else
-        //{
-        //    //character.moveSpeed(Vector3.zero, false, false);
-        //}
+        }        
     }
 
     void Chase()
     {
+        if(enemyHealth.isDead == true)
+        {
+            return;
+        }
+
         agent.speed = chaseSpeed;
         agent.SetDestination(target.transform.position);
-        //character.move(agent.desiredVelocity, false, false);
+
+        Vector3 targetPoint = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
+        var targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4.0f);
+
+        if (targetDistance > sightDist)
+        {
+            Debug.Log("Enemy is out of sight");
+            state = EnemySight.State.PATROL;
+        }
     }
 
     void Investigate()
@@ -124,7 +146,6 @@ public class EnemySight : MonoBehaviour
         //Enemy will stop moving
         agent.SetDestination(this.transform.position);
         //Ensures player movement is zero
-        //this.transform.position = new Vector3(0, 0, 0);
         transform.LookAt(investigateSpot);
         if(timer >= investigateWait)
         {
@@ -155,7 +176,7 @@ public class EnemySight : MonoBehaviour
             {
                 state = EnemySight.State.CHASE;
                 target = hit.collider.gameObject;
-                print("Player hit");
+                //print("Player hit");
             }
         }
         if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized, out hit, sightDist))
@@ -164,7 +185,7 @@ public class EnemySight : MonoBehaviour
             {
                 state = EnemySight.State.CHASE;
                 target = hit.collider.gameObject;
-                print("Player hit");
+                //print("Player hit");
 
             }
         }
@@ -174,7 +195,7 @@ public class EnemySight : MonoBehaviour
             {
                 state = EnemySight.State.CHASE;
                 target = hit.collider.gameObject;
-                print("Player hit");
+                //print("Player hit");
             }
         }
     }
