@@ -12,6 +12,7 @@ TagManager:
   - RadiationImage
   - Upgrade
   - PatrolWaypoints
+  - EnemySpawnPoint
   layers:
   - Default
   - TransparentFX
