@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour {
         if(other.gameObject.tag == "Enemy")
         {
             other.GetComponent<EnemyHealth>().TakeDamage(weapon.bulletDamage);
-            print("take damage called: Damage: " + weapon.bulletDamage);
+            //print("take damage called: Damage: " + weapon.bulletDamage);
             Destroy(gameObject);
         }
         //Add damage here etc.
