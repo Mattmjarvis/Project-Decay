@@ -84,7 +84,7 @@ public class FlightPath : MonoBehaviour {
                 endIndex = Random.Range(0, verticalNumbers.Length);
                 flightStart = verticalLetters[startIndex];
                 flightEnd = verticalNumbers[endIndex];
-                Debug.Log("The flight path is between: " + flightStart + "and " + flightEnd);
+                //Debug.Log("The flight path is between: " + flightStart + "and " + flightEnd);
                 EnablePlane();
             }
             // Starts plane on South side
@@ -94,7 +94,7 @@ public class FlightPath : MonoBehaviour {
                 endIndex = Random.Range(0, verticalLetters.Length);
                 flightStart = verticalNumbers[startIndex];
                 flightEnd = verticalLetters[endIndex];
-                Debug.Log("The flight path is between: " + flightStart + "and " + flightEnd);
+                //Debug.Log("The flight path is between: " + flightStart + "and " + flightEnd);
                 EnablePlane();
             }
         }
@@ -106,7 +106,7 @@ public class FlightPath : MonoBehaviour {
     {
         plane.SetActive(true);
         plane.transform.position = new Vector3(flightStart.transform.position.x, flightStart.transform.position.y, flightStart.transform.position.z);
-        Debug.Log("Planes position is at: " + flightStart);
+         //Debug.Log("Planes position is at: " + flightStart);
         plane.GetComponent<Plane>().planeFlightStart = flightStart;
         plane.GetComponent<Plane>().planeFlightEnd = flightEnd;
         plane.GetComponent<Plane>().lookAtTarget = flightEnd.transform;

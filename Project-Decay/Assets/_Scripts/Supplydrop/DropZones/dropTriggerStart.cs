@@ -22,7 +22,7 @@ public class dropTriggerStart : MonoBehaviour
             else
             {
                 other.GetComponent<Plane>().readyToDrop = true;
-                Debug.Log("Ready to drop? : " + other.GetComponent<Plane>().readyToDrop);
+                //Debug.Log("Ready to drop? : " + other.GetComponent<Plane>().readyToDrop);
                 other.GetComponent<Plane>().dropTheCrate();
             }
         }
@@ -43,7 +43,7 @@ public class dropTriggerStart : MonoBehaviour
             // Force supply to drop
             else
             {
-                Debug.Log("Force Drop");
+                //Debug.Log("Force Drop");
                 other.GetComponent<Plane>().supplyDrop();
 
             }
