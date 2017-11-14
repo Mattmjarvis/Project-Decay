@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour {
         weaponReloader = FindObjectOfType<WeaponReloader>();
         inputManager = FindObjectOfType<InputManager>();
         updateAmmoTextbox();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     /// <summary>

@@ -14,8 +14,7 @@ public class CompassController : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
-        
+    {        
         playerTransform = GameObject.Find("Player").GetComponent<Transform>();
     }
 

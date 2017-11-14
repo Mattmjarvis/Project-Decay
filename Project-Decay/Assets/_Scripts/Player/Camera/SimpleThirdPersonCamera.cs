@@ -6,7 +6,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 	public Transform target;
 	public Vector3 targetOffset = Vector3.zero;
 	public float minimumDistance = 0.5f;
-	public float rotAxisSpeed = 1.0f;
+	public float rotAxisSpeed = 0f;
 	public bool alignTarget = true;
 	private float distanceFromTarget = 5.0f;
 
@@ -55,8 +55,8 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 		//Change this to left mouse down
 		//if(Input.GetKey(KeyCode.LeftCommand))
 		//{
-		horizontalRot += Input.GetAxis("Mouse X") * 10f;
-		verticalRot += Input.GetAxis("Mouse Y") * 10f;
+		horizontalRot += Input.GetAxis("Mouse X") * 1f;
+		verticalRot += Input.GetAxis("Mouse Y") * 1f;
 		verticalRot = Mathf.Clamp(verticalRot, 0.0f, 90f);
 		//}
 
@@ -90,8 +90,8 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 		//Change this to left mouse down
 		//if(Input.GetKey(KeyCode.LeftCommand))
 		//{
-		horizontalRot += Input.GetAxis("Mouse X") * 10f;
-		verticalRot += Input.GetAxis("Mouse Y") * 10f;
+		horizontalRot += Input.GetAxis("Mouse X") * 1f;
+		verticalRot += Input.GetAxis("Mouse Y") * 1f;
 		verticalRot = Mathf.Clamp(verticalRot, -45f, 45f);
 		//}
 

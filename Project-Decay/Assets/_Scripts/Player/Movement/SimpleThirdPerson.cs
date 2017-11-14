@@ -33,6 +33,9 @@ public class SimpleThirdPerson : MonoBehaviour
 
 		lookAtGO = new GameObject();
 		lookAtGO.transform.name = "lookAt";
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 	}
 
 	public void Update()
@@ -88,7 +91,7 @@ public class SimpleThirdPerson : MonoBehaviour
 			AimWeapon();
 		}
 
-		if(Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButtonDown(0) && gunActive)
 		{
 			FireWeapon();
 		}

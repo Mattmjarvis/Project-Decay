@@ -1049,6 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab318f79936d0463dbdd68ed71c5e65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   camera: {fileID: 0}
   gun: {fileID: 1467062068107830}
   ikActive: 1
