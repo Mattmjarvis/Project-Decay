@@ -1870,7 +1870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   supplyCrateImage: {fileID: 2012593830}
-  supplyCrate: {fileID: 0}
+  supplyCrate: {fileID: 1740183962581396, guid: dc63298ab182d864d9e452a070cb5e4e,
+    type: 2}
 --- !u!114 &92094923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44754,6 +44755,10 @@ Prefab:
     - target: {fileID: 4397167548253714, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
       propertyPath: m_LocalPosition.z
       value: -0.331
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035281216017056, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
