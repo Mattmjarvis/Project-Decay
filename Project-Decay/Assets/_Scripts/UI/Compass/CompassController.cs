@@ -15,7 +15,7 @@ public class CompassController : MonoBehaviour
     // Use this for initialization
     void Start()
     {        
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Moves the image in relation to the camera

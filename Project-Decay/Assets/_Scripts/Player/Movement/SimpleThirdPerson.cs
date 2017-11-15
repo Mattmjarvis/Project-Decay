@@ -18,8 +18,8 @@ public class SimpleThirdPerson : MonoBehaviour
 	public GameObject bulletPr;
 
 	private Vector3 hitPoint = Vector3.zero;
-	private enum Weapon {Firearm, Throwing};
-	private Weapon currentWeapon = Weapon.Firearm;
+	private enum WeaponType {Gun, Grenade};
+	private WeaponType currentWeaponType = WeaponType.Gun;
 
 	public GameObject crosshair;
 
@@ -68,25 +68,26 @@ public class SimpleThirdPerson : MonoBehaviour
 		if(inputVert > 0)
 			transform.rotation = Quaternion.Slerp (transform.rotation, camRot, Time.deltaTime * 5.0f);
 
-		if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(1))
 		{
-			if(!gunActive)
-			{
-				GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Aim;
-				gun.SetActive(true);
-				gunActive = true;
-				crosshair.SetActive(true);
-			}
-			else
-			{
-				GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Normal;
-				gun.SetActive(false);
-				gunActive = false;
-				crosshair.SetActive(false);
-			}
-		}
+            if (!gunActive)
+            {
+                GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Aim;
+                gun.SetActive(true);
+                gunActive = true;
+                crosshair.SetActive(true);
+            }
 
-		if(gunActive)
+            else
+            {
+                GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Normal;
+                gun.SetActive(false);
+                gunActive = false;
+                crosshair.SetActive(false);
+            }
+        }
+
+        if (gunActive)
 		{
 			AimWeapon();
 		}
@@ -99,14 +100,14 @@ public class SimpleThirdPerson : MonoBehaviour
 
 	private void FireWeapon()
 	{
-		if(currentWeapon == Weapon.Firearm)
+		if(currentWeaponType == WeaponType.Gun)
 		{
 			if(hitPoint != Vector3.zero)
 			{
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
 			}
 		}
-		else if(currentWeapon == Weapon.Throwing)
+		else if(currentWeaponType == WeaponType.Grenade)
 		{
 			GameObject bullet = (GameObject)Instantiate(bulletPr, gun.transform.position, gun.transform.rotation);
 			bullet.GetComponent<Rigidbody>().velocity = gun.transform.forward * 100f;

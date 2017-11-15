@@ -4,6 +4,7 @@ using System.Collections;
 public class SimpleThirdPersonCamera : MonoBehaviour 
 {
 	public Transform target;
+    private GameObject compass;
 	public Vector3 targetOffset = Vector3.zero;
 	public float minimumDistance = 0.5f;
 	public float rotAxisSpeed = 0f;
@@ -25,7 +26,10 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 		Vector3 angles = transform.eulerAngles;
 		horizontalRot = angles.y;
 		verticalRot = angles.x;
-	}
+
+        // Gets compass GO
+        compass = GameObject.Find("Compass");
+    }
 		
 	void LateUpdate () 
 	{
@@ -42,7 +46,13 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 				break;
 			}
 		}
-	}
+
+        // Updates the Compass UI
+        if (compass != null)
+        {
+            compass.SendMessage("Move");
+        }
+    }
 
 	private void UpdateNormalCamera()
 	{
@@ -56,7 +66,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 		//if(Input.GetKey(KeyCode.LeftCommand))
 		//{
 		horizontalRot += Input.GetAxis("Mouse X") * 1f;
-		verticalRot += Input.GetAxis("Mouse Y") * 1f;
+		verticalRot -= Input.GetAxis("Mouse Y") * 1f;
 		verticalRot = Mathf.Clamp(verticalRot, 0.0f, 90f);
 		//}
 
@@ -79,44 +89,44 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 	}
 
 
-	private void UpdateAimCamera()
-	{
-		AdjustToObstacles();
+    private void UpdateAimCamera()
+    {
+        AdjustToObstacles();
 
-		Camera cam = gameObject.GetComponent<Camera>();
-//		if(cam.fieldOfView != 30f) cam.fieldOfView = 30f;
-		cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 30f, Time.deltaTime * 5f);
+        Camera cam = gameObject.GetComponent<Camera>();
+        //		if(cam.fieldOfView != 30f) cam.fieldOfView = 30f;
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 30f, Time.deltaTime * 5f);
 
-		//Change this to left mouse down
-		//if(Input.GetKey(KeyCode.LeftCommand))
-		//{
-		horizontalRot += Input.GetAxis("Mouse X") * 1f;
-		verticalRot += Input.GetAxis("Mouse Y") * 1f;
-		verticalRot = Mathf.Clamp(verticalRot, -45f, 45f);
-		//}
+        //Change this to left mouse down
+        //if(Input.GetKey(KeyCode.LeftCommand))
+        //{
+        horizontalRot += Input.GetAxis("Mouse X") * 1f;
+        verticalRot -= Input.GetAxis("Mouse Y") * 1f;
+        verticalRot = Mathf.Clamp(verticalRot, -45f, 45f);
+        //}
 
-		horizontalRot += Input.GetAxis("Horizontal") * rotAxisSpeed;
+        horizontalRot += Input.GetAxis("Horizontal") * rotAxisSpeed;
 
-		Quaternion rot = Quaternion.Euler(verticalRot, horizontalRot, 0);
-		transform.rotation = rot;
+        Quaternion rot = Quaternion.Euler(verticalRot, horizontalRot, 0);
+        transform.rotation = rot;
 
-		Vector3 pos = target.position - (rot * Vector3.forward * distanceFromTarget);
-		pos += targetOffset;
+        Vector3 pos = target.position - (rot * Vector3.forward * distanceFromTarget);
+        pos += targetOffset;
 
-		Vector3 offsetX = (target.TransformDirection(Vector3.right) * aimOffset.x);
-		Vector3 offsetY = (target.TransformDirection(Vector3.up) * aimOffset.y);
-		Vector3 camDestPos = pos + offsetX + offsetY;
+        Vector3 offsetX = (target.TransformDirection(Vector3.right) * aimOffset.x);
+        Vector3 offsetY = (target.TransformDirection(Vector3.up) * aimOffset.y);
+        Vector3 camDestPos = pos + offsetX + offsetY;
 
-		transform.position = camDestPos;
+        transform.position = camDestPos;
 
-		Vector3 targetEuler = target.eulerAngles;
-		target.rotation = Quaternion.Euler(new Vector3(targetEuler.x, transform.eulerAngles.y, targetEuler.z));
+        Vector3 targetEuler = target.eulerAngles;
+        target.rotation = Quaternion.Euler(new Vector3(targetEuler.x, transform.eulerAngles.y, targetEuler.z));
 
-	}
+    }
 
 
 
-	private void AdjustToObstacles()
+    private void AdjustToObstacles()
 	{
 		Vector3 camForward = this.transform.forward;
 		Vector3 camInvertedFwd = camForward * -1;
