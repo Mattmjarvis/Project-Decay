@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SimpleThirdPersonCamera : MonoBehaviour 
 {
-	public Transform target;
+    #region Variables
+    public Transform target;
     private GameObject compass;
 	public Vector3 targetOffset = Vector3.zero;
 	public float minimumDistance = 0.5f;
@@ -19,9 +20,9 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 
 	public enum CamState {Normal, Aim};
 	public CamState cameraState = CamState.Normal;
+    #endregion
 
-
-	void Start () 
+    void Start () 
 	{
 		Vector3 angles = transform.eulerAngles;
 		horizontalRot = angles.y;
@@ -46,6 +47,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 				break;
 			}
 		}
+        //Switch statements between both camera states
 
         // Updates the Compass UI
         if (compass != null)
@@ -59,6 +61,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 		Camera cam = gameObject.GetComponent<Camera>();
 //		if(cam.fieldOfView != 60f) cam.fieldOfView = 60f;
 		cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.deltaTime * 5f);
+        //Changes field of view of the camera and lerps it, meaning it is a smooth transition
 
 		AdjustToObstacles();
 
@@ -68,6 +71,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 		horizontalRot += Input.GetAxis("Mouse X") * 1f;
 		verticalRot -= Input.GetAxis("Mouse Y") * 1f;
 		verticalRot = Mathf.Clamp(verticalRot, 0.0f, 90f);
+        //Handles mouse input and clamp
 		//}
 
 		horizontalRot += Input.GetAxis("Horizontal") * rotAxisSpeed;
@@ -103,6 +107,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
         horizontalRot += Input.GetAxis("Mouse X") * 1f;
         verticalRot -= Input.GetAxis("Mouse Y") * 1f;
         verticalRot = Mathf.Clamp(verticalRot, -45f, 45f);
+        //Handles mouse input and clamp
         //}
 
         horizontalRot += Input.GetAxis("Horizontal") * rotAxisSpeed;
@@ -165,6 +170,9 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 
 		Vector3 camBack = transform.position + camInvertedFwd * distanceFromTarget;
 		Debug.DrawLine(origin, camBack, debugColor);
+
+        //Sending a raycast behind the player, if the raycast hits a collider that is closer than the distanceFromTarget variable,
+        //it will put the camera forward, making sure it does not go through the object.
 	}
 
 

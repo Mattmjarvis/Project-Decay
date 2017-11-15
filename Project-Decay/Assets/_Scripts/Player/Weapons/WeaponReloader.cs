@@ -23,12 +23,7 @@ public class WeaponReloader : MonoBehaviour {
         playerShoot = FindObjectOfType<PlayerShoot>();
         uiManager = FindObjectOfType<UIManager>();
     }
-
-    void update()
-    {
-
-    }
-
+   
     public int RoundsRemainingInClip
     {
         get

@@ -3,27 +3,35 @@ using System.Collections;
 
 public class SimpleThirdPerson : MonoBehaviour 
 {
+    #region Variables
     public Camera cam;
 	public Transform camera;
 	private Animator animator;
 	private float speed;
+    //Controls speed of player movement
 
 	public GameObject gun;
+    //Sets the current gun
 	public bool ikActive = false;
 	public Transform handleRight;
 	public Transform handleLeft;
+    //Set positions for hands to animate to when holding guns
 
 	private bool gunActive = false;
+    //Checks if gun is active
 	GameObject lookAtGO;
 	public GameObject bulletPr;
+    //bullet prefab
 
 	private Vector3 hitPoint = Vector3.zero;
 	private enum WeaponType {Gun, Grenade};
 	private WeaponType currentWeaponType = WeaponType.Gun;
+    //Changes firing type
 
 	public GameObject crosshair;
+    #endregion
 
-	public void Start()
+    public void Start()
 	{
 		animator = GetComponent<Animator> ();
 
@@ -43,13 +51,16 @@ public class SimpleThirdPerson : MonoBehaviour
 		Quaternion camRot = Quaternion.Euler (new Vector3(transform.eulerAngles.x,
 			camera.eulerAngles.y,
 			transform.eulerAngles.z));
-		Vector3 relPos = camRot * Vector3.forward;
+        //Handles rotation of camera
 
-		float angle = Vector3.Angle (transform.forward, relPos);
-		int dir = AngleDir(transform.forward, relPos, Vector3.up);
+		//Vector3 relPos = camRot * Vector3.forward;
+
+		//float angle = Vector3.Angle (transform.forward, relPos);
+		//int dir = AngleDir(transform.forward, relPos, Vector3.up);
 
 		float maxSpeed = 3.5f;
 		if(Input.GetKey(KeyCode.LeftShift)) maxSpeed = 8.0f;
+        //Shift to sprint
 
 		speed = maxSpeed;
 
@@ -76,6 +87,7 @@ public class SimpleThirdPerson : MonoBehaviour
                 gun.SetActive(true);
                 gunActive = true;
                 crosshair.SetActive(true);
+                //Switches to aiming gun state
             }
 
             else
@@ -84,6 +96,7 @@ public class SimpleThirdPerson : MonoBehaviour
                 gun.SetActive(false);
                 gunActive = false;
                 crosshair.SetActive(false);
+                //switches to normal camerastate
             }
         }
 
@@ -105,18 +118,21 @@ public class SimpleThirdPerson : MonoBehaviour
 			if(hitPoint != Vector3.zero)
 			{
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
+                //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)
 			}
 		}
 		else if(currentWeaponType == WeaponType.Grenade)
 		{
 			GameObject bullet = (GameObject)Instantiate(bulletPr, gun.transform.position, gun.transform.rotation);
 			bullet.GetComponent<Rigidbody>().velocity = gun.transform.forward * 100f;
+            //Instantiates the bullet prefab and add velocity to it to send it through the world along the raycast to the hitPoint.
 		}
 	}
 
 	private void AimWeapon()
 	{
 		Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0));
+        //converts the cameras viewport to worldspace
 		Vector3 lookAtVector;
 		Quaternion camRot;
 
@@ -126,12 +142,15 @@ public class SimpleThirdPerson : MonoBehaviour
 		if(Physics.Raycast(ray, out hit, 100f))
 		{
 			Debug.DrawLine(gun.transform.position, hit.point, Color.red);
+            //Creates a raycast and visualises it
 
 			hitPoint = hit.point;
+            //sets hitpoint to the point in the world space where the ray has hit a collider
 
 			lookAtVector = hit.point - gun.transform.position;
 			camRot = Quaternion.LookRotation(lookAtVector);
 			gun.transform.rotation = camRot;
+            //The ray is sent from the camera, when the ray interacts with a collider it finds the position of the gun and sends a bullet to meet the hitPoint along the raycast.
 		}
 		else
 		{
@@ -154,6 +173,7 @@ public class SimpleThirdPerson : MonoBehaviour
 		{
 			animator.SetBool("Dive", true);
 		}
+        //Diving animation
 	}
 
 	public void OnAnimatorIK()
@@ -195,6 +215,7 @@ public class SimpleThirdPerson : MonoBehaviour
 				animator.SetIKRotationWeight(AvatarIKGoal.RightHand,0); 
 				animator.SetLookAtWeight(0);
 			}
+            //Controls AnimatorIK which moves the gun and hands of the character in a realistic way.
 		}
 	}
 
