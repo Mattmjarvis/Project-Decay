@@ -7,20 +7,15 @@ using UnityEngine.UI;
 public class WeaponReloader : MonoBehaviour {
     
      //Player max ammo, will deduct clip size from this when clip is empty.        
-    public int shotsFiredInClip;
+    private int shotsFiredInClip;
     bool isReloading;
-    public int clipSize;
-    public FiringType firingType;
-    public float rateOfFire;
 
     UIManager uiManager;
-    PlayerShoot playerShoot;
     
     public WeaponStats currentWeapon;
 
     void Start()
     {
-        playerShoot = FindObjectOfType<PlayerShoot>();
         uiManager = FindObjectOfType<UIManager>();
     }
    
@@ -28,10 +23,16 @@ public class WeaponReloader : MonoBehaviour {
     {
         get
         {
-            shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
+            shotsFiredInClip = currentWeapon.clipSize - currentWeapon.ammoInClip;
             //Debug.Log(shotsFiredInClip);
             return currentWeapon.clipSize - shotsFiredInClip;
         }
+    }
+    public void ReloadGun()
+    {       
+       ReloadCheck();
+        //calls the Reload method which will then call the executeReload method
+        print("reloader was not null and Reload has been called");
     }
 
     public bool IsReloading
@@ -64,7 +65,7 @@ public class WeaponReloader : MonoBehaviour {
             return;
         }
 
-        StartCoroutine("Reload", currentWeapon.ReloadSpeed);        
+        StartCoroutine("Reload", currentWeapon.reloadSpeed);        
     }
 
     public void StopReload()
@@ -80,32 +81,32 @@ public class WeaponReloader : MonoBehaviour {
         //will wait for the time given in the reloadTime variable to run this code
         //print("Reload Executed!");
         isReloading = false;
-        shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
+        shotsFiredInClip = currentWeapon.clipSize - currentWeapon.ammoInClip;
 
         // Only effect the current ammo if weapon has infinite ammo (This should only be the pistol)
         if (currentWeapon.infiniteAmmo)
         {
             shotsFiredInClip = 0;
-            currentWeapon.AmmoInClip = currentWeapon.clipSize;
+            currentWeapon.ammoInClip = currentWeapon.clipSize;
         }
 
         else
         {
             // If the player doesn't have infinite ammo then update max ammo accordingly
             // If player has max ammo, check if max ammo is less than the clip size, and add ammo accordingly
-            if ((currentWeapon.maxAmmo <= currentWeapon.clipSize) && currentWeapon.maxAmmo > 0 && (currentWeapon.maxAmmo + currentWeapon.AmmoInClip) < currentWeapon.clipSize)
+            if ((currentWeapon.maxAmmo <= currentWeapon.clipSize) && currentWeapon.maxAmmo > 0 && (currentWeapon.maxAmmo + currentWeapon.ammoInClip) < currentWeapon.clipSize)
             {
-                Debug.Log(currentWeapon.maxAmmo + currentWeapon.AmmoInClip);
-                Debug.Log("Ammo in clip before: " + currentWeapon.AmmoInClip);
+                Debug.Log(currentWeapon.maxAmmo + currentWeapon.ammoInClip);
+                Debug.Log("Ammo in clip before: " + currentWeapon.ammoInClip);
 
-                currentWeapon.AmmoInClip += currentWeapon.maxAmmo;
-                Debug.Log("Ammo in clip after : " + currentWeapon.AmmoInClip);
+                currentWeapon.ammoInClip += currentWeapon.maxAmmo;
+                Debug.Log("Ammo in clip after : " + currentWeapon.ammoInClip);
 
                 // Sets max ammo to 0 as all has been used
                 currentWeapon.maxAmmo = 0;
 
                 //Resets the shots fired in clip based on how much ammo is remaining
-                shotsFiredInClip = currentWeapon.clipSize - currentWeapon.AmmoInClip;
+                shotsFiredInClip = currentWeapon.clipSize - currentWeapon.ammoInClip;
 
             }
 
@@ -113,14 +114,14 @@ public class WeaponReloader : MonoBehaviour {
             else
             {
                 currentWeapon.maxAmmo -= shotsFiredInClip; // Reduces max ammo
-                currentWeapon.AmmoInClip = currentWeapon.clipSize; // Sets current ammo to full clipsize
+                currentWeapon.ammoInClip = currentWeapon.clipSize; // Sets current ammo to full clipsize
                 shotsFiredInClip = 0; // Reset shots fired
             }
 
             // Prevents ammo in clip from going below 0
-            if (currentWeapon.AmmoInClip < 0)
+            if (currentWeapon.ammoInClip < 0)
             {
-                currentWeapon.AmmoInClip = 0;
+                currentWeapon.ammoInClip = 0;
             }
 
             // Prevents max ammo from going below 0
@@ -134,30 +135,24 @@ public class WeaponReloader : MonoBehaviour {
     }
 
     // Gets the corresponding weapon variables for when the weapon gets changed
-    public void GetWeaponVariables(int ClipSize, float ReloadSpeed, int AmmoInClip, float RateOfFire,
-        FiringType ft, Shooting Shooting, WeaponStats CurrentWeapon)
+    public void GetWeaponStats(WeaponStats CurrentWeapon)
     {
-        clipSize = ClipSize;
-        rateOfFire = RateOfFire;
-        firingType = ft;
-        shotsFiredInClip = ClipSize - AmmoInClip;
-        playerShoot.shooting = Shooting;
-        currentWeapon = CurrentWeapon;
+        currentWeapon = CurrentWeapon; // Gets the weapon stats from current weapon
+        shotsFiredInClip = currentWeapon.clipSize - currentWeapon.ammoInClip; // Checks how many shots have been fired
+
 
         // Sets the ammo textbox indicator
         uiManager.updateAmmoTextbox();
     }
 
-
-
     // Reduces the amount of ammo in the clip and saves remaining ammo for weapon change.
     public void TakeFromClip(int amount)
     {
         shotsFiredInClip += amount;
-        currentWeapon.AmmoInClip -= amount;
+        currentWeapon.ammoInClip -= amount;
  
         uiManager.updateAmmoTextbox();
-        if (currentWeapon.AmmoInClip == 0 && currentWeapon.maxAmmo == 0)
+        if (currentWeapon.ammoInClip == 0 && currentWeapon.maxAmmo == 0)
         {
             uiManager.weaponNoAmmo(currentWeapon.weaponID);
         }

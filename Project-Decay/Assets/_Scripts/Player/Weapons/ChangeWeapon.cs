@@ -95,18 +95,11 @@ public class ChangeWeapon : MonoBehaviour {
 
 
                 // Gets all the weapons stats and variables for the weapon reloader
-                weaponReloader.GetWeaponVariables(weapons[i].gameObject.GetComponent<WeaponStats>().clipSize,
-                weapons[i].gameObject.GetComponent<WeaponStats>().ReloadSpeed,
-                weapons[i].gameObject.GetComponent<WeaponStats>().AmmoInClip,
-                weapons[i].gameObject.GetComponent<WeaponStats>().rateOfFire,
-                weapons[i].gameObject.GetComponent<WeaponStats>().firingType,
-                weapons[i].gameObject.GetComponent<Shooting>(),
-                weapons[i].gameObject.GetComponent<WeaponStats>());
+                weaponReloader.GetWeaponStats(weapons[i].gameObject.GetComponent<WeaponStats>());
 
                 // Changes weapon icons according to weapon
                 weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Selected;
                 weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Selected;
-                //uiManager.weaponBoxImage[] = weaponBoxImage[i].gameObject.GetComponent<Image>();
 
                 //Debug.Log("Weapon selected: " + weapons[i].name);
             }

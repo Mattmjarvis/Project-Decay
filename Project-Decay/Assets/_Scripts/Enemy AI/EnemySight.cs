@@ -109,9 +109,14 @@ public class EnemySight : MonoBehaviour
             agent.SetDestination(waypoints[waypointInd].transform.position);
             Vector3 targetWayPoint = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
             //Steering point tells unity to make the AI face the point in which the agent is moving too
-            var targetRotation = Quaternion.LookRotation(targetWayPoint - transform.position, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
-            //Smooth rotation based on the position it is moving towards.
+            Vector3 lookRot = targetWayPoint - transform.position;
+            if(lookRot != Vector3.zero)
+            {
+                var targetRotation = Quaternion.LookRotation(lookRot, Vector3.up);
+                //Debug.Log("Look Rotation: " + lookRot);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
+                //Smooth rotation based on the position it is moving towards.
+            }
         }
         else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2)
         {

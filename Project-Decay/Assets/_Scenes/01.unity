@@ -5710,8 +5710,8 @@ MonoBehaviour:
   bulletDamage: 10
   clipSize: 30
   maxAmmo: 90
-  ReloadSpeed: 3
-  AmmoInClip: 30
+  reloadSpeed: 0
+  ammoInClip: 0
   rateOfFire: 0.1
   firingType: 0
   weaponBox_Unselected: {fileID: 21300000, guid: 64c2da68d6dab7a4eabb5c311f94f547,
@@ -11315,12 +11315,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 496483055}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -512, y: 0, z: 70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 970617480}
-  m_RootOrder: 2
+  m_Father: {fileID: 742249388}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &496483057
 MonoBehaviour:
@@ -11333,11 +11333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fed9f9f04739e5438a744dc16d18234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotsFiredInClip: 0
-  clipSize: 0
-  firingType: 0
-  rateOfFire: 0
-  currentWeapon: {fileID: 0}
+  currentWeapon: {fileID: 2023172613}
 --- !u!1 &506771774
 GameObject:
   m_ObjectHideFlags: 0
@@ -16622,6 +16618,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2046415423}
+  - {fileID: 496483056}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19729,7 +19726,7 @@ MonoBehaviour:
   minimumDistance: 0.5
   rotAxisSpeed: 1
   alignTarget: 1
-  aimOffset: {x: 0.98, y: 0.4, z: 0}
+  aimOffset: {x: -1, y: 0.4, z: 0}
   cameraState: 0
 --- !u!81 &822947121
 AudioListener:
@@ -38332,6 +38329,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -42342,7 +42353,7 @@ Transform:
   m_Children:
   - {fileID: 1703262099}
   m_Father: {fileID: 633196521}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &2023172613
 MonoBehaviour:
@@ -42360,8 +42371,8 @@ MonoBehaviour:
   bulletDamage: 10
   clipSize: 12
   maxAmmo: 60
-  ReloadSpeed: 3
-  AmmoInClip: 12
+  reloadSpeed: 2
+  ammoInClip: 12
   rateOfFire: 0.1
   firingType: 1
   weaponBox_Unselected: {fileID: 21300004, guid: 64c2da68d6dab7a4eabb5c311f94f547,
@@ -43752,8 +43763,8 @@ MonoBehaviour:
   bulletDamage: 10
   clipSize: 2
   maxAmmo: 20
-  ReloadSpeed: 3
-  AmmoInClip: 2
+  reloadSpeed: 0
+  ammoInClip: 0
   rateOfFire: 0.1
   firingType: 1
   weaponBox_Unselected: {fileID: 21300002, guid: 64c2da68d6dab7a4eabb5c311f94f547,
@@ -44734,11 +44745,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4363591243622558, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4419541183028968, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 65664639256621286, guid: 3b3f29727594c154f856e0b0b3e62024,
         type: 2}
@@ -44805,6 +44816,18 @@ Prefab:
     - target: {fileID: 4035281216017056, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397167548253714, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865185355048910, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1639264084994852, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}
+      propertyPath: m_Name
+      value: Chad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b3f29727594c154f856e0b0b3e62024, type: 2}

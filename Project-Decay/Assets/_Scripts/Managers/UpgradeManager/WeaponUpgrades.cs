@@ -99,7 +99,7 @@ public class WeaponUpgrades : MonoBehaviour {
             wallet.ReduceFunds(tier1Price);
 
             // Upgrade Stats
-            weapon.ReloadSpeed -= 0.5f;
+            weapon.reloadSpeed -= 0.5f;
 
             // Display joke
             upgradeManager.ArmyDudeJoke();
@@ -203,7 +203,7 @@ public class WeaponUpgrades : MonoBehaviour {
             wallet.ReduceFunds(tier2Price);
 
             // Upgrade Stats
-            weapon.ReloadSpeed -= 0.5f;
+            weapon.reloadSpeed -= 0.5f;
 
             // Display joke
             upgradeManager.ArmyDudeJoke();
@@ -310,7 +310,7 @@ public class WeaponUpgrades : MonoBehaviour {
             wallet.ReduceFunds(tier3Price);
 
             // Upgrade Stats
-            weapon.ReloadSpeed -= 0.5f;
+            weapon.reloadSpeed -= 0.5f;
 
             // Display joke
             upgradeManager.ArmyDudeJoke();
@@ -416,7 +416,7 @@ public class WeaponUpgrades : MonoBehaviour {
             wallet.ReduceFunds(tier4Price);
 
             // Upgrade Stats
-            weapon.ReloadSpeed -= 0.5f;
+            weapon.reloadSpeed -= 0.5f;
 
             // Display joke
             upgradeManager.ArmyDudeJoke();

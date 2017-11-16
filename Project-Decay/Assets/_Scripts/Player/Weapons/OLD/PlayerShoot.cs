@@ -1,30 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour {
+//public class PlayerShoot : MonoBehaviour {
 
-    #region variables
-    public Shooting shooting;
-    FiringType firingType;
-    #endregion
+//    #region variables
+//    public Shooting shooting;
+//    FiringType firingType;
+//    #endregion
 
-    void Start()
-    {
-        shooting = FindObjectOfType<Shooting>();
-    }
+//    void Start()
+//    {
+//        shooting = FindObjectOfType<Shooting>();
+//    }
 
-    void Update()
-    {
+//    void Update()
+//    {
 
-        if (Input.GetMouseButton(0))
-        {
-            shooting.Fire();
+//        if (Input.GetMouseButton(0))
+//        {
+//            shooting.Fire();
 
-        }
-    }
+//        }
+//    }
 
        
 
 
-}
+//}

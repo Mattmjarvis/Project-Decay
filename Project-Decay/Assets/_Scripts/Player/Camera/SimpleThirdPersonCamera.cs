@@ -70,7 +70,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 		//{
 		horizontalRot += Input.GetAxis("Mouse X") * 1f;
 		verticalRot -= Input.GetAxis("Mouse Y") * 1f;
-		verticalRot = Mathf.Clamp(verticalRot, 0.0f, 90f);
+		verticalRot = Mathf.Clamp(verticalRot, -30f, 50f);
         //Handles mouse input and clamp
 		//}
 
@@ -81,7 +81,8 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 
 		Vector3 pos = target.position - (rot * Vector3.forward * distanceFromTarget);
 		pos += targetOffset;
-		transform.position = pos;
+        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * 6);
+
 
 		if(alignTarget)
 		{
@@ -99,14 +100,14 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 
         Camera cam = gameObject.GetComponent<Camera>();
         //		if(cam.fieldOfView != 30f) cam.fieldOfView = 30f;
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 30f, Time.deltaTime * 5f);
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, Time.deltaTime * 5f);
 
         //Change this to left mouse down
         //if(Input.GetKey(KeyCode.LeftCommand))
         //{
         horizontalRot += Input.GetAxis("Mouse X") * 1f;
         verticalRot -= Input.GetAxis("Mouse Y") * 1f;
-        verticalRot = Mathf.Clamp(verticalRot, -45f, 45f);
+        verticalRot = Mathf.Clamp(verticalRot, -45f, 60f);
         //Handles mouse input and clamp
         //}
 
@@ -122,7 +123,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
         Vector3 offsetY = (target.TransformDirection(Vector3.up) * aimOffset.y);
         Vector3 camDestPos = pos + offsetX + offsetY;
 
-        transform.position = camDestPos;
+        transform.position = Vector3.Lerp(transform.position, camDestPos, Time.deltaTime * 20);               
 
         Vector3 targetEuler = target.eulerAngles;
         target.rotation = Quaternion.Euler(new Vector3(targetEuler.x, transform.eulerAngles.y, targetEuler.z));

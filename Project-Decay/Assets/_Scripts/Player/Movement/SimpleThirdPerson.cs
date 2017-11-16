@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class SimpleThirdPerson : MonoBehaviour 
 {
     #region Variables
@@ -10,12 +11,17 @@ public class SimpleThirdPerson : MonoBehaviour
 	private float speed;
     //Controls speed of player movement
 
-	public GameObject gun;
-    //Sets the current gun
+    // Weapon Variables
+    public GameObject gun; // the weapon gameObject
+    public WeaponStats weaponStats;
+    private bool canFire = true;  
+    
 	public bool ikActive = false;
-	public Transform handleRight;
-	public Transform handleLeft;
+
     //Set positions for hands to animate to when holding guns
+    public Transform handleRight;
+	public Transform handleLeft;
+
 
 	private bool gunActive = false;
     //Checks if gun is active
@@ -23,16 +29,24 @@ public class SimpleThirdPerson : MonoBehaviour
 	public GameObject bulletPr;
     //bullet prefab
 
+    public bool blockControl;
+
 	private Vector3 hitPoint = Vector3.zero;
 	private enum WeaponType {Gun, Grenade};
 	private WeaponType currentWeaponType = WeaponType.Gun;
     //Changes firing type
 
 	public GameObject crosshair;
+
+    // Get components
+    UIManager uiManager;
+    WeaponReloader reloader;
     #endregion
 
     public void Start()
 	{
+        uiManager = FindObjectOfType<UIManager>();
+        reloader = FindObjectOfType<WeaponReloader>();
 		animator = GetComponent<Animator> ();
 
 		gun.SetActive(false);
@@ -44,9 +58,11 @@ public class SimpleThirdPerson : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-	}
 
-	public void Update()
+        blockControl = false;
+    }
+
+    public void Update()
 	{
 		Quaternion camRot = Quaternion.Euler (new Vector3(transform.eulerAngles.x,
 			camera.eulerAngles.y,
@@ -79,7 +95,7 @@ public class SimpleThirdPerson : MonoBehaviour
 		if(inputVert > 0)
 			transform.rotation = Quaternion.Slerp (transform.rotation, camRot, Time.deltaTime * 5.0f);
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)) // (Rightclick)
 		{
             if (!gunActive)
             {
@@ -109,13 +125,37 @@ public class SimpleThirdPerson : MonoBehaviour
 		{
 			FireWeapon();
 		}
-	}
 
-	private void FireWeapon()
+        ReloadPressed();
+    }
+
+    private void FireWeapon()
 	{
-		if(currentWeaponType == WeaponType.Gun)
+        weaponStats = reloader.currentWeapon;      // Gets the stats when player shoots (Changed this to apply when change weapon has been reimplemented)
+    
+        // Stops player from shooting if no ammo
+        if (weaponStats.ammoInClip == 0 || canFire == false)
+        {
+            return;
+        }
+        
+        if(reloader != null)
+        {
+            if(reloader.IsReloading)
+            {
+                return;
+            }
+            if (reloader.RoundsRemainingInClip <= 0)
+            {
+                return;
+            }
+            //Takes ammo from the clip when the player shoots, deducts 1 per shot.
+        }
+
+        if (currentWeaponType == WeaponType.Gun)
 		{
-			if(hitPoint != Vector3.zero)
+            reloader.TakeFromClip(1);
+            if (hitPoint != Vector3.zero)
 			{
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
                 //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)
@@ -126,10 +166,20 @@ public class SimpleThirdPerson : MonoBehaviour
 			GameObject bullet = (GameObject)Instantiate(bulletPr, gun.transform.position, gun.transform.rotation);
 			bullet.GetComponent<Rigidbody>().velocity = gun.transform.forward * 100f;
             //Instantiates the bullet prefab and add velocity to it to send it through the world along the raycast to the hitPoint.
-		}
-	}
+		}                    
+    }
 
-	private void AimWeapon()
+
+    public void ReloadPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Reload Pressed");
+            reloader.ReloadCheck();
+        }
+    }
+
+    private void AimWeapon()
 	{
 		Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0));
         //converts the cameras viewport to worldspace

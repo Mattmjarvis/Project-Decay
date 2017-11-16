@@ -17,8 +17,8 @@ public class WeaponStats : MonoBehaviour {
     public int bulletDamage;
     public int clipSize;
     public int maxAmmo;    
-    public float ReloadSpeed;
-    public int AmmoInClip;
+    public float reloadSpeed;
+    public int ammoInClip;
     public float rateOfFire;
     public FiringType firingType;
     public Sprite weaponBox_Unselected;
@@ -26,16 +26,4 @@ public class WeaponStats : MonoBehaviour {
     public Sprite weaponIcon_Unselected;
     public Sprite weaponIcon_Selected;
 
-
-    // Use this for initialization
-    void Start ()
-    {
-		        
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-}
+ }

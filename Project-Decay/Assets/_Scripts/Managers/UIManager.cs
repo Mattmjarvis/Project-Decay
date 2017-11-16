@@ -76,7 +76,8 @@ public class UIManager : MonoBehaviour {
     // Updates the player UI to display their ammo
     public void updateAmmoTextbox()
     {
-        ammoInClipTextBox.text = weaponReloader.currentWeapon.AmmoInClip.ToString();
+
+        ammoInClipTextBox.text = weaponReloader.currentWeapon.ammoInClip.ToString();
 
         // If the weapon has infinite ammo then show infinite ammo symbol
         if (weaponReloader.currentWeapon.infiniteAmmo)
