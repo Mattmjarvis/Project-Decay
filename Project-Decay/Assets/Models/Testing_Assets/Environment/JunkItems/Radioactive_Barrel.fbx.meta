@@ -17,6 +17,8 @@ ModelImporter:
     3300002: Radioactive_Waste
     4300000: Barrel
     4300002: Radioactive_Waste
+    6400000: Barrel
+    6400002: Radioactive_Waste
   materials:
     importMaterials: 1
     materialName: 0
@@ -46,7 +48,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
