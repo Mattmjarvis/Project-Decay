@@ -95,7 +95,6 @@ public class EnemySight : MonoBehaviour
             yield return null;
         }
     }
-
     void Patrol()
     {
         agent.speed = patrolSpeed;

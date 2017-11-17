@@ -81,7 +81,8 @@ public class SimpleThirdPerson : MonoBehaviour
 		speed = maxSpeed;
 
 		float inputVert = Input.GetAxis ("Vertical");
-		float vel = inputVert * speed;
+
+        float vel = inputVert * speed;       
 
 //		float rot;
 //		rot = (vel > 0)? angle * dir : 0.0f;

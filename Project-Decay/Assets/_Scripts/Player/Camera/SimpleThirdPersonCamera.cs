@@ -81,7 +81,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 
 		Vector3 pos = target.position - (rot * Vector3.forward * distanceFromTarget);
 		pos += targetOffset;
-        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * 6);
+        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * 20);
 
 
 		if(alignTarget)

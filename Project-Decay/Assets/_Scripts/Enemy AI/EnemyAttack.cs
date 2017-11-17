@@ -17,6 +17,7 @@ public class EnemyAttack : MonoBehaviour {
     PlayerHealth playerHealth;
     EnemyMovement enemyMovement;
     EnemyHealth enemyHealth;
+    EnemySight enemySight;
     //NavMeshAgent nav;
 
     //AudioSource enemyAudio;
@@ -37,11 +38,11 @@ public class EnemyAttack : MonoBehaviour {
         //pulls the player health script off of the player, stores and adds a reference to it.
         //This will improve performance as apose to constantly searching for the script.
         enemyHealth = GetComponent<EnemyHealth>();
+        enemySight = GetComponent<EnemySight>();
         //anim = GetComponent<Animator>();
         
         //enemyAudio = GetComponent<AudioSource>();
-	}
-   
+	}   
     void Update()
     {
         if(player == null)
@@ -95,15 +96,18 @@ public class EnemyAttack : MonoBehaviour {
 
         if (playerHealth.health > 0)
         {
+            //enemySight.chaseSpeed = 10;
+            Debug.Log("Enemy has stopped to attack");
             //if playerHealth is greater than 0
             //anim.SetBool("isAttacking", true);
             playerHealth.TakeDamage(attackDamage);
-
             //enemyAudio.clip = attackSound;
             //enemyAudio.Play();
             //damage the playerHealth with the value of attackDamage
             //if the players health drops below 0 the previous code will execute.
             Debug.Log("DamagePlayer Called: " + attackDamage);
+            //enemySight.chaseSpeed = 1f;
+
         }
     }
 }
