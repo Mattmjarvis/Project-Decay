@@ -187,10 +187,10 @@ public class SimpleThirdPerson : MonoBehaviour
 		Vector3 lookAtVector;
 		Quaternion camRot;
 
-		lookAtGO.transform.position = ray.GetPoint(100f);
+		lookAtGO.transform.position = ray.GetPoint(50f);
 
 		RaycastHit hit;
-		if(Physics.Raycast(ray, out hit, 100f))
+		if(Physics.Raycast(ray, out hit, 50f))
 		{
 			Debug.DrawLine(gun.transform.position, hit.point, Color.red);
             //Creates a raycast and visualises it
@@ -207,7 +207,7 @@ public class SimpleThirdPerson : MonoBehaviour
 		{
 			hitPoint = Vector3.zero;
 
-			lookAtVector = ray.GetPoint(100f) - ray.origin;
+			lookAtVector = ray.GetPoint(50f) - ray.origin;
 			camRot = Quaternion.LookRotation(lookAtVector);
 			gun.transform.rotation = camRot;
 		}
