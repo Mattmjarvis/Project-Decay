@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
     #region UI Images
     public GameObject radiationImage;
     public GameObject interactImage;
+    public GameObject searchImage;
     #endregion
 
 
@@ -76,7 +77,6 @@ public class UIManager : MonoBehaviour {
     // Updates the player UI to display their ammo
     public void updateAmmoTextbox()
     {
-
         ammoInClipTextBox.text = weaponReloader.currentWeapon.ammoInClip.ToString();
 
         // If the weapon has infinite ammo then show infinite ammo symbol
@@ -110,16 +110,27 @@ public class UIManager : MonoBehaviour {
     public void EnableUpgradeInterface()
     {
         UpgradeInterface.SetActive(true);
-        inputManager.PauseGameplay();
-        
+        inputManager.PauseGameplay();       
     }
-       #endregion
+    #endregion
 
-   ///<summary> 
-   /// Opens and closes the interact UI image
-   ///</summary>
-   #region interactTip
-   public void enableInteractTip()
+    /// <summary>
+    /// Opens and closes the search UI image
+    /// </summary>
+    public void enableSearchTip()
+    {
+        searchImage.SetActive(true);
+    }
+    public void disableSearchTip()
+    {
+        searchImage.SetActive(false);
+    }
+
+    ///<summary> 
+    /// Opens and closes the interact UI image
+    ///</summary>
+    #region interactTip
+    public void enableInteractTip()
     {
         interactImage.SetActive(true);
     }

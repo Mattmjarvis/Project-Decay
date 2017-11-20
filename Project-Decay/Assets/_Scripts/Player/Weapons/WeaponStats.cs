@@ -25,5 +25,6 @@ public class WeaponStats : MonoBehaviour {
     public Sprite weaponBox_Selected;
     public Sprite weaponIcon_Unselected;
     public Sprite weaponIcon_Selected;
-
+    public Transform handleRight;
+    public Transform handleLeft;
  }

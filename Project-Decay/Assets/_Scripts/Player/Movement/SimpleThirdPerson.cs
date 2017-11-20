@@ -22,9 +22,9 @@ public class SimpleThirdPerson : MonoBehaviour
     public Transform handleRight;
 	public Transform handleLeft;
 
-
-	private bool gunActive = false;
     //Checks if gun is active
+    public bool gunActive = false;
+ 
 	GameObject lookAtGO;
 	public GameObject bulletPr;
     //bullet prefab
@@ -68,11 +68,6 @@ public class SimpleThirdPerson : MonoBehaviour
 			camera.eulerAngles.y,
 			transform.eulerAngles.z));
         //Handles rotation of camera
-
-		//Vector3 relPos = camRot * Vector3.forward;
-
-		//float angle = Vector3.Angle (transform.forward, relPos);
-		//int dir = AngleDir(transform.forward, relPos, Vector3.up);
 
 		float maxSpeed = 3.5f;
 		if(Input.GetKey(KeyCode.LeftShift)) maxSpeed = 8.0f;

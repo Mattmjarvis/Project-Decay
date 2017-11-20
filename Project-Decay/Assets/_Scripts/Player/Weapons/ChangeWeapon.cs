@@ -7,16 +7,19 @@ public class ChangeWeapon : MonoBehaviour {
 
     // Weapon variables
     public int currentWeapon;
-    public Transform[] weapons;
+    public GameObject[] weapons;
 
     // UI Variables
     public GameObject[] weaponBoxImage;
     public GameObject[] weaponIcon;
 
+    // Components
     WeaponReloader weaponReloader;
+    SimpleThirdPerson playerController;
 
     private void Start()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<SimpleThirdPerson>();
         weaponReloader = gameObject.GetComponent<WeaponReloader>();
         changeWeapon(2); // Sets the starting weapon to pistol
     }
@@ -91,17 +94,23 @@ public class ChangeWeapon : MonoBehaviour {
             if (i == num)
             {
                 weaponReloader.StopReload();
-                weapons[i].gameObject.SetActive(true);
+                playerController.gun = weapons[i];
+                playerController.handleLeft = weapons[i].GetComponentInChildren<WeaponStats>().handleLeft;
+                playerController.handleRight = weapons[i].GetComponentInChildren<WeaponStats>().handleRight;
+                playerController.weaponStats = weapons[i].GetComponentInChildren<WeaponStats>();
 
+                // if the player has an active gun then replace weapon
+                if (playerController.gunActive)
+                {
+                    weapons[i].gameObject.SetActive(true);
+                }
 
                 // Gets all the weapons stats and variables for the weapon reloader
-                weaponReloader.GetWeaponStats(weapons[i].gameObject.GetComponent<WeaponStats>());
+                weaponReloader.GetWeaponStats(weapons[i].gameObject.GetComponentInChildren<WeaponStats>());
 
                 // Changes weapon icons according to weapon
-                weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Selected;
-                weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Selected;
-
-                //Debug.Log("Weapon selected: " + weapons[i].name);
+                weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponentInChildren<WeaponStats>().weaponBox_Selected;
+                weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponentInChildren<WeaponStats>().weaponIcon_Selected;
             }
 
 
@@ -113,8 +122,8 @@ public class ChangeWeapon : MonoBehaviour {
                     weapons[i].gameObject.SetActive(false);
 
                     // Changes the weaponUI and sets the icons appropriately
-                    weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponBox_Unselected;
-                    weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponent<WeaponStats>().weaponIcon_Unselected;
+                    weaponBoxImage[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponentInChildren<WeaponStats>().weaponBox_Unselected;
+                    weaponIcon[i].gameObject.GetComponent<Image>().sprite = weapons[i].GetComponentInChildren<WeaponStats>().weaponIcon_Unselected;
                 }
 
 

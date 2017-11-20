@@ -5,29 +5,27 @@ using UnityEngine;
 public class Interact : MonoBehaviour
 {
     UIManager uiManager;
-    Camera cam;
-    public GameObject crosshair;
-    private float interactDistance = 6f;
+    private float interactDistance = 5f;
 
     // Use this for initialization
     void Start()
     {
         uiManager = FindObjectOfType<UIManager>();
-        cam = FindObjectOfType<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Raycast Variables
-        Ray aimRay = cam.ScreenPointToRay(crosshair.transform.position);
+        Ray interactRay = new Ray(transform.position, transform.forward) ;
         RaycastHit hit;
 
         // Checks for raycast
-        if (Physics.Raycast(aimRay, out hit, interactDistance))
+        if (Physics.Raycast(interactRay, out hit, interactDistance))
         {
+           Debug.DrawRay(interactRay.origin, Vector3.forward);
             #region UpgradeMachine check
-            // Checks door to see if its open
+            // Checks to see if upgrade menu is infront of player
             if (hit.collider.CompareTag("Upgrade"))
             {
                 uiManager.enableInteractTip();
@@ -39,11 +37,26 @@ public class Interact : MonoBehaviour
                 }
             }
             #endregion
+            #region UpgradeMachine check
+            // Checks see if lootpile is infront of player
+            if (hit.collider.CompareTag("Lootpile"))
+            {
+                uiManager.enableSearchTip();
+                // Gets key input
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Search Loot Pile");
+                }
+            }
+            #endregion
+
+
         }
         // Turns of tooltips
         else
         {
             uiManager.disableInteractTip();
+            uiManager.disableSearchTip();
         }
 
 

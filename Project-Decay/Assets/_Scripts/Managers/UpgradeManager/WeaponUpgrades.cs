@@ -56,15 +56,15 @@ public class WeaponUpgrades : MonoBehaviour {
             wallet.ReduceFunds(tier1Price);
 
             // Upgrade stat depending on weapon
-            if(weapon.gameObject.name == "AssaultRifle")
+            if(weapon.gameObject.name == "ARStats")
             {
                 weapon.clipSize += 10;
             }
-            else if(weapon.gameObject.name == "Shotgun")
+            else if(weapon.gameObject.name == "SGStats")
             {
                 weapon.clipSize += 2;
             }
-            else if(weapon.gameObject.name == "Pistol")
+            else if(weapon.gameObject.name == "PSStats")
             {
                 weapon.clipSize += 6;
             }
@@ -159,15 +159,15 @@ public class WeaponUpgrades : MonoBehaviour {
             tier2Buttons[2].gameObject.GetComponent<Button>().enabled = false;
 
             // Upgrade stat depending on weapon
-            if (weapon.gameObject.name == "AssaultRifle")
+            if (weapon.gameObject.name == "ARStats")
             {
                 weapon.clipSize += 10;
             }
-            else if (weapon.gameObject.name == "Shotgun")
+            else if (weapon.gameObject.name == "SGStats")
             {
                 weapon.clipSize += 2;
             }
-            else if (weapon.gameObject.name == "Pistol")
+            else if (weapon.gameObject.name == "PSStats")
             {
                 weapon.clipSize += 6;
             }
@@ -268,15 +268,15 @@ public class WeaponUpgrades : MonoBehaviour {
             wallet.ReduceFunds(tier3Price);
 
             // Upgrade stat depending on weapon
-            if (weapon.gameObject.name == "AssaultRifle")
+            if (weapon.gameObject.name == "ARStats")
             {
                 weapon.clipSize += 10;
             }
-            else if (weapon.gameObject.name == "Shotgun")
+            else if (weapon.gameObject.name == "SGStats")
             {
                 weapon.clipSize += 2;
             }
-            else if (weapon.gameObject.name == "Pistol")
+            else if (weapon.gameObject.name == "PSStats")
             {
                 weapon.clipSize += 6;
             }
@@ -374,15 +374,15 @@ public class WeaponUpgrades : MonoBehaviour {
             wallet.ReduceFunds(tier4Price);
 
             // Upgrade stat depending on weapon
-            if (weapon.gameObject.name == "AssaultRifle")
+            if (weapon.gameObject.name == "ARStats")
             {
                 weapon.clipSize += 10;
             }
-            else if (weapon.gameObject.name == "Shotgun")
+            else if (weapon.gameObject.name == "SGStats")
             {
                 weapon.clipSize += 2;
             }
-            else if (weapon.gameObject.name == "Pistol")
+            else if (weapon.gameObject.name == "PSStats")
             {
                 weapon.clipSize += 6;
             }

@@ -21,31 +21,36 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 	public enum CamState {Normal, Aim};
 	public CamState cameraState = CamState.Normal;
     #endregion
+    SimpleThirdPerson playerController;
 
     void Start () 
 	{
 		Vector3 angles = transform.eulerAngles;
 		horizontalRot = angles.y;
 		verticalRot = angles.x;
-
+        playerController = FindObjectOfType<SimpleThirdPerson>();
         // Gets compass GO
         compass = GameObject.Find("Compass");
     }
 		
 	void LateUpdate () 
 	{
-		if(target)
-		{
-			switch(cameraState)
-			{
-			case CamState.Normal:
-				UpdateNormalCamera();
-				break;
+        if (playerController.blockControl == false)
+        {
+            if (target)
+            {
+                switch (cameraState)
+                {
+                    case CamState.Normal:
+                        UpdateNormalCamera();
+                        break;
 
-			case CamState.Aim:
-				UpdateAimCamera();
-				break;
-			}
+                    case CamState.Aim:
+                        UpdateAimCamera();
+                        break;
+                }
+            }
+
 		}
         //Switch statements between both camera states
 

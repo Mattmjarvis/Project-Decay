@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour {
 
-    ThirdPersonShooterController playerController;
+    SimpleThirdPerson playerController;
 	// Use this for initialization
 	void Start () {
-        playerController = FindObjectOfType<ThirdPersonShooterController>();
+        playerController = FindObjectOfType<SimpleThirdPerson>();
 	}
 	
 	// Update is called once per frame
