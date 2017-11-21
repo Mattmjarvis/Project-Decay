@@ -15,7 +15,8 @@ public class LootManager : MonoBehaviour {
         // Spawn items for each spawn point
         for(int i = 0; i < landPoints.Length; i++)
         {
-            Instantiate(spawnItems[Random.Range(0, spawnItems.Length + 1)]);
+            int randomSpawnGen = Random.Range(0, spawnItems.Length + 1); // generates random spawn
+            Instantiate(spawnItems[randomSpawnGen], landPoints[i]); // Spawns random item for each spawnpoint
         }   
 
 

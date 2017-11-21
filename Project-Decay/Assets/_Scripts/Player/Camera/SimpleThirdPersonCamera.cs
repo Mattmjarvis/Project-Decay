@@ -112,7 +112,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
         //{
         horizontalRot += Input.GetAxis("Mouse X") * 1f;
         verticalRot -= Input.GetAxis("Mouse Y") * 1f;
-        verticalRot = Mathf.Clamp(verticalRot, -45f, 60f);
+        verticalRot = Mathf.Clamp(verticalRot, -60f, 60f);
         //Handles mouse input and clamp
         //}
 
