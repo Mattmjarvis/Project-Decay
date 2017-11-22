@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33088312532040722}
   - component: {fileID: 23469580415090144}
   - component: {fileID: 114260282563727142}
+  - component: {fileID: 114040808573679934}
+  - component: {fileID: 65561095831698980}
   m_Layer: 0
   m_Name: AR Magazine
   m_TagString: Untagged
@@ -35,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1722186185058688}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -888.43695, y: 9.91, z: 388.75867}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1059.5007, y: 11.864, z: 357.949}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!23 &23469580415090144
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -81,6 +83,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1722186185058688}
   m_Mesh: {fileID: 4300000, guid: c22fcd2f24de0d44bbe346fcd1f106f8, type: 3}
+--- !u!65 &65561095831698980
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722186185058688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0005000001, y: 0.0032924307, z: 0.005404255}
+  m_Center: {x: 3.929017e-10, y: -0.00010044487, z: 0.000021087819}
+--- !u!114 &114040808573679934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722186185058688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a303b097c6bb34eb9730452ae23d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupType: 0
+  amountToGive: 20
+  allWeaponStats: []
+  weaponStatsAR: {fileID: 0}
+  weaponStatsSG: {fileID: 0}
 --- !u!114 &114260282563727142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,3 +125,5 @@ MonoBehaviour:
   moveDir: {x: 0, y: 1, z: 0}
   speed: 0.3
   travelDistance: 0.3
+  isLootItem: 1
+  isInPosition: 0

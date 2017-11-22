@@ -41,11 +41,15 @@ public class Interact : MonoBehaviour
             // Checks see if lootpile is infront of player
             if (hit.collider.CompareTag("Lootpile"))
             {
-                uiManager.enableSearchTip();
-                // Gets key input
-                if (Input.GetKeyDown(KeyCode.E))
+                if (hit.collider.GetComponentInParent<Lootpile>().searched == false)
                 {
-                    Debug.Log("Search Loot Pile");
+                    uiManager.enableSearchTip();
+                    // Gets key input
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        hit.collider.GetComponentInParent<Lootpile>().SpawnItems(); // Spawns loot items
+                        uiManager.disableSearchTip(); // disabled the search tip UI
+                    }
                 }
             }
             #endregion
