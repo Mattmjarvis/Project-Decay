@@ -65,33 +65,9 @@ public class SimpleThirdPerson : MonoBehaviour
 
     public void Update()
 	{
-		Quaternion camRot = Quaternion.Euler (new Vector3(transform.eulerAngles.x,
-			camera.eulerAngles.y,
-			transform.eulerAngles.z));
-        //Handles rotation of camera
-
-		float maxSpeed = 3.5f;
-		if(Input.GetKey(KeyCode.LeftShift)) maxSpeed = 8.0f;
-        //Shift to sprint
-
-		speed = maxSpeed;
-
-		float inputVert = Input.GetAxis ("Vertical");
-
-        float vel = inputVert * speed;       
-
-//		float rot;
-//		rot = (vel > 0)? angle * dir : 0.0f;
-
-		animator.SetFloat ("Speed", vel, 0.25f, Time.deltaTime);
-
-		Dive();
-
-		//this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.forward) * vel);
-
-		if(inputVert > 0)
-			transform.rotation = Quaternion.Slerp (transform.rotation, camRot, Time.deltaTime * 5.0f);
-               
+        Move();
+        Strafe();
+        WalkBackwards();
 
         if (gunActive)
 		{
@@ -126,6 +102,7 @@ public class SimpleThirdPerson : MonoBehaviour
         ReloadPressed();
     }
 
+    #region Camera
     private void switchCameraStates()
     {
         if (Input.GetMouseButtonDown(1)) // (Rightclick)
@@ -149,6 +126,72 @@ public class SimpleThirdPerson : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region Movement
+    private void Move()
+    {
+        Quaternion camRot = Quaternion.Euler(new Vector3(transform.eulerAngles.x,
+            camera.eulerAngles.y,
+            transform.eulerAngles.z));
+        //Handles rotation of camera
+
+        float maxSpeed = 3.5f;
+        if (Input.GetKey(KeyCode.LeftShift)) maxSpeed = 8.0f;
+        //Shift to sprint
+
+        speed = maxSpeed;
+
+        float inputVert = Input.GetAxis("Vertical");
+
+        float velocity = inputVert * speed;      
+
+        //Animation controls walking forward.        
+        animator.SetFloat("Speed", velocity, 0.25f, Time.deltaTime);   
+
+        //Vertical input controls the rotation of the player when A or D is held
+        //if (inputVert > 0)
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, camRot, Time.deltaTime * 5.0f);      
+
+        Dive();
+    }
+
+    private void Strafe()
+    {
+        if ((Input.GetAxis("Strafe")) > 0)
+        {
+            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
+        }
+        else if ((Input.GetAxis("Strafe")) < 0)
+        {
+            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
+        }
+    }
+
+    private void WalkBackwards()
+    {
+        if ((Input.GetAxis("WalkBackwards")) > 0)
+        {
+            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.back) * Input.GetAxis("WalkBackwards") * 4);
+        }
+    }
+
+    private void Dive()
+	{
+		if(animator.GetBool("Dive"))
+		{
+			animator.SetBool("Dive", false);
+		}
+
+		if(Input.GetKeyDown(KeyCode.Space) && speed == 8.0f)
+		{
+			animator.SetBool("Dive", true);
+		}
+        //Diving animation
+	}
+    #endregion
+
+    #region Shooting, Aiming, Reloading
     private void FireWeapon()
 	{
         weaponStats = reloader.currentWeapon;      // Gets the stats when player shoots (Changed this to apply when change weapon has been reimplemented)
@@ -188,25 +231,6 @@ public class SimpleThirdPerson : MonoBehaviour
             //Instantiates the bullet prefab and add velocity to it to send it through the world along the raycast to the hitPoint.
 		}                    
     }
-
-  //  Automatic shooting(Held down)
-//        if (reloader.firingType == FiringType.Automatic)
-//        {
-//            if (Input.GetMouseButton(0))
-//            {
-//                canFire = true;
-//            }
-//        }
-
-    //        Semi Automatic shooting(Click once)
-    //        else if (reloader.firingType == FiringType.SemiAutomatic)
-    //        {
-    //            if (Input.GetMouseButtonDown(0))
-    //            {
-    //                canFire = true;
-    //            }
-    //        }
-
 
     public void ReloadPressed()
     {
@@ -249,22 +273,10 @@ public class SimpleThirdPerson : MonoBehaviour
 			gun.transform.rotation = camRot;
 		}
 	}
+    #endregion
 
-	private void Dive()
-	{
-		if(animator.GetBool("Dive"))
-		{
-			animator.SetBool("Dive", false);
-		}
-
-		if(Input.GetKeyDown(KeyCode.Space) && speed == 8.0f)
-		{
-			animator.SetBool("Dive", true);
-		}
-        //Diving animation
-	}
-
-	public void OnAnimatorIK()
+    #region IKAnimations
+    public void OnAnimatorIK()
 	{
 		if(!gunActive)
 			return;
@@ -321,6 +333,7 @@ public class SimpleThirdPerson : MonoBehaviour
 			return 0;
 		}
 	}
+    #endregion
 
 }
 

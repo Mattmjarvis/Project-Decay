@@ -98,7 +98,6 @@ public class SimpleThirdPersonCamera : MonoBehaviour
 //		AdjustToObstacles();
 	}
 
-
     private void UpdateAimCamera()
     {
         AdjustToObstacles();
@@ -134,8 +133,6 @@ public class SimpleThirdPersonCamera : MonoBehaviour
         target.rotation = Quaternion.Euler(new Vector3(targetEuler.x, transform.eulerAngles.y, targetEuler.z));
 
     }
-
-
 
     private void AdjustToObstacles()
 	{
