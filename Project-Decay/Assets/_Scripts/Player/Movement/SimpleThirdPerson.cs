@@ -34,6 +34,7 @@ public class SimpleThirdPerson : MonoBehaviour
 	private Vector3 hitPoint = Vector3.zero;
 	private enum WeaponType {Gun, Grenade};
 	private WeaponType currentWeaponType = WeaponType.Gun;
+    public float timeToShoot = 0.5f;
     //Changes firing type
 
 	public GameObject crosshair;
@@ -90,9 +91,45 @@ public class SimpleThirdPerson : MonoBehaviour
 
 		if(inputVert > 0)
 			transform.rotation = Quaternion.Slerp (transform.rotation, camRot, Time.deltaTime * 5.0f);
+               
 
-        if (Input.GetMouseButtonDown(1)) // (Rightclick)
+        if (gunActive)
 		{
+			AimWeapon();
+		}
+
+        if(Input.GetMouseButton(0) && gunActive && weaponStats.firingType == FiringType.Automatic) 
+        {                        
+            if(Time.time < timeToShoot)
+            {
+                return;
+            }
+            else
+            {
+
+                FireWeapon();                
+            }
+            Debug.Log(Time.time);
+            Debug.Log("Before: " + timeToShoot);
+            timeToShoot = Time.time + 0.1f;
+            Debug.Log(Time.time);
+            Debug.Log("After: "+ timeToShoot);
+
+        }
+
+        if (Input.GetMouseButtonDown(0) && gunActive && weaponStats.firingType == FiringType.SemiAutomatic)
+		{
+			FireWeapon();
+		}
+        
+        switchCameraStates();
+        ReloadPressed();
+    }
+
+    private void switchCameraStates()
+    {
+        if (Input.GetMouseButtonDown(1)) // (Rightclick)
+        {
             if (!gunActive)
             {
                 GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Aim;
@@ -111,20 +148,7 @@ public class SimpleThirdPerson : MonoBehaviour
                 //switches to normal camerastate
             }
         }
-
-        if (gunActive)
-		{
-			AimWeapon();
-		}
-
-		if(Input.GetMouseButtonDown(0) && gunActive)
-		{
-			FireWeapon();
-		}
-
-        ReloadPressed();
     }
-
     private void FireWeapon()
 	{
         weaponStats = reloader.currentWeapon;      // Gets the stats when player shoots (Changed this to apply when change weapon has been reimplemented)
@@ -164,6 +188,24 @@ public class SimpleThirdPerson : MonoBehaviour
             //Instantiates the bullet prefab and add velocity to it to send it through the world along the raycast to the hitPoint.
 		}                    
     }
+
+  //  Automatic shooting(Held down)
+//        if (reloader.firingType == FiringType.Automatic)
+//        {
+//            if (Input.GetMouseButton(0))
+//            {
+//                canFire = true;
+//            }
+//        }
+
+    //        Semi Automatic shooting(Click once)
+    //        else if (reloader.firingType == FiringType.SemiAutomatic)
+    //        {
+    //            if (Input.GetMouseButtonDown(0))
+    //            {
+    //                canFire = true;
+    //            }
+    //        }
 
 
     public void ReloadPressed()

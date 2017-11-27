@@ -42,12 +42,9 @@ public class ItemBob : MonoBehaviour
     {
         // If the item is a lootitem then move to parent pos
         if (isLootItem && !isInPosition)
-        {
-                transform.position = Vector3.SmoothDamp(transform.position, transform.parent.position, ref vel,  0.5f);
-                //if(transform.position.y == transform.parent.position.y)
-                //{
-                //    isInPosition = true;
-                //}
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, transform.parent.position, ref vel,  0.3f);
+ 
             }       
     }
 

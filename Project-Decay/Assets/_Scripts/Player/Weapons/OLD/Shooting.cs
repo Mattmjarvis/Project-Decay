@@ -119,3 +119,13 @@
 //        }
 //    }
 //}
+//if(Time.time < timeToShoot)
+//            {
+//                return;
+//            }
+//            else
+//            {
+//                FireWeapon();                
+//            }
+
+//            timeToShoot = Time.time + timeToShoot;
