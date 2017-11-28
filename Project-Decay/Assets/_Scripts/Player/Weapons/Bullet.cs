@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     EnemyHealth enemyHealth;
     private int lifeSpan = 2;
+    WeaponReloader reloader;
 
     void Start()
     {
@@ -25,10 +26,15 @@ public class Bullet : MonoBehaviour
         //go.transform.parent = col.transform;
         //transform.parent = go.transform;
 
+        // If the bullets hits an enemy then deal damage depending on weapon
         if (col.gameObject.tag == "Enemy")
         {
-            print("enemy hit");
+
             enemyHealth = col.gameObject.GetComponent<EnemyHealth>();
+            reloader = FindObjectOfType<WeaponReloader>(); // Gets the weapon player is using
+            enemyHealth.TakeDamage(reloader.currentWeapon.bulletDamage); // Deal damage to enemy based on weapon
+            Debug.Log("Enemy took: " + reloader.currentWeapon.bulletDamage + "damage."); // Debug
+
         }
 
         if (col.collider)

@@ -139,7 +139,7 @@ public class EnemySight : MonoBehaviour
 
         if (targetDistance > sightDist)
         {
-            Debug.Log("Enemy is out of sight");
+            //Debug.Log("Enemy is out of sight");
             state = EnemySight.State.PATROL;
         }
     }

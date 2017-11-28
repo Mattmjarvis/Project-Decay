@@ -74,32 +74,42 @@ public class SimpleThirdPerson : MonoBehaviour
 			AimWeapon();
 		}
 
+        // If the weapon is automatic then player can hold down MB1(leftclick) to shoot bullets
         if(Input.GetMouseButton(0) && gunActive && weaponStats.firingType == FiringType.Automatic) 
         {                        
+            // Stop bullets from shooting all at once
             if(Time.time < timeToShoot)
             {
                 return;
             }
+            // Fire 
             else
             {
-
                 FireWeapon();                
             }
-            Debug.Log(Time.time);
-            Debug.Log("Before: " + timeToShoot);
+            // Debug checks that weapon is shooting at correct rate of fire
+            //Debug.Log(Time.time);
+            //Debug.Log("Before: " + timeToShoot);
+
+            // Set time to shoot next bullet
             timeToShoot = Time.time + 0.1f;
-            Debug.Log(Time.time);
-            Debug.Log("After: "+ timeToShoot);
+
+            // Debug checks that weapon is shooting at correct rate of fire
+            //Debug.Log(Time.time);
+            //Debug.Log("After: "+ timeToShoot);
 
         }
 
+        // If weapon is semi automatic then one click = fire once
         if (Input.GetMouseButtonDown(0) && gunActive && weaponStats.firingType == FiringType.SemiAutomatic)
 		{
+            // Fire weapon
 			FireWeapon();
 		}
         
-        switchCameraStates();
-        ReloadPressed();
+       
+        switchCameraStates(); // Set camera state
+        ReloadPressed(); //Reload
     }
 
     #region Camera
@@ -236,7 +246,7 @@ public class SimpleThirdPerson : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("Reload Pressed");
+            //Debug.Log("Reload Pressed");
             reloader.ReloadCheck();
         }
     }
