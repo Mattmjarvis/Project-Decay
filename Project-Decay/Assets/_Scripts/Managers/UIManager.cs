@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour {
     public GameObject interactImage;
     public GameObject searchImage;
     #endregion
+    
 
 
     #region WeaponUI Variables
@@ -28,10 +29,13 @@ public class UIManager : MonoBehaviour {
 
     public GameObject UpgradeInterface;
     private InputManager inputManager;
-
+    FadeManager fader;
     // Use this for initialization
     void Start ()
     {
+        fader = FindObjectOfType<FadeManager>();
+        fader.SceneFadeInBlack();
+
         // Get components
         wallet = FindObjectOfType<Wallet>().GetComponent<Wallet>() ;
         weaponReloader = FindObjectOfType<WeaponReloader>();

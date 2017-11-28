@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void newGame()
     {
-        SceneManager.LoadScene("01");
+        SceneManager.LoadScene("NarrativeScene");
     }
     public void ContinueGame()
     {
