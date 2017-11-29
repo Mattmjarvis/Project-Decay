@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 419d37ddac9deeb46b5aa909549695bf
+timeCreated: 1511969492
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Heading Smallcase Pro Trial
+  fontNames:
+  - Heading Smallcase Pro Trial
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f6951c998ba208c468916aab269bc2d0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
