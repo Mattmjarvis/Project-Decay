@@ -60,7 +60,7 @@ public class FadeManager : MonoBehaviour {
 
         if (fadeBlackImageOut.color.a >= 1f)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("03_Game");
         }
 
     }
