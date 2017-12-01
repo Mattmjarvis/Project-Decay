@@ -24,8 +24,13 @@ public class SimpleThirdPerson : MonoBehaviour
 
     //Checks if gun is active
     public bool gunActive = false;
- 
-	GameObject lookAtGO;
+
+    //Sound effects
+    public AudioClip GunShot;
+    [HideInInspector]
+    public AudioSource playerAudio;
+
+    GameObject lookAtGO;
 	public GameObject bulletPr;
     //bullet prefab
 
@@ -46,6 +51,7 @@ public class SimpleThirdPerson : MonoBehaviour
 
     public void Start()
 	{
+        playerAudio = GetComponent<AudioSource>();
         uiManager = FindObjectOfType<UIManager>();
         reloader = FindObjectOfType<WeaponReloader>();
 		animator = GetComponent<Animator> ();
@@ -229,7 +235,7 @@ public class SimpleThirdPerson : MonoBehaviour
 		{
             reloader.TakeFromClip(1);
             if (hitPoint != Vector3.zero)
-			{
+			{                
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
                 //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)
 			}
@@ -239,7 +245,10 @@ public class SimpleThirdPerson : MonoBehaviour
 			GameObject bullet = (GameObject)Instantiate(bulletPr, gun.transform.position, gun.transform.rotation);
 			bullet.GetComponent<Rigidbody>().velocity = gun.transform.forward * 100f;
             //Instantiates the bullet prefab and add velocity to it to send it through the world along the raycast to the hitPoint.
-		}                    
+		}
+
+        playerAudio.clip = GunShot;
+        playerAudio.Play();
     }
 
     public void ReloadPressed()

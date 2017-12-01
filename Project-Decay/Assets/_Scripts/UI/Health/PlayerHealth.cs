@@ -10,6 +10,14 @@ public class PlayerHealth : MonoBehaviour {
     public int health = 0;
     bool healingEnabled = true;
 
+    SimpleThirdPerson playerController;
+
+    //PlayerSounds
+    public AudioClip deathSound;
+    public AudioClip hurtSound;
+
+
+    //UI effects
     public bool damaged;
     public Image damageImage;
     private float damageFlashSpeed = 5f;
@@ -17,6 +25,7 @@ public class PlayerHealth : MonoBehaviour {
     
     void Start()
     {
+        playerController = GetComponent<SimpleThirdPerson>();
         health = Rules.MAX_PLAYER_HEALTH;
         //Health will be set in a function within the Rules script  
         damageFlashColor = new Color(255f, 0f, 0f, 180f);
@@ -37,6 +46,9 @@ public class PlayerHealth : MonoBehaviour {
         {
             //This function must be given a dmg variable/amount when called.
             health -= 1;
+            //Switches the sound to hurt sound if the player is hurt and calls it
+            playerController.playerAudio.clip = hurtSound;
+            playerController.playerAudio.Play();
             ClampHealth();
             //This will be called to clamp the health and ensure it does not go over the max amount
         }
@@ -80,6 +92,8 @@ public class PlayerHealth : MonoBehaviour {
         if(health <= 0)
         {
             Debug.Log("Player is dead");
+            playerController.playerAudio.clip = deathSound;
+            playerController.playerAudio.Play();
             Destroy(this.gameObject);
             //SM.resetScoreIncrease();
             //This must be reset when player respawns
