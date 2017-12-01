@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour {
     
     void Start()
     {
+        damageImage.gameObject.SetActive(false);
         playerController = GetComponent<SimpleThirdPerson>();
         health = Rules.MAX_PLAYER_HEALTH;
         //Health will be set in a function within the Rules script  

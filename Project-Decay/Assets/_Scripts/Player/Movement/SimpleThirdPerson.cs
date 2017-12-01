@@ -26,7 +26,7 @@ public class SimpleThirdPerson : MonoBehaviour
     public bool gunActive = false;
 
     //Sound effects
-    public AudioClip GunShot;
+    private AudioClip gunshotAudio;
     [HideInInspector]
     public AudioSource playerAudio;
 
@@ -234,6 +234,9 @@ public class SimpleThirdPerson : MonoBehaviour
         if (currentWeaponType == WeaponType.Gun)
 		{
             reloader.TakeFromClip(1);
+            gunshotAudio = weaponStats.ShotSound;
+            playerAudio.PlayOneShot(gunshotAudio, 1f);
+
             if (hitPoint != Vector3.zero)
 			{                
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
@@ -247,8 +250,7 @@ public class SimpleThirdPerson : MonoBehaviour
             //Instantiates the bullet prefab and add velocity to it to send it through the world along the raycast to the hitPoint.
 		}
 
-        playerAudio.clip = GunShot;
-        playerAudio.Play();
+
     }
 
     public void ReloadPressed()
