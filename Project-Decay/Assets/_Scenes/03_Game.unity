@@ -13883,7 +13883,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -874804065
+  randomSeed: -105981303
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -28551,7 +28551,8 @@ MonoBehaviour:
   ammoInClip: 2
   rateOfFire: 0.1
   firingType: 1
-  ShotSound: {fileID: 8300000, guid: 3806a3a639912c34f817790222eeb6c7, type: 3}
+  shotSound: {fileID: 8300000, guid: 3806a3a639912c34f817790222eeb6c7, type: 3}
+  noAmmoSound: {fileID: 8300000, guid: 28238a7c73ddbe04b8f3d80b5e3a9191, type: 3}
   weaponBox_Unselected: {fileID: 21300002, guid: 64c2da68d6dab7a4eabb5c311f94f547,
     type: 3}
   weaponBox_Selected: {fileID: 21300010, guid: 64c2da68d6dab7a4eabb5c311f94f547, type: 3}
@@ -31446,7 +31447,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3e3d7e307c5d6e0469d79fbe01581400, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b197888e510b9a84da9a05afd3dd3878, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1
@@ -49946,7 +49947,8 @@ MonoBehaviour:
   ammoInClip: 20
   rateOfFire: 0.3
   firingType: 0
-  ShotSound: {fileID: 8300000, guid: eb6df175233d0524b940290f71cec50e, type: 3}
+  shotSound: {fileID: 8300000, guid: eb6df175233d0524b940290f71cec50e, type: 3}
+  noAmmoSound: {fileID: 8300000, guid: 01e7b1a4aa4969140b68f1cdcd8e9b16, type: 3}
   weaponBox_Unselected: {fileID: 21300000, guid: 64c2da68d6dab7a4eabb5c311f94f547,
     type: 3}
   weaponBox_Selected: {fileID: 21300008, guid: 64c2da68d6dab7a4eabb5c311f94f547, type: 3}
@@ -73295,6 +73297,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -81677,8 +81693,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906167468}
-  m_LocalRotation: {x: 0.0036648733, y: 0.9941579, z: 0.1017576, w: -0.0358051}
-  m_LocalPosition: {x: 238.98425, y: 22.577906, z: 851.8761}
+  m_LocalRotation: {x: 0.118632294, y: 0.79543984, z: 0.16530447, w: -0.57085574}
+  m_LocalPosition: {x: 609.6423, y: 25.647545, z: 808.3109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888176731}
@@ -84430,7 +84446,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2023172612}
   - component: {fileID: 2023172613}
-  - component: {fileID: 2023172614}
   m_Layer: 0
   m_Name: PSStats
   m_TagString: Untagged
@@ -84472,7 +84487,8 @@ MonoBehaviour:
   ammoInClip: 12
   rateOfFire: 0.1
   firingType: 1
-  ShotSound: {fileID: 8300000, guid: 5059328b7010b7b41b054eb7f818bbef, type: 3}
+  shotSound: {fileID: 8300000, guid: 5059328b7010b7b41b054eb7f818bbef, type: 3}
+  noAmmoSound: {fileID: 8300000, guid: 3a944be64252d0249adb2d3718acc608, type: 3}
   weaponBox_Unselected: {fileID: 21300004, guid: 64c2da68d6dab7a4eabb5c311f94f547,
     type: 3}
   weaponBox_Selected: {fileID: 21300012, guid: 64c2da68d6dab7a4eabb5c311f94f547, type: 3}
@@ -84482,18 +84498,6 @@ MonoBehaviour:
     type: 3}
   handleRight: {fileID: 935065097}
   handleLeft: {fileID: 660837994}
---- !u!65 &2023172614
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2023172611}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 8.537214, y: 1.2663742, z: 1}
-  m_Center: {x: 0.2789937, y: 0.74735826, z: 0.00000016255159}
 --- !u!1 &2024220733
 GameObject:
   m_ObjectHideFlags: 0

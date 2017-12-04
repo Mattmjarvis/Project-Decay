@@ -215,6 +215,7 @@ public class SimpleThirdPerson : MonoBehaviour
         // Stops player from shooting if no ammo
         if (weaponStats.ammoInClip == 0 || canFire == false)
         {
+            playerAudio.PlayOneShot(weaponStats.noAmmoSound, 1f);
             return;
         }
         
@@ -234,8 +235,7 @@ public class SimpleThirdPerson : MonoBehaviour
         if (currentWeaponType == WeaponType.Gun)
 		{
             reloader.TakeFromClip(1);
-            gunshotAudio = weaponStats.ShotSound;
-            playerAudio.PlayOneShot(gunshotAudio, 1f);
+            playerAudio.PlayOneShot(weaponStats.shotSound, 1f);
 
             if (hitPoint != Vector3.zero)
 			{                

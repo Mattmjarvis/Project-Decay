@@ -24,7 +24,8 @@ public class WeaponStats : MonoBehaviour {
     public int ammoInClip;
     public float rateOfFire;
     public FiringType firingType;
-    public AudioClip ShotSound;
+    public AudioClip shotSound;
+    public AudioClip noAmmoSound;
     public Sprite weaponBox_Unselected;
     public Sprite weaponBox_Selected;
     public Sprite weaponIcon_Unselected;
