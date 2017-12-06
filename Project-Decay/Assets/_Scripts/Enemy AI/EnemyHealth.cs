@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour {
 
@@ -17,6 +18,8 @@ public class EnemyHealth : MonoBehaviour {
     public bool isDead;
     bool isSinking;
     public bool enemyTriggered;
+
+    //public Image cleanseSlider;
     
     // Use this for initialization
     void Awake ()
@@ -27,6 +30,7 @@ public class EnemyHealth : MonoBehaviour {
         //GetComponentInChildren will search for all children of the game object until it finds the right type
         //it will then store it as hitParticles
 
+   
         //anim = GetComponent<Animator>();
         currentHealth = startingHealth;
         //Health starts off as startingHealth
@@ -76,6 +80,7 @@ public class EnemyHealth : MonoBehaviour {
 
         enemyAudio.clip = deathclip;
         enemyAudio.Play();
+        //cleanseSlider.fillAmount += 0.1f;
         StartSinking();
         //CHECK HERE FOR ERRORS WITH ENEMY DEATH
         //set the audio file to the deathclip and play it.
