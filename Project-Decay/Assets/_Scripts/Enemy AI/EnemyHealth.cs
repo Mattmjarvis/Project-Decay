@@ -19,11 +19,19 @@ public class EnemyHealth : MonoBehaviour {
     bool isSinking;
     public bool enemyTriggered;
 
-    //public Image cleanseSlider;
+    //Testing
+    CleanseModeManager CMM;
     
     // Use this for initialization
     void Awake ()
     {
+        CMM = FindObjectOfType<CleanseModeManager>();
+        if (CMM == null)
+        {
+            //If CMM cannot be found, CMM is null
+            CMM = null;
+        }        
+
         //anim = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
         hitParticles = GetComponentInChildren<ParticleSystem>();
@@ -68,7 +76,6 @@ public class EnemyHealth : MonoBehaviour {
 
     void Death()
     {
-
         //Debug.Log("Enemy is dead");
         isDead = true;
 
@@ -78,9 +85,10 @@ public class EnemyHealth : MonoBehaviour {
 
         //anim.SetBool("isDead", true);
 
+        CMM.updateCleanseSlider();
+
         enemyAudio.clip = deathclip;
         enemyAudio.Play();
-        //cleanseSlider.fillAmount += 0.1f;
         StartSinking();
         //CHECK HERE FOR ERRORS WITH ENEMY DEATH
         //set the audio file to the deathclip and play it.

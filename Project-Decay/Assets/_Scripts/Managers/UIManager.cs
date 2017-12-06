@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour {
     public GameObject interactImage;
     public GameObject searchImage;
     #endregion
-    
 
 
     #region WeaponUI Variables
