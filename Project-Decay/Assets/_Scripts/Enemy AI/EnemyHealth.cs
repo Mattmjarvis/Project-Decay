@@ -8,8 +8,7 @@ public class EnemyHealth : MonoBehaviour {
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
-    //How fast enemies will sink through the floor
-    
+    //How fast enemies will sink through the floor   
 
     //Animator anim;
     AudioSource enemyAudio;
@@ -78,7 +77,7 @@ public class EnemyHealth : MonoBehaviour {
     {
         //Debug.Log("Enemy is dead");
         isDead = true;
-
+        
         CapsuleCollider col = GetComponent<CapsuleCollider>();
         col.isTrigger = true;
         //The collider is now a trigger which means it will no longer be an obstacle to the player
@@ -108,6 +107,7 @@ public class EnemyHealth : MonoBehaviour {
         //ScoreManager.score += scoreValue;
         //ScoreManager.showText();
         //Accesses and adds the correct enemy value to the score value variable in the ScoreManager class
+        Destroy(transform.parent.gameObject);
         Destroy(gameObject, 2f);
         //Destroys the gameObject after 2 seconds.
     }
