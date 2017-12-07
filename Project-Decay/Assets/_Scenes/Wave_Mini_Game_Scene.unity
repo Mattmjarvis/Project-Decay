@@ -1159,6 +1159,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -2338,7 +2352,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 289174754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1426523227}
@@ -5968,20 +5982,21 @@ GameObject:
   m_Component:
   - component: {fileID: 729439658}
   - component: {fileID: 729439657}
+  - component: {fileID: 729439659}
   m_Layer: 0
   m_Name: WaveSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &729439657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 729439656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 301f840e07c995f49bdf4c3822aef634, type: 3}
   m_Name: 
@@ -6026,6 +6041,18 @@ Transform:
   m_Father: {fileID: 196733023}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &729439659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 729439656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e616e183c4cfa46a0286e7de39863b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4065914808543554, guid: fc96ed6a62b33524084731b4ec89107e, type: 2}
 --- !u!1 &729972822
 GameObject:
   m_ObjectHideFlags: 0
@@ -7395,6 +7422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CleanseMeter: {fileID: 1426523226}
+  lootPileReward: {fileID: 1100238853578142, guid: c2c00dc2e3390954290453a0b1ae78a5,
+    type: 2}
 --- !u!23 &949294867
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8033,6 +8062,10 @@ Prefab:
     - target: {fileID: 4265445291662374, guid: b4135f111b5a00b4b9b33a3f6f9a3239, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060466074245432, guid: b4135f111b5a00b4b9b33a3f6f9a3239, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4135f111b5a00b4b9b33a3f6f9a3239, type: 2}
@@ -9159,6 +9192,10 @@ Prefab:
     - target: {fileID: 1060466074245432, guid: b4135f111b5a00b4b9b33a3f6f9a3239, type: 2}
       propertyPath: m_Name
       value: Enemy_8 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060466074245432, guid: b4135f111b5a00b4b9b33a3f6f9a3239, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4135f111b5a00b4b9b33a3f6f9a3239, type: 2}
@@ -16471,6 +16508,10 @@ Prefab:
     - target: {fileID: 4787221052623130, guid: 0ee253e8d23dacf438a607552f9955ac, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142770382708480, guid: 0ee253e8d23dacf438a607552f9955ac, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ee253e8d23dacf438a607552f9955ac, type: 2}

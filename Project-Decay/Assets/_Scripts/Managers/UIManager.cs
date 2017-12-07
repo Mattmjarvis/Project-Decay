@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour {
     public void UpdateWalletTextBox()
     {
         //Debug.Log(wallet.Funds);
-        walletTextbox.text = wallet.Funds.ToString();
+        //walletTextbox.text = wallet.Funds.ToString();
     }
     #endregion
 

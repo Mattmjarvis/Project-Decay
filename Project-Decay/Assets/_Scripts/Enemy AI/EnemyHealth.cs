@@ -85,7 +85,10 @@ public class EnemyHealth : MonoBehaviour {
 
         //anim.SetBool("isDead", true);
 
-        CMM.updateCleanseSlider();
+        if(CMM == true)
+        {
+            CMM.updateCleanseSlider();
+        }
 
         enemyAudio.clip = deathclip;
         enemyAudio.Play();
