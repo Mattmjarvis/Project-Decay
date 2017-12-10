@@ -130,8 +130,10 @@ public class WeaponReloader : MonoBehaviour {
                 currentWeapon.maxAmmo = 0;
             }
         }
-        // Sets text box for ammo
-        uiManager.updateAmmoTextbox();
+
+        uiManager.updateAmmoTextbox();        // Sets text box for ammo
+
+        //uiManager.DisableOutOfAmmoUI();        // Stop displaying out of ammo
     }
 
     // Gets the corresponding weapon variables for when the weapon gets changed

@@ -211,7 +211,17 @@ public class SimpleThirdPerson : MonoBehaviour
     private void FireWeapon()
 	{
         weaponStats = reloader.currentWeapon;      // Gets the stats when player shoots (Changed this to apply when change weapon has been reimplemented)
-    
+  
+        // Enables or disables the out of ammo text
+        if (weaponStats.ammoInClip == 0)
+        {
+            uiManager.EnableOutOfAmmoUI();
+        }
+        else
+        {
+            uiManager.DisableOutOfAmmoUI();
+        }
+
         // Stops player from shooting if no ammo
         if (weaponStats.ammoInClip == 0 || canFire == false)
         {

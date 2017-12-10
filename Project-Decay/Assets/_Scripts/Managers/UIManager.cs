@@ -9,8 +9,8 @@ public class UIManager : MonoBehaviour {
     public GameObject radiationImage;
     public GameObject interactImage;
     public GameObject searchImage;
-    #endregion
 
+    #endregion
 
     #region WeaponUI Variables
     public Image[] weaponBoxImage;
@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour {
     public Text maxAmmoTextBox;
     public Text ammoInClipTextBox;
     private Color normalColour = new Color(255, 255, 255);
+
+    public GameObject outOfAmmoText;
     #endregion
 
     #region WalletUI Variables
@@ -29,6 +31,8 @@ public class UIManager : MonoBehaviour {
     public GameObject UpgradeInterface;
     private InputManager inputManager;
     FadeManager fader;
+
+
     // Use this for initialization
     void Start ()
     {
@@ -120,6 +124,7 @@ public class UIManager : MonoBehaviour {
     /// <summary>
     /// Opens and closes the search UI image
     /// </summary>
+    #region searchTip
     public void enableSearchTip()
     {
         searchImage.SetActive(true);
@@ -128,6 +133,7 @@ public class UIManager : MonoBehaviour {
     {
         searchImage.SetActive(false);
     }
+#endregion
 
     ///<summary> 
     /// Opens and closes the interact UI image
@@ -141,9 +147,23 @@ public class UIManager : MonoBehaviour {
     {
         interactImage.SetActive(false);
     }
-    #endregion  
+    #endregion
 
 
-
+    ///<summary>
+    /// Enables or disabled the out of ammo UI
+    ///</summary>
+    #region OutOfAmmoUI
+    // EnableUI
+    public void EnableOutOfAmmoUI()
+    {
+        outOfAmmoText.SetActive(true);
+    }
+    // DisableUI
+    public void DisableOutOfAmmoUI()
+    {
+        outOfAmmoText.SetActive(false);
+    }
+#endregion
 
 }

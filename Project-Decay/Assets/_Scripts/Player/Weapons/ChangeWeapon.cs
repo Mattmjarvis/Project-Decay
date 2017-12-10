@@ -15,12 +15,14 @@ public class ChangeWeapon : MonoBehaviour {
 
     // Components
     WeaponReloader weaponReloader;
+    UIManager uiManager;
     SimpleThirdPerson playerController;
 
     private void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<SimpleThirdPerson>();
         weaponReloader = gameObject.GetComponent<WeaponReloader>();
+        uiManager = FindObjectOfType<UIManager>();
         changeWeapon(2); // Sets the starting weapon to pistol
     }
 
@@ -98,6 +100,12 @@ public class ChangeWeapon : MonoBehaviour {
                 playerController.handleLeft = weapons[i].GetComponentInChildren<WeaponStats>().handleLeft;
                 playerController.handleRight = weapons[i].GetComponentInChildren<WeaponStats>().handleRight;
                 playerController.weaponStats = weapons[i].GetComponentInChildren<WeaponStats>();
+
+                // Stops showing out of ammo if the player has ammo
+                if(playerController.weaponStats.ammoInClip > 0)
+                {
+                    uiManager.DisableOutOfAmmoUI();
+                }
 
                 // if the player has an active gun then replace weapon
                 if (playerController.gunActive)
