@@ -9,7 +9,8 @@ public class UIManager : MonoBehaviour {
     public GameObject radiationImage;
     public GameObject interactImage;
     public GameObject searchImage;
-
+    public GameObject crosshairImage;
+    public Image reloadProgressBar;
     #endregion
 
     #region WeaponUI Variables
@@ -29,9 +30,14 @@ public class UIManager : MonoBehaviour {
     #endregion  
 
     public GameObject UpgradeInterface;
-    private InputManager inputManager;
+
+    // Components
+    SimpleThirdPerson playerController;
+    InputManager inputManager;
     FadeManager fader;
 
+
+    public float reloadCurrentTime;
 
     // Use this for initialization
     void Start ()
@@ -39,14 +45,45 @@ public class UIManager : MonoBehaviour {
         fader = FindObjectOfType<FadeManager>();
         fader.SceneFadeInBlack();
 
+        // Disable crosshait
+        crosshairImage.SetActive(false);
+
         // Get components
         wallet = FindObjectOfType<Wallet>().GetComponent<Wallet>() ;
         weaponReloader = FindObjectOfType<WeaponReloader>();
+        playerController = FindObjectOfType<SimpleThirdPerson>();
         inputManager = FindObjectOfType<InputManager>();
         updateAmmoTextbox();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    private void Update()
+    {
+        // Makes the reload progress bar animate
+        if (weaponReloader.IsReloading == true && playerController.gunActive)
+        {
+            ReloadingProgressBar();
+        }
+    }
+
+    /// <summary>
+    ///  Changes the activate of the crosshair
+    /// </summary>
+    // Turns on crosshair
+    #region CrosshairUI
+    public void turnOnCrosshair()
+    {
+        crosshairImage.SetActive(true);
+    }
+
+    // Turns off radiation symbol
+    public void turnOffCrosshair()
+    {
+        crosshairImage.SetActive(false);
+    }
+    #endregion
 
     /// <summary>
     ///  Changes the activate of the radiation symbol
@@ -149,6 +186,46 @@ public class UIManager : MonoBehaviour {
     }
     #endregion
 
+    ///<summary>
+    /// Sets the fill amount of the reload progress bar
+    /// </summary>
+    #region ReloadProgress
+    // Enables the reload progress bar
+    public void TurnOnReloadProgressBar()
+    {
+        reloadProgressBar.gameObject.SetActive(true);
+    }
+    // Disables the reload progress bar
+    public void TurnOffReloadProgressBar()
+    {
+        reloadProgressBar.gameObject.SetActive(false);
+    }
+
+    // Sets the current time for the reload Progress bar
+    public void SetReloadProgress()
+    {
+        reloadCurrentTime = playerController.weaponStats.reloadSpeed;
+        TurnOnReloadProgressBar();
+    }
+
+    // This function is used in the update
+    public void ReloadingProgressBar()
+    {
+        // Sets the image fill amount based on how far into reload player is
+        if (reloadCurrentTime > 0)
+        {
+            reloadCurrentTime -= Time.deltaTime;
+            reloadProgressBar.GetComponent<Image>().fillAmount = reloadCurrentTime / playerController.weaponStats.reloadSpeed;
+        }
+        
+        // Reenable the crosshair if the player has his weapon drawn
+        if(reloadCurrentTime <= 0f && playerController.gunActive)
+        {
+            DisableOutOfAmmoUI();
+            turnOnCrosshair();
+        }
+    }
+#endregion
 
     ///<summary>
     /// Enables or disabled the out of ammo UI

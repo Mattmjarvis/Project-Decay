@@ -42,8 +42,6 @@ public class SimpleThirdPerson : MonoBehaviour
     public float timeToShoot = 0.5f;
     //Changes firing type
 
-	public GameObject crosshair;
-
     // Get components
     UIManager uiManager;
     WeaponReloader reloader;
@@ -58,13 +56,10 @@ public class SimpleThirdPerson : MonoBehaviour
 
 		gun.SetActive(false);
 		gunActive = false;
-		crosshair.SetActive(false);
+
 
 		lookAtGO = new GameObject();
 		lookAtGO.transform.name = "lookAt";
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         blockControl = false;
     }
@@ -128,7 +123,7 @@ public class SimpleThirdPerson : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Aim;
                 gun.SetActive(true);
                 gunActive = true;
-                crosshair.SetActive(true);
+                uiManager.turnOnCrosshair();
                 //Switches to aiming gun state
             }
 
@@ -137,7 +132,10 @@ public class SimpleThirdPerson : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Normal;
                 gun.SetActive(false);
                 gunActive = false;
-                crosshair.SetActive(false);
+                reloader.StopReload();
+                uiManager.turnOffCrosshair();
+                uiManager.TurnOffReloadProgressBar();
+
                 //switches to normal camerastate
             }
         }
@@ -212,16 +210,6 @@ public class SimpleThirdPerson : MonoBehaviour
 	{
         weaponStats = reloader.currentWeapon;      // Gets the stats when player shoots (Changed this to apply when change weapon has been reimplemented)
   
-        // Enables or disables the out of ammo text
-        if (weaponStats.ammoInClip == 0)
-        {
-            uiManager.EnableOutOfAmmoUI();
-        }
-        else
-        {
-            uiManager.DisableOutOfAmmoUI();
-        }
-
         // Stops player from shooting if no ammo
         if (weaponStats.ammoInClip == 0 || canFire == false)
         {
@@ -265,7 +253,7 @@ public class SimpleThirdPerson : MonoBehaviour
 
     public void ReloadPressed()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && gunActive)
         {
             //Debug.Log("Reload Pressed");
             reloader.ReloadCheck();
@@ -274,7 +262,17 @@ public class SimpleThirdPerson : MonoBehaviour
 
     private void AimWeapon()
 	{
-		Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0));
+        // Checks if the player is out of ammo. True/false enables/disables out of ammo text
+        if (weaponStats.ammoInClip == 0)
+        {
+            uiManager.EnableOutOfAmmoUI();
+        }
+        else
+        {
+            uiManager.DisableOutOfAmmoUI();
+        }
+
+        Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0));
         //converts the cameras viewport to worldspace
 		Vector3 lookAtVector;
 		Quaternion camRot;

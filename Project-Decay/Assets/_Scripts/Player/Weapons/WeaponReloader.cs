@@ -71,11 +71,16 @@ public class WeaponReloader : MonoBehaviour {
     public void StopReload()
     {
         StopCoroutine(Reload(0f));
+        isReloading = false;
+        uiManager.TurnOffReloadProgressBar(); // Turns off the progress bar
+        uiManager.turnOnCrosshair(); // Turns on the crosshair
     }
 
     // Coroutine reloads the weapon after the weapons reload speed variable
     public IEnumerator Reload(float reloadTime)
     {
+        uiManager.turnOffCrosshair(); // Disables the crosshair whilst reloading
+        uiManager.SetReloadProgress();
         //print("Reload Started!");
         yield return new WaitForSeconds(reloadTime);
         //will wait for the time given in the reloadTime variable to run this code
