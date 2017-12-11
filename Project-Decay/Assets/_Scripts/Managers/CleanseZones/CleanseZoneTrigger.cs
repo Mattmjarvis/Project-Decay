@@ -5,6 +5,7 @@ using UnityEngine;
 public class CleanseZoneTrigger : MonoBehaviour {
 
     public GameObject cleanseZonePrefab;
+    public GameObject cleanseModeCanvas;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class CleanseZoneTrigger : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             cleanseZonePrefab.SetActive(true);
+            cleanseModeCanvas.SetActive(true);
         }
     }
 }

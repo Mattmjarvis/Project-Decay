@@ -113,7 +113,7 @@ public class WaveSpawner : MonoBehaviour
 
     bool EnemyisAlive()
     {
-        print("Objects remaining: " + GameObject.FindGameObjectsWithTag("EnemyCleanseMode").Any(e => e.activeInHierarchy));
+        //print("Objects remaining: " + GameObject.FindGameObjectsWithTag("EnemyCleanseMode").Any(e => e.activeInHierarchy));
 
         //Checks if the enemy is alive when the timer runs out, This uses less processing power.
         searchCountdown -= Time.deltaTime;

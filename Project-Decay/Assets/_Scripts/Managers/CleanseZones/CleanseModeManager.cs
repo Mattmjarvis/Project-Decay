@@ -8,7 +8,7 @@ public class CleanseModeManager : MonoBehaviour {
     public GameObject CleanseMeter;
     Image cleanseSlider;
 
-    Vector3 rewardSpawnPoint = new Vector3(0,0,0);
+    public Transform rewardSpawnPoint;
     public GameObject lootPileReward;
 
     bool isCleansing = false;
@@ -63,7 +63,7 @@ public class CleanseModeManager : MonoBehaviour {
         //When fill amount is full, DO SOMETHING.
         if (cleanseSlider.fillAmount == 1f)
         {
-            Instantiate(lootPileReward, rewardSpawnPoint, Quaternion.identity);
+            Instantiate(lootPileReward, rewardSpawnPoint.position, rewardSpawnPoint.rotation);
 
         }
     }
