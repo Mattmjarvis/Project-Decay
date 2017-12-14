@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     private int lifeSpan = 2;
     WeaponReloader reloader;
 
+    public GameObject bulletHole_Metal;
+
     void Start()
     {
         Destroy(gameObject, lifeSpan);
@@ -29,18 +31,11 @@ public class Bullet : MonoBehaviour
         // If the bullets hits an enemy then deal damage depending on weapon
         if (col.gameObject.tag == "Enemy")
         {
-
             enemyHealth = col.gameObject.GetComponent<EnemyHealth>();
             reloader = FindObjectOfType<WeaponReloader>(); // Gets the weapon player is using
             enemyHealth.TakeDamage(reloader.currentWeapon.bulletDamage); // Deal damage to enemy based on weapon
             //Debug.Log("Enemy took: " + reloader.currentWeapon.bulletDamage + "damage."); // Debug
-
-        }
-
-        if (col.collider)
-        {
-            //print("Bullets hit something");
-        }
+        }        
         //		this.transform.parent = col.transform;
 
         //		rb.useGravity = true;

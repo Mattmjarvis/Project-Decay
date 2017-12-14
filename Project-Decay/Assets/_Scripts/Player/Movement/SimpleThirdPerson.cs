@@ -32,6 +32,7 @@ public class SimpleThirdPerson : MonoBehaviour
 
     GameObject lookAtGO;
 	public GameObject bulletPr;
+    public GameObject bulletPrMetal;
     //bullet prefab
 
     public bool blockControl;
@@ -238,7 +239,7 @@ public class SimpleThirdPerson : MonoBehaviour
             if (hitPoint != Vector3.zero)
 			{                
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
-                //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)
+                //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)                
 			}
 		}
 		else if(currentWeaponType == WeaponType.Grenade)

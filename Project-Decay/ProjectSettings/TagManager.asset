@@ -17,6 +17,7 @@ TagManager:
   - CleanseMeter
   - CleanseZone
   - EnemyCleanseMode
+  - Metal
   layers:
   - Default
   - TransparentFX

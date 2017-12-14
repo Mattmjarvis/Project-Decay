@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982887688663240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb2d6c81ddd740bcb1cb740f49c64bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletHole_Metal: {fileID: 1908646111657056, guid: 8312e10da1c93ca4cab30f043c5f9aec,
+    type: 2}
 --- !u!135 &135048733440993202
 SphereCollider:
   m_ObjectHideFlags: 1
