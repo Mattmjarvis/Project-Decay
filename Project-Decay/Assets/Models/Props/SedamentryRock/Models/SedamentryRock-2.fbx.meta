@@ -1,42 +1,24 @@
 fileFormatVersion: 2
-guid: 820fccf938e19b4489e4bc6b1b2a5470
-timeCreated: 1513254407
-licenseType: Pro
+guid: 2afe8cc5da82071498f03e83982cef7b
+timeCreated: 1513379852
+licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
-    100002: WatchTower-BrokenLadder
-    100004: WatchTower-Cabbin
-    100006: WatchTower-Floor
-    100008: WatchTower-Railings
-    100010: WatchTower-Roof
-    100012: WatchTower-Suports
+    100002: SedimentryRock-2-Bottom
+    100004: SedimentryRock-2-Top
     400000: //RootNode
-    400002: WatchTower-BrokenLadder
-    400004: WatchTower-Cabbin
-    400006: WatchTower-Floor
-    400008: WatchTower-Railings
-    400010: WatchTower-Roof
-    400012: WatchTower-Suports
-    2300000: WatchTower-BrokenLadder
-    2300002: WatchTower-Cabbin
-    2300004: WatchTower-Floor
-    2300006: WatchTower-Railings
-    2300008: WatchTower-Roof
-    2300010: WatchTower-Suports
-    3300000: WatchTower-BrokenLadder
-    3300002: WatchTower-Cabbin
-    3300004: WatchTower-Floor
-    3300006: WatchTower-Railings
-    3300008: WatchTower-Roof
-    3300010: WatchTower-Suports
-    4300000: WatchTower-BrokenLadder
-    4300002: WatchTower-Suports
-    4300004: WatchTower-Railings
-    4300006: WatchTower-Roof
-    4300008: WatchTower-Floor
-    4300010: WatchTower-Cabbin
+    400002: SedimentryRock-2-Bottom
+    400004: SedimentryRock-2-Top
+    2300000: SedimentryRock-2-Bottom
+    2300002: SedimentryRock-2-Top
+    3300000: SedimentryRock-2-Bottom
+    3300002: SedimentryRock-2-Top
+    4300000: SedimentryRock-2-Bottom
+    4300002: SedimentryRock-2-Top
+    6400000: SedimentryRock-2-Bottom
+    6400002: SedimentryRock-2-Top
   materials:
     importMaterials: 1
     materialName: 0
@@ -66,7 +48,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

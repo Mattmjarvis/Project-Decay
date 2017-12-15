@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4841848041671100}
   - component: {fileID: 33849337920977788}
   - component: {fileID: 23506151157863798}
+  - component: {fileID: 64750408760815654}
   m_Layer: 0
   m_Name: WatchTower-Suports
   m_TagString: Untagged
@@ -53,6 +54,7 @@ GameObject:
   - component: {fileID: 4420933267534666}
   - component: {fileID: 33539043090603706}
   - component: {fileID: 23903921064423432}
+  - component: {fileID: 64080657067944712}
   m_Layer: 0
   m_Name: WatchTower-BrokenLadder
   m_TagString: Untagged
@@ -70,6 +72,7 @@ GameObject:
   - component: {fileID: 4107212653693850}
   - component: {fileID: 33326473563316084}
   - component: {fileID: 23178129241968956}
+  - component: {fileID: 64295629578286096}
   m_Layer: 0
   m_Name: WatchTower-Floor
   m_TagString: Untagged
@@ -87,6 +90,7 @@ GameObject:
   - component: {fileID: 4793851012315082}
   - component: {fileID: 33589554380436632}
   - component: {fileID: 23029496478005728}
+  - component: {fileID: 64658504416784920}
   m_Layer: 0
   m_Name: WatchTower-Railings
   m_TagString: Untagged
@@ -104,6 +108,7 @@ GameObject:
   - component: {fileID: 4312696116897566}
   - component: {fileID: 33011605104690204}
   - component: {fileID: 23718124776371766}
+  - component: {fileID: 64938588329582276}
   m_Layer: 0
   m_Name: WatchTower-Roof
   m_TagString: Untagged
@@ -121,6 +126,7 @@ GameObject:
   - component: {fileID: 4750974266391858}
   - component: {fileID: 33886240277930230}
   - component: {fileID: 23674584765425490}
+  - component: {fileID: 64201811233685892}
   m_Layer: 0
   m_Name: WatchTower-Cabbin
   m_TagString: Untagged
@@ -463,3 +469,87 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929728114673040}
   m_Mesh: {fileID: 4300010, guid: 820fccf938e19b4489e4bc6b1b2a5470, type: 3}
+--- !u!64 &64080657067944712
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1324158166639824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 820fccf938e19b4489e4bc6b1b2a5470, type: 3}
+--- !u!64 &64201811233685892
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929728114673040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300010, guid: 820fccf938e19b4489e4bc6b1b2a5470, type: 3}
+--- !u!64 &64295629578286096
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409570016742552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300008, guid: 820fccf938e19b4489e4bc6b1b2a5470, type: 3}
+--- !u!64 &64658504416784920
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1454697888195896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300004, guid: 820fccf938e19b4489e4bc6b1b2a5470, type: 3}
+--- !u!64 &64750408760815654
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007336253833370}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: 820fccf938e19b4489e4bc6b1b2a5470, type: 3}
+--- !u!64 &64938588329582276
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1470583389240080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300006, guid: 820fccf938e19b4489e4bc6b1b2a5470, type: 3}
