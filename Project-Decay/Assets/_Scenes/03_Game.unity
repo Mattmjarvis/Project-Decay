@@ -24066,7 +24066,7 @@ Prefab:
         type: 2}
       propertyPath: bulletPr
       value: 
-      objectReference: {fileID: 1908646111657056, guid: 8312e10da1c93ca4cab30f043c5f9aec,
+      objectReference: {fileID: 1982887688663240, guid: 2f28c938f3060485f9173d4dd4a69ba1,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f613706a14e9a0149b34abecc6f1ee16, type: 2}
@@ -39590,20 +39590,6 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -41073,8 +41059,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906167468}
-  m_LocalRotation: {x: 0.009410436, y: 0.94359356, z: 0.32987612, w: -0.026916275}
-  m_LocalPosition: {x: 553.15137, y: -37.76557, z: 668.70435}
+  m_LocalRotation: {x: -0.22192004, y: 0.6563238, z: 0.21125175, w: 0.689466}
+  m_LocalPosition: {x: 513.6323, y: 17.195477, z: 567.53406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888176731}
