@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class SimpleThirdPerson : MonoBehaviour 
 {
@@ -46,6 +46,7 @@ public class SimpleThirdPerson : MonoBehaviour
     // Get components
     UIManager uiManager;
     WeaponReloader reloader;
+    ChangeWeapon changeWeapon;
     #endregion
 
     public void Start()
@@ -54,6 +55,7 @@ public class SimpleThirdPerson : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
         reloader = FindObjectOfType<WeaponReloader>();
 		animator = GetComponent<Animator> ();
+        changeWeapon = FindObjectOfType<ChangeWeapon>();
 
 		gun.SetActive(false);
 		gunActive = false;
@@ -117,27 +119,39 @@ public class SimpleThirdPerson : MonoBehaviour
     #region Camera
     private void switchCameraStates()
     {
+        //Switches to aiming gun state
         if (Input.GetMouseButtonDown(1)) // (Rightclick)
         {
-            if (!gunActive)
+            // If the player does not have a weapon active and a weapon is available then switch weapon
+            if (!gunActive && weaponStats.weaponAvailable == true)
             {
                 GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Aim;
                 gun.SetActive(true);
                 gunActive = true;
                 uiManager.turnOnCrosshair();
-                //Switches to aiming gun state
+
+
+                // Sets weapon selected icon to on
+                changeWeapon.weaponBoxImage[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponBox_Selected;
+                changeWeapon.weaponIcon[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponIcon_Selected;
             }
 
+            //switches to normal camerastate
             else
             {
                 GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Normal;
                 gun.SetActive(false);
                 gunActive = false;
                 reloader.StopReload();
+
+                // Disables UI elements
                 uiManager.turnOffCrosshair();
                 uiManager.TurnOffReloadProgressBar();
 
-                //switches to normal camerastate
+                // Sets weapon selected icon to off
+                changeWeapon.weaponBoxImage[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponBox_Unselected;
+                changeWeapon.weaponIcon[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponIcon_Unselected;
+
             }
         }
     }

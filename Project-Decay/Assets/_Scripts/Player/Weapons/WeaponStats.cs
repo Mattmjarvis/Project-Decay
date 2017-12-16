@@ -13,9 +13,8 @@ public enum FiringType
 // This class contains all the stats for each weapon so we can access weapon variables directly
 public class WeaponStats : MonoBehaviour {
 
+    public bool weaponAvailable = false;
     public bool infiniteAmmo;
-
-   
     public int weaponID;
     public int bulletDamage;
     public int clipSize;

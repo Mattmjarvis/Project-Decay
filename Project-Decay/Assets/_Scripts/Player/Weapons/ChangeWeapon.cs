@@ -23,7 +23,6 @@ public class ChangeWeapon : MonoBehaviour {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<SimpleThirdPerson>();
         weaponReloader = gameObject.GetComponent<WeaponReloader>();
         uiManager = FindObjectOfType<UIManager>();
-        changeWeapon(2); // Sets the starting weapon to pistol
     }
 
     // Gets the user input to change weapon
@@ -83,7 +82,7 @@ public class ChangeWeapon : MonoBehaviour {
     {
    
         // Returns if number pressed is already same weapon being held
-        if(num == currentWeapon)
+        if(num == currentWeapon || weapons[num].GetComponentInChildren<WeaponStats>().weaponAvailable == false)
         { 
             return;
         }

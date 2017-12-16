@@ -7,20 +7,26 @@ public enum PickupType
     AssaultRifleAmmo,
     ShotgunAmmo,
     PistolAmmo,
-    Uranium
-
+    Uranium,
+    Weapon_AR,
+    Weapon_SG,
+    Weapon_PS
 }
+
+
+
 public class Pickup : MonoBehaviour {
 
     UIManager uiManager;
     public PickupType pickupType;
+
     public int amountToGive;
 
     // Each stats are needed to be assigned manually so it can find inactive objects
-
-    public WeaponStats[] allWeaponStats;
-    public WeaponStats weaponStatsAR;
-    public WeaponStats weaponStatsSG;
+    private WeaponStats[] allWeaponStats;
+    private WeaponStats weaponStatsAR;
+    private WeaponStats weaponStatsSG;
+    private WeaponStats weaponStatsPS;
 
 	// Use this for initialization
 	void Start () {
@@ -34,9 +40,9 @@ public class Pickup : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             FindWeaponStats();
-            GiveWeaponAmmo();            
+            PickupObject();            
             Destroy(gameObject);
-            uiManager.updateAmmoTextbox();           
+ 
         }
     }
 
@@ -60,14 +66,38 @@ public class Pickup : MonoBehaviour {
             {
                 weaponStatsSG = allWeaponStats[i];
             }
+
+            // Sets PS Stats
+            if (allWeaponStats[i].gameObject.name == ("PSStats")) 
+            {
+                weaponStatsPS = allWeaponStats[i];
+            }
         }
     }
 
     // Gives the weapon ammo based on the enum type.
-    public void GiveWeaponAmmo()
+    public void PickupObject()
     {
+        // Gives access to assault rifle
+        if (pickupType == PickupType.Weapon_AR)
+        {
+            weaponStatsAR.weaponAvailable = true;
+        }
+
+        // Gives access to shotgun
+        else if (pickupType == PickupType.Weapon_SG)
+        {
+            weaponStatsSG.weaponAvailable = true;
+        }
+
+        // Gives access to pistol
+        if (pickupType == PickupType.Weapon_PS)
+        {
+            weaponStatsPS.weaponAvailable = true;
+        }
+
         // Gives ammo to assault Rifle
-        if (pickupType == PickupType.AssaultRifleAmmo)
+        else if (pickupType == PickupType.AssaultRifleAmmo)
         {
             weaponStatsAR.maxAmmo += amountToGive;
             print("MaxAmmo is " + weaponStatsAR.maxAmmo);
@@ -88,6 +118,6 @@ public class Pickup : MonoBehaviour {
         }
 
 
-        
+        uiManager.updateAmmoTextbox(); // Updates the ammo for the player
     }
 }
