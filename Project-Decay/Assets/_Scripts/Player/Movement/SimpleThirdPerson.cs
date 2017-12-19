@@ -70,7 +70,7 @@ public class SimpleThirdPerson : MonoBehaviour
     public void Update()
 	{
         Move();
-        Strafe();
+        //Strafe();
         WalkBackwards();
 
         if (gunActive)
@@ -185,17 +185,17 @@ public class SimpleThirdPerson : MonoBehaviour
         Dive();
     }
 
-    private void Strafe()
-    {
-        if ((Input.GetAxis("Strafe")) > 0)
-        {
-            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
-        }
-        else if ((Input.GetAxis("Strafe")) < 0)
-        {
-            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
-        }
-    }
+    //private void Strafe()
+    //{
+    //    if ((Input.GetAxis("Strafe")) > 0)
+    //    {
+    //        this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
+    //    }
+    //    else if ((Input.GetAxis("Strafe")) < 0)
+    //    {
+    //        this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
+    //    }
+    //}
 
     private void WalkBackwards()
     {
