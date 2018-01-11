@@ -103,11 +103,8 @@ public class EnemyHealth : MonoBehaviour {
         //If i was turning off the entire gameObject i would use .SetActive(false);
         GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
-        //isSinking is true
-        //ScoreManager.score += scoreValue;
-        //ScoreManager.showText();
-        //Accesses and adds the correct enemy value to the score value variable in the ScoreManager class
-        Destroy(transform.parent.gameObject);
+        
+        //Destroy(transform.parent.gameObject);
         Destroy(gameObject, 2f);
         //Destroys the gameObject after 2 seconds.
     }

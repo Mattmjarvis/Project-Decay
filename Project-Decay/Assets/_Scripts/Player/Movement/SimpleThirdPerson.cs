@@ -166,7 +166,7 @@ public class SimpleThirdPerson : MonoBehaviour
         //Handles rotation of camera
 
         float maxSpeed = 3.5f;
-        if (Input.GetKey(KeyCode.LeftShift)) maxSpeed = 8.0f;
+        if (Input.GetKey(KeyCode.LeftShift)) maxSpeed = 8f;
         //Shift to sprint
 
         speed = maxSpeed;
