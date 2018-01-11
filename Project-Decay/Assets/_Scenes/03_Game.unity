@@ -42947,6 +42947,7 @@ Prefab:
       propertyPath: m_LocalPosition.x
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: -241.91
 =======
       value: -253.329
@@ -42954,6 +42955,9 @@ Prefab:
 =======
       value: -253.41
 >>>>>>> 8c34c3dc1366d3ce89e5d16b7954f3121d7768b9
+=======
+      value: -241.91
+>>>>>>> parent of 13ab420... Merge branch 'master' of https://github.com/Mattmjarvis/Project-Decay
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b4491ba105179704e8c36f98773b6409, type: 3}
       propertyPath: m_LocalPosition.y
@@ -54670,15 +54674,17 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-<<<<<<< HEAD
   m_Size: {x: 17.79, y: 4.74, z: 4.94}
   m_Center: {x: -7.06, y: 1.13, z: -0.12}
+<<<<<<< HEAD
 =======
   m_Size: {x: 16.456238, y: 3.6502655, z: 1.5633452}
   m_Center: {x: -8.228119, y: 1.325134, z: -0.07292237}
 >>>>>>> aa6b81b16eb7e0dbcbc738e64c388824c64b9e74
 =======
 >>>>>>> 8c34c3dc1366d3ce89e5d16b7954f3121d7768b9
+=======
+>>>>>>> parent of 13ab420... Merge branch 'master' of https://github.com/Mattmjarvis/Project-Decay
 --- !u!1001 &1231445914
 Prefab:
   m_ObjectHideFlags: 0
@@ -78538,6 +78544,7 @@ Transform:
   m_GameObject: {fileID: 1629549940}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalRotation: {x: -0.0031654125, y: 0.7335273, z: 0.6788055, w: 0.03392356}
 =======
   m_LocalRotation: {x: -0.0031654132, y: 0.73352736, z: 0.67880553, w: 0.033923563}
@@ -78545,6 +78552,9 @@ Transform:
 =======
   m_LocalRotation: {x: -0.0031654134, y: 0.7335273, z: 0.6788055, w: 0.03392356}
 >>>>>>> 8c34c3dc1366d3ce89e5d16b7954f3121d7768b9
+=======
+  m_LocalRotation: {x: -0.0031654125, y: 0.7335273, z: 0.6788055, w: 0.03392356}
+>>>>>>> parent of 13ab420... Merge branch 'master' of https://github.com/Mattmjarvis/Project-Decay
   m_LocalPosition: {x: 0.6197214, y: 3.4354925, z: -11.370628}
   m_LocalScale: {x: 15.000024, y: 15.000018, z: 150.00029}
   m_Children: []
@@ -94142,6 +94152,7 @@ Transform:
   m_GameObject: {fileID: 1906167468}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.055246934, y: 0.84780484, z: 0.090132944, w: -0.5196641}
   m_LocalPosition: {x: 363.91217, y: 21.042713, z: 595.28503}
 =======
@@ -94152,6 +94163,10 @@ Transform:
   m_LocalRotation: {x: -0.13931446, y: 0.4408235, z: 0.069472104, w: 0.8839908}
   m_LocalPosition: {x: 224.2721, y: 28.850483, z: 434.56247}
 >>>>>>> 8c34c3dc1366d3ce89e5d16b7954f3121d7768b9
+=======
+  m_LocalRotation: {x: 0.055246934, y: 0.84780484, z: 0.090132944, w: -0.5196641}
+  m_LocalPosition: {x: 363.91217, y: 21.042713, z: 595.28503}
+>>>>>>> parent of 13ab420... Merge branch 'master' of https://github.com/Mattmjarvis/Project-Decay
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888176731}
