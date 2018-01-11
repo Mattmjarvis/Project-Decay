@@ -132,8 +132,8 @@ public class SimpleThirdPerson : MonoBehaviour
 
 
                 // Sets weapon selected icon to on
-                changeWeapon.weaponBoxImage[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponBox_Selected;
-                changeWeapon.weaponIcon[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponIcon_Selected;
+                changeWeapon.weaponBoxImage[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>(true).weaponBox_Selected;
+                changeWeapon.weaponIcon[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>(true).weaponIcon_Selected;
             }
 
             //switches to normal camerastate
@@ -149,8 +149,8 @@ public class SimpleThirdPerson : MonoBehaviour
                 uiManager.TurnOffReloadProgressBar();
 
                 // Sets weapon selected icon to off
-                changeWeapon.weaponBoxImage[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponBox_Unselected;
-                changeWeapon.weaponIcon[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>().weaponIcon_Unselected;
+                changeWeapon.weaponBoxImage[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>(true).weaponBox_Unselected;
+                changeWeapon.weaponIcon[changeWeapon.currentWeapon].gameObject.GetComponent<Image>().sprite = changeWeapon.weapons[changeWeapon.currentWeapon].GetComponentInChildren<WeaponStats>(true).weaponIcon_Unselected;
 
             }
         }

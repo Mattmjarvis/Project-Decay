@@ -65,15 +65,15 @@ public class ChangeWeapon : MonoBehaviour {
                 }        
         }
 
-        // Change to Special weapon
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            // Checks if weapon is available
-            if (weapons[3] != null)
-            {
-                changeWeapon(3);
-            }
-        }
+        //// Change to Special weapon
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    // Checks if weapon is available
+        //    if (weapons[3] != null)
+        //    {
+        //        changeWeapon(3);
+        //    }
+        //}
     }
     #endregion
 
@@ -82,7 +82,7 @@ public class ChangeWeapon : MonoBehaviour {
     {
    
         // Returns if number pressed is already same weapon being held
-        if(num == currentWeapon || weapons[num].GetComponentInChildren<WeaponStats>().weaponAvailable == false)
+        if(num == currentWeapon || weapons[num].GetComponentInChildren<WeaponStats>(true).weaponAvailable == false)
         { 
             return;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PickupType
 {
@@ -27,6 +28,11 @@ public class Pickup : MonoBehaviour {
     private WeaponStats weaponStatsAR;
     private WeaponStats weaponStatsSG;
     private WeaponStats weaponStatsPS;
+
+    // Weapon slot UI to change color
+    public Image weaponslotAR;
+    public Image weaponslotSG;
+    public Image weaponslotPS;
 
 	// Use this for initialization
 	void Start () {
@@ -82,18 +88,21 @@ public class Pickup : MonoBehaviour {
         if (pickupType == PickupType.Weapon_AR)
         {
             weaponStatsAR.weaponAvailable = true;
+            weaponslotAR.color = Color.white;
         }
 
         // Gives access to shotgun
         else if (pickupType == PickupType.Weapon_SG)
         {
             weaponStatsSG.weaponAvailable = true;
+            weaponslotSG.color = Color.white;
         }
 
         // Gives access to pistol
         if (pickupType == PickupType.Weapon_PS)
         {
             weaponStatsPS.weaponAvailable = true;
+            weaponslotPS.color = Color.white;
         }
 
         // Gives ammo to assault Rifle
@@ -101,14 +110,22 @@ public class Pickup : MonoBehaviour {
         {
             weaponStatsAR.maxAmmo += amountToGive;
             print("MaxAmmo is " + weaponStatsAR.maxAmmo);
-            uiManager.weaponHasAmmo(0); // Sets colour to show they have ammo
+
+            if (weaponStatsAR.weaponAvailable == true)
+            {
+                uiManager.weaponHasAmmo(0); // If the weapon is available then set colour to show they have ammo
+            }
         }
 
         // Gives ammo to Shotgun
         else if(pickupType == PickupType.ShotgunAmmo)
         {
             weaponStatsSG.maxAmmo += amountToGive;
-            uiManager.weaponHasAmmo(1); // Sets colour to show they have ammo
+
+            if (weaponStatsSG.weaponAvailable == true)
+            {
+                uiManager.weaponHasAmmo(1); // If the weapon is available then set colour to show they have ammo
+            }
         }
 
         // Give player Uranium Currency
