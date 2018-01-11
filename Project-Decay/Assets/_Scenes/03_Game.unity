@@ -42863,7 +42863,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: b4491ba105179704e8c36f98773b6409, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: -241.91
+=======
+      value: -253.329
+>>>>>>> aa6b81b16eb7e0dbcbc738e64c388824c64b9e74
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b4491ba105179704e8c36f98773b6409, type: 3}
       propertyPath: m_LocalPosition.y
@@ -54591,8 +54595,13 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
+<<<<<<< HEAD
   m_Size: {x: 17.79, y: 4.74, z: 4.94}
   m_Center: {x: -7.06, y: 1.13, z: -0.12}
+=======
+  m_Size: {x: 16.456238, y: 3.6502655, z: 1.5633452}
+  m_Center: {x: -8.228119, y: 1.325134, z: -0.07292237}
+>>>>>>> aa6b81b16eb7e0dbcbc738e64c388824c64b9e74
 --- !u!1001 &1231445914
 Prefab:
   m_ObjectHideFlags: 0
@@ -78449,7 +78458,11 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 2cbd3f3c061019546a09e0a70a983ef5, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1629549940}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0.0031654125, y: 0.7335273, z: 0.6788055, w: 0.03392356}
+=======
+  m_LocalRotation: {x: -0.0031654132, y: 0.73352736, z: 0.67880553, w: 0.033923563}
+>>>>>>> aa6b81b16eb7e0dbcbc738e64c388824c64b9e74
   m_LocalPosition: {x: 0.6197214, y: 3.4354925, z: -11.370628}
   m_LocalScale: {x: 15.000024, y: 15.000018, z: 150.00029}
   m_Children: []
@@ -94045,8 +94058,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906167468}
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.055246934, y: 0.84780484, z: 0.090132944, w: -0.5196641}
   m_LocalPosition: {x: 363.91217, y: 21.042713, z: 595.28503}
+=======
+  m_LocalRotation: {x: 0.0000013370166, y: 0.99998695, z: 0.0003097425, w: -0.005106232}
+  m_LocalPosition: {x: 237.76208, y: 43.655003, z: 458.768}
+>>>>>>> aa6b81b16eb7e0dbcbc738e64c388824c64b9e74
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888176731}
