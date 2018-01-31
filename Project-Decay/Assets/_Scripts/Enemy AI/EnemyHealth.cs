@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour {
     public float sinkSpeed = 2.5f;
     //How fast enemies will sink through the floor   
 
-    //Animator anim;
+    Animator anim;
     AudioSource enemyAudio;
     public AudioClip deathclip;
     ParticleSystem hitParticles;
@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour {
             CMM = null;
         }        
 
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         enemyAudio = GetComponent<AudioSource>();
         hitParticles = GetComponentInChildren<ParticleSystem>();
         //GetComponentInChildren will search for all children of the game object until it finds the right type
@@ -46,11 +46,11 @@ public class EnemyHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (isSinking)
-        {
-            transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
-            //if the object is sinking it will translate the transform down. -Vector3.up. 
-        }
+        //if (isSinking)
+        //{
+        //    transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
+        //    //if the object is sinking it will translate the transform down. -Vector3.up. 
+        //}
 	}
 
     public void TakeDamage(int amount)
@@ -64,7 +64,7 @@ public class EnemyHealth : MonoBehaviour {
         currentHealth -= amount;
         //Plays the hurt sound and take the amount of damage from the currentHealth
         enemyTriggered = true;
-        hitParticles.Play();
+        //hitParticles.Play();
         //The particles will be transformed whereve the HitPoint is and play from that origin
         if (currentHealth <= 0)
         {
@@ -82,7 +82,7 @@ public class EnemyHealth : MonoBehaviour {
         col.isTrigger = true;
         //The collider is now a trigger which means it will no longer be an obstacle to the player
 
-        //anim.SetBool("isDead", true);
+        anim.SetBool("EnemyIsDead", true);
 
         if(CMM == true)
         {
@@ -101,11 +101,11 @@ public class EnemyHealth : MonoBehaviour {
         GetComponent<NavMeshAgent>().enabled = false;
         //Because this is a companent i am using .enabled = false.
         //If i was turning off the entire gameObject i would use .SetActive(false);
-        GetComponent<Rigidbody>().isKinematic = true;
-        isSinking = true;
+        //GetComponent<Rigidbody>().isKinematic = true;
+        //isSinking = true;
         
         //Destroy(transform.parent.gameObject);
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 2f);
         //Destroys the gameObject after 2 seconds.
     }
 }

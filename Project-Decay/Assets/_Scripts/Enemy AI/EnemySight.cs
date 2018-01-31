@@ -10,7 +10,9 @@ public class EnemySight : MonoBehaviour
     ThirdPersonShooterController player;
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
+    EnemyAttack enemyAttack;
     Transform playerTransform;
+    Animator anim;
 
     public enum State
     {
@@ -50,6 +52,8 @@ public class EnemySight : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         playerHealth = FindObjectOfType<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
+        enemyAttack = GetComponent<EnemyAttack>();
+        anim = GetComponent<Animator>();
 
         agent.updatePosition = true;
         agent.updateRotation = false;
@@ -106,6 +110,7 @@ public class EnemySight : MonoBehaviour
                 return;
             }
             agent.SetDestination(waypoints[waypointInd].transform.position);
+            anim.SetFloat("Speed", 1 , 0.25f, Time.deltaTime);
             Vector3 targetWayPoint = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
             //Steering point tells unity to make the AI face the point in which the agent is moving too
             Vector3 lookRot = targetWayPoint - transform.position;
@@ -132,6 +137,7 @@ public class EnemySight : MonoBehaviour
 
         agent.speed = chaseSpeed;
         agent.SetDestination(target.transform.position);
+        anim.SetFloat("Speed", chaseSpeed, 2f, Time.deltaTime);
 
         Vector3 targetPoint = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
         var targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);

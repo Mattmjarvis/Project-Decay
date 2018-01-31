@@ -4,13 +4,8 @@ using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour {
 
-    public float timeBetweenAttacks = 2f;
-    public int attackDamage = 5;
-
-    public float timeBetweenSpecialAttacks = 5f;
-    public int specialattackDamage = 20;
-    public float specialAttackDistance;
-    bool playerInSpecialRange;
+    public float timeBetweenAttacks = 4f;
+    public int attackDamage = 50;
 
     //Animator anim;
     GameObject player;
@@ -18,18 +13,22 @@ public class EnemyAttack : MonoBehaviour {
     EnemyMovement enemyMovement;
     EnemyHealth enemyHealth;
     EnemySight enemySight;
+    Animator anim;
+
     //NavMeshAgent nav;
 
     //AudioSource enemyAudio;
     //public AudioClip attackSound;
 
     bool playerInRange;
+    public bool enemyAttacking;
     float timer;
     float playerDistance;
     public float attackDistance;
 
 	void Awake ()
     {
+        enemyAttacking = false;
         player = GameObject.FindGameObjectWithTag("Player");
         //enemyMovement = GetComponent<EnemyMovement>();
         //finds the player objects
@@ -39,6 +38,7 @@ public class EnemyAttack : MonoBehaviour {
         //This will improve performance as apose to constantly searching for the script.
         enemyHealth = GetComponent<EnemyHealth>();
         enemySight = GetComponent<EnemySight>();
+        anim = GetComponent<Animator>();
         //anim = GetComponent<Animator>();
         
         //enemyAudio = GetComponent<AudioSource>();
@@ -76,14 +76,12 @@ public class EnemyAttack : MonoBehaviour {
         if (playerDistance <= attackDistance)
         {
             playerInRange = true;
-            //anim.SetBool("isAttacking", true);
-            
             //nav.speed = 0;
         }
-
         else
         {
             playerInRange = false;
+            anim.SetBool("EnemyIsAttacking", false);
             //anim.SetBool("isAttacking", false);
             //nav.speed = 3.5f;
         }
@@ -96,17 +94,15 @@ public class EnemyAttack : MonoBehaviour {
 
         if (playerHealth.health > 0)
         {
-            //enemySight.chaseSpeed = 10;
             Debug.Log("Enemy has stopped to attack");
             //if playerHealth is greater than 0
-            //anim.SetBool("isAttacking", true);
-            playerHealth.TakeDamage(attackDamage);
+            playerHealth.TakeDamage(25);
+            anim.SetBool("EnemyIsAttacking", true);
             //enemyAudio.clip = attackSound;
             //enemyAudio.Play();
             //damage the playerHealth with the value of attackDamage
             //if the players health drops below 0 the previous code will execute.
             Debug.Log("DamagePlayer Called: " + attackDamage);
-            //enemySight.chaseSpeed = 1f;
 
         }
     }
