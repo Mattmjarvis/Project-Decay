@@ -69,7 +69,7 @@ public class MissionManager : MonoBehaviour {
         }
     }
 
-
+    // When getting a new mission check for completion of previous mission
         public bool CheckForCompletedMission(int missionID)
         {
             for (int i = 0; i < missionList.Count; i++)
