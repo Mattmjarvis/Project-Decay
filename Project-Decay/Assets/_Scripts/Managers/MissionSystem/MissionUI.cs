@@ -16,13 +16,23 @@ public class MissionUI : MonoBehaviour {
     private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>();
+        // Gets all images components from the missionlogUI
+        missionLogUI = missionLog.GetComponentsInChildren<Image>();
+
+        // Hides missionLOGUI 
+        foreach(Image image in missionLogUI)
+        {
+            image.fillAmount = 0f;
+        }
+        missionLog.gameObject.SetActive(false);
+              
     }
 
     // Update is called once per frame
     void Update () {
 
         // Opens/ Closes the mission UI
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             StartCoroutine(OpenCloseMissionUI());
         }
@@ -41,9 +51,9 @@ public class MissionUI : MonoBehaviour {
             // Enables all text elements when UI is to the full fill amount
             if (missionLogUI[i].fillAmount == 1f)
             {
-                if (missionLogUI[i].GetComponentInChildren<Text>(true) != null) // Checks for any text element 
+                foreach (Text text in missionLog.GetComponentsInChildren<Text>(true))
                 {
-                    missionLogUI[i].GetComponentInChildren<Text>(true).gameObject.SetActive(true); // enables text element
+                    text.gameObject.SetActive(true);
                 }
             }
         }
@@ -61,16 +71,15 @@ public class MissionUI : MonoBehaviour {
             missionLogUI[i].fillAmount -= 0.1f;
 
             // Disables all text element
-            if (missionLogUI[i].GetComponentInChildren<Text>(true) != null) // Checks for any text element
+            foreach(Text text in missionLog.GetComponentsInChildren<Text>())
             {
-                missionLogUI[i].GetComponentInChildren<Text>(true).gameObject.SetActive(false); // Disables text element
+                text.gameObject.SetActive(false);
             }
         }
 
         // Disable mission log when no fill
         if (missionLogUI[missionLogUI.Length - 1].fillAmount == 0f)
         {
-
             missionLog.SetActive(false);
         }
     }
@@ -78,7 +87,7 @@ public class MissionUI : MonoBehaviour {
     // Numerator will open or close mission UI to opposite
     IEnumerator OpenCloseMissionUI()
     {
-        float time = missionLogUI[missionLogUI.Length - 1].fillAmount;
+        float time = missionLogUI[missionLogUI.Length- 1].fillAmount;
 
         // Call the mission log to fully close. Decrease fill amount each update.
         if (missionUIActive == true)

@@ -14,7 +14,6 @@ public class MissionManager : MonoBehaviour {
  // Make sure that the mission manager is not null and creates the mission manager.
     void Awake()
     {
-
         if (missionManager == null)
         {
             missionManager = this;
