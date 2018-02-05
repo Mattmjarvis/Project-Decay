@@ -8,7 +8,7 @@ public class MissionManager : MonoBehaviour {
     public static MissionManager missionManager;
 
     public List<Mission> missionList = new List<Mission>();     // Contains a list of the missions
-    public Mission currentMission = new Mission();  //  The current mission
+    public Mission currentMission = new Mission();
     public Mission nextMission = new Mission(); // The next mission
 
  // Make sure that the mission manager is not null and creates the mission manager.
