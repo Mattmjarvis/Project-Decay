@@ -6,8 +6,13 @@ using UnityEngine.UI;
 public class MissionButtons : MonoBehaviour {
 
     MissionManager missionManager;
+
+    // Elements for scrolling
     private ScrollRect scrollView;
     public GameObject scrollbar;
+
+    // Canvas title text
+    public Text canvasTitle;
 
     // Text elements for missions
     private Text currentMissionTitle;
@@ -27,7 +32,7 @@ public class MissionButtons : MonoBehaviour {
     public GameObject currentMissionBackground;
 
     public GameObject allMissionCanvas;
-    public GameObject[] totalMissions;
+    public GameObject[] allMissions;
     public GameObject completedMissionCanvas;
     public GameObject[] completedMissions;
 
@@ -54,13 +59,16 @@ public class MissionButtons : MonoBehaviour {
         CurrentMissionButton();
 
         // Sets size of the array to the maximum mission count
-        totalMissions = new GameObject[missionManager.missionList.Count];
+        allMissions = new GameObject[missionManager.missionList.Count];
         completedMissions = new GameObject[missionManager.missionList.Count];
     }
 
     // Displays the players current mission
     public void CurrentMissionButton()
     {
+        // Set title
+        canvasTitle.text = "Current Mission";
+
         // Prevents scrolling
         scrollView.vertical = false;
         scrollbar.SetActive(false);
@@ -86,6 +94,9 @@ public class MissionButtons : MonoBehaviour {
     // Displays all the missions available
     public void AllMissionsButton()
     {
+        // Set title
+        canvasTitle.text = "All Missions";
+
         // Set and disable appropriate canvas
         allMissionCanvas.SetActive(true);
         currentMissionCanvas.SetActive(false);
@@ -106,28 +117,50 @@ public class MissionButtons : MonoBehaviour {
                 return;
             }
 
-            totalMissions[i] = Instantiate(missionBorder);
-            totalMissions[i].transform.SetParent(allMissionCanvas.transform, false);
+            allMissions[i] = Instantiate(missionBorder);
+            allMissions[i].transform.SetParent(allMissionCanvas.transform, false);
 
             // If mission is Unavailable or next change colour to red
-            if(missionManager.missionList[i].status == Mission.MissionStatus.UNAVAILABLE || missionManager.missionList[i].status == Mission.MissionStatus.NEXT)
+            if (missionManager.missionList[i].status == Mission.MissionStatus.UNAVAILABLE || missionManager.missionList[i].status == Mission.MissionStatus.NEXT)
             {
-                totalMissions[i].GetComponent<Image>().color = new Color(255, 0, 0, 255);            // Set the text UI to display missions properties.
-                totalMissions[i].GetComponentInChildren<Text>().text = "Mission Unknown";
+
+                allMissions[i].gameObject.GetComponent<Image>().color = Color.red;
+                allMissions[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = "Mission Unavailable";
+                allMissions[i].gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
+                allMissions[i].gameObject.transform.GetChild(2).GetComponent<Text>().text = "Status: Unavailable";
+
+                allMissions[i].gameObject.transform.GetChild(0).GetComponent<Outline>().effectColor = Color.red;
+                allMissions[i].gameObject.transform.GetChild(1).GetComponent<Outline>().effectColor = Color.red;
+                allMissions[i].gameObject.transform.GetChild(2).GetComponent<Outline>().effectColor = Color.red;
             }
-            // If mission is current then change colour to orange
+
             else if (missionManager.missionList[i].status == Mission.MissionStatus.CURRENT)
             {
-                totalMissions[i].GetComponent<Image>().color = new Color(255, 150, 0, 255);
+                allMissions[i].GetComponent<Image>().color = new Color(255, 150, 0, 255);
                 // Set the text UI to display missions properties.
-                totalMissions[i].GetComponentInChildren<Text>().text = missionManager.missionList[i].title + "\n" + missionManager.missionList[i].objective;
+
+                allMissions[i].gameObject.GetComponent<Image>().color = Color.black;
+                allMissions[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = missionManager.currentMission.title;
+                allMissions[i].gameObject.transform.GetChild(1).GetComponent<Text>().text = missionManager.currentMission.objective;
+                allMissions[i].gameObject.transform.GetChild(2).GetComponent<Text>().text = "Status: " +missionManager.currentMission.status.ToString();
+
+                allMissions[i].gameObject.transform.GetChild(0).GetComponent<Outline>().effectColor = Color.white;
+                allMissions[i].gameObject.transform.GetChild(1).GetComponent<Outline>().effectColor = Color.white;
+                allMissions[i].gameObject.transform.GetChild(2).GetComponent<Outline>().effectColor = Color.white;
             }
+
             // if mission is complete then change colour to green
             else if (missionManager.missionList[i].status == Mission.MissionStatus.COMPLETE)
             {
-                totalMissions[i].GetComponent<Image>().color = new Color(0,  255, 0, 255);
+                allMissions[i].GetComponent<Image>().color = Color.green;
                 // Set the text UI to display missions properties.
-                totalMissions[i].GetComponentInChildren<Text>().text = missionManager.missionList[i].title + "\n" + missionManager.missionList[i].objective;
+                allMissions[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = missionManager.missionList[i].title;
+                allMissions[i].gameObject.transform.GetChild(1).GetComponent<Text>().text = missionManager.currentMission.objective;
+                allMissions[i].gameObject.transform.GetChild(2).GetComponent<Text>().text = "Status: " + missionManager.missionList[i].status.ToString();
+
+                allMissions[i].gameObject.transform.GetChild(0).GetComponent<Outline>().effectColor = Color.green;
+                allMissions[i].gameObject.transform.GetChild(1).GetComponent<Outline>().effectColor = Color.green;
+                allMissions[i].gameObject.transform.GetChild(2).GetComponent<Outline>().effectColor = Color.green;
             }
 
 
@@ -139,15 +172,18 @@ public class MissionButtons : MonoBehaviour {
             // Transform position of the missions to fit UI
             if (i > 0)
             {
-                //Debug.Log(totalMissions[i].transform.position);
-                totalMissions[i].transform.position = new Vector3(totalMissions[i].transform.position.x, totalMissions[i].transform.position.y - i * 80, totalMissions[i ].transform.position.z);
-                //Debug.Log(totalMissions[i].transform.position);
+                //Debug.Log(allMissions[i].transform.position);
+                allMissions[i].transform.position = new Vector3(allMissions[i].transform.position.x, allMissions[i].transform.position.y - i * 55, allMissions[i ].transform.position.z);
+                //Debug.Log(allMissions[i].transform.position);
             }
         }
     }
 
     public void CompletedMissionsButton()
     {
+        // Set title
+        canvasTitle.text = "Completed Missions";
+
         // Set and disable appropriate canvas
         allMissionCanvas.SetActive(false);
         currentMissionCanvas.SetActive(false);
@@ -164,7 +200,7 @@ public class MissionButtons : MonoBehaviour {
             // Skip listID if mission is not complete
             if (missionManager.missionList[i].status != Mission.MissionStatus.COMPLETE)
             {
-                return;
+                continue;
             }
 
             // Stops making new instances if button is pressed more than once.
@@ -173,16 +209,20 @@ public class MissionButtons : MonoBehaviour {
                 return;
             }
 
+
             completedMissions[i] = Instantiate(missionBorder);
             completedMissions[i].transform.SetParent(completedMissionCanvas.transform, false);
 
-            // Set mission colour to green
-            completedMissions[i].GetComponent<Image>().color = new Color(0, 255, 0, 255);
-
-
-
             // Set the text UI to display missions properties.
-            completedMissions[i].GetComponentInChildren<Text>().text = missionManager.missionList[i].title + "\n" + missionManager.missionList[i].objective;
+            completedMissions[i].GetComponent<Image>().color = Color.green;
+            // Set the text UI to display missions properties.
+            completedMissions[i].gameObject.transform.GetChild(0).GetComponent<Text>().text = missionManager.missionList[i].title;
+            completedMissions[i].gameObject.transform.GetChild(1).GetComponent<Text>().text = missionManager.currentMission.objective;
+            completedMissions[i].gameObject.transform.GetChild(2).GetComponent<Text>().text = "Status: " + missionManager.missionList[i].status.ToString();
+
+            completedMissions[i].gameObject.transform.GetChild(0).GetComponent<Outline>().effectColor = Color.green;
+            completedMissions[i].gameObject.transform.GetChild(1).GetComponent<Outline>().effectColor = Color.green;
+            completedMissions[i].gameObject.transform.GetChild(2).GetComponent<Outline>().effectColor = Color.green;
 
             // Increments missions added
             completedMissionsAdded++;
@@ -190,7 +230,7 @@ public class MissionButtons : MonoBehaviour {
             // Transform position of the missions to fit UI
             if (i > 0)
             {
-                completedMissions[i].transform.position = new Vector3(completedMissions[i].transform.position.x, completedMissions[i].transform.position.y - i * 40, completedMissions[i].transform.position.z);
+                completedMissions[i].transform.position = new Vector3(completedMissions[i].transform.position.x, completedMissions[i].transform.position.y - i * 55, completedMissions[i].transform.position.z);
             }
         }
 

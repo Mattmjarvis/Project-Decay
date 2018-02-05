@@ -45,7 +45,6 @@ public class MissionUI : MonoBehaviour {
     public void OpenMissionLog()
     {
         missionLog.SetActive(true);
-        missionButtons.CurrentMissionButton();
         // Increase fill value of each array element.
         for (int i = 0; i < missionLogUI.Length; i++)
         {
@@ -90,7 +89,7 @@ public class MissionUI : MonoBehaviour {
     // Numerator will open or close mission UI to opposite
     IEnumerator OpenCloseMissionUI()
     {
-        missionLogUI = missionLog.GetComponentsInChildren<Image>();
+        missionLogUI = missionLog.GetComponentsInChildren<Image>(true);
         float time = missionLogUI[missionLogUI.Length- 1].fillAmount;
 
         // Call the mission log to fully close. Decrease fill amount each update.
