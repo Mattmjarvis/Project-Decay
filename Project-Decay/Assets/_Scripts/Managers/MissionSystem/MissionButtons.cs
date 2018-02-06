@@ -72,6 +72,7 @@ public class MissionButtons : MonoBehaviour {
         // Prevents scrolling
         scrollView.vertical = false;
         scrollbar.SetActive(false);
+        scrollView.verticalNormalizedPosition = 1f;
 
         // Set and disable appropriate canvas
         allMissionCanvas.SetActive(false);
@@ -88,7 +89,7 @@ public class MissionButtons : MonoBehaviour {
         currentMissionTitle.text = missionManager.currentMission.title;
         currentMissionObjective.text = missionManager.currentMission.objective;
         currentMissionBio.text = missionManager.currentMission.bio;
-        currentMissionProgress.text = progressTotal.ToString() + "% Complete";
+        currentMissionProgress.text = progressTotal.ToString("F2") + "% Complete";
     }
 
     // Displays all the missions available
@@ -106,9 +107,10 @@ public class MissionButtons : MonoBehaviour {
         // Allows user to scroll
         scrollView.vertical = true;
         scrollbar.SetActive(true);
+        scrollView.verticalNormalizedPosition = 1f;
 
         // Loops through to add missions
-        for(int i = 0; i < missionManager.missionList.Count; i++)
+        for (int i = 0; i < missionManager.missionList.Count; i++)
         {
 
             // Stops making new instances if button is pressed more than once.
@@ -163,9 +165,6 @@ public class MissionButtons : MonoBehaviour {
                 allMissions[i].gameObject.transform.GetChild(2).GetComponent<Outline>().effectColor = Color.green;
             }
 
-
-
-
             // Increments missions added
             missionsAdded++;
 
@@ -193,6 +192,7 @@ public class MissionButtons : MonoBehaviour {
         // Allows user to scroll
         scrollView.vertical = true;
         scrollbar.SetActive(true);
+        scrollView.verticalNormalizedPosition = 1f;
 
         // Loops through to add missions
         for (int i = 0; i < missionManager.missionList.Count; i++)

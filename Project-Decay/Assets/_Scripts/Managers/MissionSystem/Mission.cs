@@ -12,6 +12,7 @@ public class Mission
     public int id;              // Mission ID
     public MissionStatus status; // State of the mission
     public string objective; // description of the mission
+    [TextArea]
     public string bio; // Small biography of the mission detail
     public int objectiveCount; // Counter for each objective of the mission
     public int totalObjectives; // How many objectives the player must complete

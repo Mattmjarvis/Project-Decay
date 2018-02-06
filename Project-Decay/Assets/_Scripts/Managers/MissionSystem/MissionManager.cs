@@ -23,28 +23,27 @@ public class MissionManager : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        // Sets the start mission and next mission
+        SetStarttMission();
     }
 
     // Get a mission
-    public void GetNewMission(int MissionID)
+    public void GetNewMission()
     {
-        // Sets next mission to the current mission
-            if (nextMission.id == MissionID && nextMission.status == Mission.MissionStatus.NEXT)
-            {
-                currentMission = nextMission; // Set mission to current
-                currentMission.status = Mission.MissionStatus.CURRENT; // Set quest to current
+        currentMission = nextMission; // Set mission to current
+        currentMission.status = Mission.MissionStatus.CURRENT; // Set quest to current
 
-                // Ready up next quest if one is available
-                if (currentMission.id < missionList.Count)
-                {
-                    nextMission = missionList[currentMission.id +1];
-                    nextMission.status = Mission.MissionStatus.NEXT; 
-                }
-            }      
+        // Ready up next quest if one is available
+        if (currentMission.id < missionList.Count)
+        {
+            nextMission = missionList[currentMission.id + 1];
+            nextMission.status = Mission.MissionStatus.NEXT;
+        }
     }
-
-    // Complete current  Mission
-    public void CompleteMission()
+ public    // Complete current  Mission
+    
+ void CompleteMission()
     {
         currentMission.status = Mission.MissionStatus.COMPLETE; // Sets current mission to complete
         currentMission.missionsCompleted += 1;
@@ -54,10 +53,12 @@ public class MissionManager : MonoBehaviour {
     }
 
     //  Check mission objective
-    public void SetMissionObjective(string missionObjective)
+    public void IncrementMissionObjective()
     {
+        currentMission.objectiveCount++;
+
         // Makes sure quest is current and set mission objective
-        if (currentMission.objective == missionObjective && currentMission.status == Mission.MissionStatus.CURRENT)
+        if (currentMission.status == Mission.MissionStatus.CURRENT)
         {
             currentMission.objectiveCount += 1; // Count each finished objective
 
@@ -67,6 +68,13 @@ public class MissionManager : MonoBehaviour {
                 CompleteMission(); // Mission completed
             }
         }
+    }
+
+    // Sets the start mission to the first mission in the mission list. Sets next mission to mission after
+    public void SetStarttMission()
+    {
+        currentMission = missionList[0];
+        nextMission = missionList[currentMission.id + 1];
     }
 
     // When getting a new mission check for completion of previous mission
