@@ -13,6 +13,13 @@ TagManager:
   - CleanseZone
   - Lootpile
   - EnemyCleanseMode
+  - CleanseMeter
+  - EnemySpawnPoint
+  - SpawnPoint
+  - RadiationImage
+  - Weather
+  - DayLights
+  - NightLights
   layers:
   - Default
   - TransparentFX
