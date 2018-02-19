@@ -55,7 +55,7 @@ public class SimpleThirdPersonCamera : MonoBehaviour
         //Switch statements between both camera states
 
         // Updates the Compass UI
-        if (compass != null)
+        if (compass != null && compass.GetComponent<CompassController>().compassEnabled)
         {
             compass.SendMessage("Move");
         }

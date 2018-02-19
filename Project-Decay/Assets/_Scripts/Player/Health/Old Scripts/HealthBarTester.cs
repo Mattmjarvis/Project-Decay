@@ -6,11 +6,11 @@ public class HealthBarTester : MonoBehaviour {
     //This script is used for testing, i would normally test by using methods within the PlayerHealth script for it to damage itself
     //However as ai will be damaging the player it is better to call damage from another script
 
-    public PlayerHealth playerHealth;
+    public PlayerHealthDamiano playerHealth;
 	
     void Start()
     {
-        playerHealth = FindObjectOfType<PlayerHealth>();
+        playerHealth = FindObjectOfType<PlayerHealthDamiano>();
     }
 
     public void Heal(int health)

@@ -14,11 +14,11 @@ public class HealthBar : MonoBehaviour {
         Rules.MAX_PLAYER_HEALTH = hearts.Length * healthPerHeart;
         //length can be used on hearts as it is an array[]
         //determine how much health we have
-        PlayerHealth.OnHealthChanged += OnHealthChanged;
+        PlayerHealthDamiano.OnHealthChanged += OnHealthChanged;
     }
     void OnDisable()
     {
-        PlayerHealth.OnHealthChanged -= OnHealthChanged;
+        PlayerHealthDamiano.OnHealthChanged -= OnHealthChanged;
     }
 
     void OnHealthChanged(int health)

@@ -3,109 +3,91 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour {   
-     
-    public delegate void HealthBarDelegate(int health);
-    public static event HealthBarDelegate OnHealthChanged;
-    public int health = 0;
-    bool healingEnabled = true;
+public class PlayerHealth : MonoBehaviour {
 
+    // Components
     SimpleThirdPerson playerController;
+    public Image healthBar;
+    public Image damageImage;
+    private float damageFlashSpeed = 5f;
+    public Color damageFlashColor = Color.red;
 
-    //PlayerSounds
+    public float health;
+    public bool damaged = false;
+
+    // Audio
     public AudioClip deathSound;
     public AudioClip hurtSound;
 
 
-    //UI effects
-    public bool damaged;
-    public Image damageImage;
-    private float damageFlashSpeed = 5f;
-    public Color damageFlashColor;     
-    Color awakeColor = new Color(255f, 0f, 0f, 0f);
+	// Use this for initialization
+	void Start () {
+        // Assign Controller component
+        playerController = FindObjectOfType<SimpleThirdPerson>();
 
-    void Awake()
-    {
-        damageImage.color = awakeColor;
-    }
-    void Start()
-    {
-        playerController = GetComponent<SimpleThirdPerson>();
-        health = Rules.MAX_PLAYER_HEALTH;
-        //Health will be set in a function within the Rules script  
-        damageFlashColor = new Color(255f, 0f, 0f, 180f);
-        //sets the color we would like to switch the damage screen to here, is changed to this when damaged = true
-    }
-
-    void Update()
-    {        
+        // Set health values
+        health = 100;
+        //healthBar.fillAmount = health / 100;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        // When damage flash screen
         DamageFlash();
-        Death();
-    }
-    
-    public void TakeDamage(int dmg)
+
+        // Reduce health bar fill amount
+        ReduceHealthBar();
+
+	}
+
+    // Player takes damage
+    public void TakeDamage(float amount)
     {
+        // If damaged is true then flash screen
         damaged = true;
+        health -= amount; // Reduce health amount
+    }
 
-        for (int i = 0; i < dmg; i++)
+    // Changes fill amount of health bar
+    public void ReduceHealthBar()
+    {
+        // Make health bar reduce gradually
+        if(healthBar.fillAmount > health / 100)
         {
-            //This function must be given a dmg variable/amount when called.
-            health -= 1;
-            //Switches the sound to hurt sound if the player is hurt and calls it
-            playerController.playerAudio.clip = hurtSound;
-            playerController.playerAudio.Play();
-            ClampHealth();
-            //This will be called to clamp the health and ensure it does not go over the max amount
+            healthBar.fillAmount -= 0.01f;
+        }
+
+        // Player dies when health bar reaches 0
+        if (healthBar.fillAmount <= 0)
+        {
+            Death();
         }
     }
 
-    public void Heal(int heal)
-    {
-        //Also takes an argument
-        if (healingEnabled)
-        {
-            health += heal;
-        }
-        ClampHealth();
-        //This will be called to clamp the health and ensure it does not go under the min amount
-    }
-
-    void ClampHealth()
-    {
-        health = Mathf.Clamp(health, 0, Rules.MAX_PLAYER_HEALTH);
-        //MathF.clamp is being used to clamp the player health at the minimun amount which is 0 and the Max amount
-        OnHealthChanged(health);        
-    }
-
+    // Flashes screen if player is damaged
     public void DamageFlash()
     {
-
-       if(damaged == true)
+        if (damaged == true)
         {
-            damageImage.color = damageFlashColor;
+            damageImage.color = damageFlashColor; // Sets the flash colour
         }
         else
         {
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear, damageFlashSpeed * Time.deltaTime);
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, damageFlashSpeed * Time.deltaTime); // Damage image fades
         }
 
-         damaged = false;
-    }    
+        damaged = false;
+    }
 
+    // Kills player and play audio
     void Death()
     {
-        if(health <= 0)
+        if (healthBar.fillAmount <= 0)
         {
             Debug.Log("Player is dead");
             playerController.playerAudio.clip = deathSound;
             playerController.playerAudio.Play();
             Destroy(this.gameObject);
-            //SM.resetScoreIncrease();
-            //This must be reset when player respawns
-            healingEnabled = false;
-            //if player is dead it can not heal anymore
-
         }
     }
-
 }

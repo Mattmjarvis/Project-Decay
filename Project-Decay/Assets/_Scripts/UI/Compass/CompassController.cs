@@ -11,23 +11,30 @@ public class CompassController : MonoBehaviour
     private Vector3 cratePosition;
     private Transform playerTransform;
     private Vector3 playerPosition;
+    private PlayerHealth playerHealth;
+
+    public  bool compassEnabled;
 
     // Use this for initialization
     void Start()
     {        
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
     // Moves the image in relation to the camera
     public void Move()
     {
-    
-        playerPosition = playerTransform.position;
-        // Gets the camera rotation (x) to move the local position of the image
-         float xF = 180f - (playerTransform.eulerAngles.y * 360.0f / 360.0f);
+        if(playerHealth.health <= 0)
+        {
+            return;
+        }
+            playerPosition = playerTransform.position;
+            // Gets the camera rotation (x) to move the local position of the image
+            float xF = 180f - (playerTransform.eulerAngles.y * 360.0f / 360.0f);
 
-        // Moves the image based on the camera rotation
-        transform.localPosition = new Vector3(xF, 0, 0);
+            // Moves the image based on the camera rotation
+            transform.localPosition = new Vector3(xF, 0, 0);
     }
 
 
