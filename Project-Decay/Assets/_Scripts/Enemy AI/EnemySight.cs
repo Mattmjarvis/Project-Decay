@@ -31,7 +31,8 @@ public class EnemySight : MonoBehaviour
 
     //Variables for Chasing
     public float chaseSpeed = 1f;
-    public GameObject target;
+    public GameObject playerTarget;
+    Vector3 target;
     float targetDistance;
 
     //Variables for Investigating
@@ -74,6 +75,7 @@ public class EnemySight : MonoBehaviour
     {
         if(playerHealth.health <= 0)
         {
+            state = EnemySight.State.PATROL;
             return;
         }
         targetDistance = Vector3.Distance(playerTransform.transform.position, transform.position);
@@ -135,9 +137,15 @@ public class EnemySight : MonoBehaviour
             return;
         }
 
-        agent.speed = chaseSpeed;
-        agent.SetDestination(target.transform.position);
-        anim.SetFloat("Speed", chaseSpeed, 2f, Time.deltaTime);
+        var offset = target - transform.position;
+        if(offset.magnitude > .1f)
+        {
+            agent.speed = chaseSpeed;
+            agent.SetDestination(playerTarget.transform.position);
+            anim.SetFloat("Speed", chaseSpeed, 2f, Time.deltaTime);
+
+        }
+
 
         Vector3 targetPoint = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z);
         var targetRotation = Quaternion.LookRotation(targetPoint - transform.position, Vector3.up);
@@ -175,6 +183,7 @@ public class EnemySight : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         RaycastHit hit;
         Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, transform.forward * sightDist, Color.green);
         Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized * sightDist, Color.green);
@@ -185,7 +194,7 @@ public class EnemySight : MonoBehaviour
             if (hit.collider.gameObject.tag == "Player")
             {
                 state = EnemySight.State.CHASE;
-                target = hit.collider.gameObject;
+                playerTarget = hit.collider.gameObject;
                 //print("Player hit");
             }
         }
@@ -194,7 +203,7 @@ public class EnemySight : MonoBehaviour
             if (hit.collider.gameObject.tag == "Player")
             {
                 state = EnemySight.State.CHASE;
-                target = hit.collider.gameObject;
+                playerTarget = hit.collider.gameObject;
                 //print("Player hit");
 
             }
@@ -204,7 +213,7 @@ public class EnemySight : MonoBehaviour
             if (hit.collider.gameObject.tag == "Player")
             {
                 state = EnemySight.State.CHASE;
-                target = hit.collider.gameObject;
+                playerTarget = hit.collider.gameObject;
                 //print("Player hit");
             }
         }
