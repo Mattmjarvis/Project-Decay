@@ -11,12 +11,6 @@ public class SimpleThirdPerson : MonoBehaviour
 	private float speed;
     //Controls speed of player movement
 
-    public Transform spine;
-    public Vector3 spineOffsetRotation;
-    private Transform hitTargetTr;
-    private Vector3 hitTarget = Vector3.zero;
-
-
     // Weapon Variables
     public GameObject gun; // the weapon gameObject
     public WeaponStats weaponStats;
@@ -61,13 +55,11 @@ public class SimpleThirdPerson : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
         reloader = FindObjectOfType<WeaponReloader>();
 		animator = GetComponent<Animator> ();
-        animator.SetLayerWeight(1,0f);
-
         changeWeapon = FindObjectOfType<ChangeWeapon>();
-        
 
 		gun.SetActive(false);
 		gunActive = false;
+
 
 		lookAtGO = new GameObject();
 		lookAtGO.transform.name = "lookAt";
@@ -133,8 +125,6 @@ public class SimpleThirdPerson : MonoBehaviour
             // If the player does not have a weapon active and a weapon is available then switch weapon
             if (!gunActive && weaponStats.weaponAvailable == true)
             {
-                animator.SetLayerWeight(1,1.0f);
-
                 GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Aim;
                 gun.SetActive(true);
                 gunActive = true;
@@ -149,8 +139,6 @@ public class SimpleThirdPerson : MonoBehaviour
             //switches to normal camerastate
             else
             {
-                animator.SetLayerWeight(1, 0.0f);
-
                 GameObject.Find("Main Camera").GetComponent<SimpleThirdPersonCamera>().cameraState = SimpleThirdPersonCamera.CamState.Normal;
                 gun.SetActive(false);
                 gunActive = false;
@@ -188,9 +176,7 @@ public class SimpleThirdPerson : MonoBehaviour
         float velocity = inputVert * speed;      
 
         //Animation controls walking forward.        
-        animator.SetFloat("Speed", velocity, 0.25f, Time.deltaTime);
-        //animator.SetFloat("Strafe", Input.GetAxis("Horizontal"), 0.25f, Time.deltaTime);
-
+        animator.SetFloat("Speed", velocity, 0.25f, Time.deltaTime);   
 
         //Vertical input controls the rotation of the player when A or D is held
         //if (inputVert > 0)
@@ -234,18 +220,6 @@ public class SimpleThirdPerson : MonoBehaviour
 	}
     #endregion
 
-    void LateUpdate()
-    {
-        if (gunActive)
-        {
-            if(hitPoint != Vector3.zero)
-            {
-                spine.LookAt(hitPoint);
-                spine.Rotate(spineOffsetRotation);
-            }
-        }
-    }
-
     #region Shooting, Aiming, Reloading
     private void FireWeapon()
 	{
@@ -279,11 +253,9 @@ public class SimpleThirdPerson : MonoBehaviour
             if (hitPoint != Vector3.zero)
 			{                
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
-                //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)    
-                hitTargetTr.SendMessage("GetShot", SendMessageOptions.DontRequireReceiver);
-
-            }
-        }
+                //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)                
+			}
+		}
 		else if(currentWeaponType == WeaponType.Grenade)
 		{
 			GameObject bullet = (GameObject)Instantiate(bulletPr, gun.transform.position, gun.transform.rotation);
@@ -328,30 +300,23 @@ public class SimpleThirdPerson : MonoBehaviour
 			Debug.DrawLine(gun.transform.position, hit.point, Color.red);
             //Creates a raycast and visualises it
 
-            hitTarget = hit.point;
-            hitPoint = hit.point;
-            hitTargetTr = hit.transform;
-
+			hitPoint = hit.point;
             //sets hitpoint to the point in the world space where the ray has hit a collider
 
-            lookAtVector = hit.point - gun.transform.position;
+			lookAtVector = hit.point - gun.transform.position;
 			camRot = Quaternion.LookRotation(lookAtVector);
 			gun.transform.rotation = camRot;
             //The ray is sent from the camera, when the ray interacts with a collider it finds the position of the gun and sends a bullet to meet the hitPoint along the raycast.
 		}
 		else
 		{
-			//hitPoint = Vector3.zero;
-            hitTarget = Vector3.zero;
-            lookAtVector = ray.GetPoint(50f) - ray.origin;
-            hitTargetTr = null;
+			hitPoint = Vector3.zero;
 
-            hitPoint = ray.GetPoint(100f);
-
-            //camRot = Quaternion.LookRotation(lookAtVector);
-            //gun.transform.rotation = camRot;
-        }
-    }
+			lookAtVector = ray.GetPoint(50f) - ray.origin;
+			camRot = Quaternion.LookRotation(lookAtVector);
+			gun.transform.rotation = camRot;
+		}
+	}
     #endregion
 
     #region IKAnimations
@@ -359,44 +324,43 @@ public class SimpleThirdPerson : MonoBehaviour
 	{
 		if(!gunActive)
 			return;
-        /*
+
 		if(animator)
 		{
 			if(ikActive)
 			{
 				if(handleRight != null)
 				{
-                    animator.SetLookAtWeight(1.0f, 0.5f, 0.5f);
-                    animator.SetLookAtPosition(lookAtGO.transform.position);
+//					animator.SetLookAtWeight(1.0f, 0.5f, 0.5f);
+//					animator.SetLookAtPosition(lookAtGO.transform.position);
 
-                    animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-                    animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
-                    animator.SetIKPosition(AvatarIKGoal.RightHand, handleRight.position);
-                    animator.SetIKRotation(AvatarIKGoal.RightHand, handleRight.rotation);
-                }
+					animator.SetIKPositionWeight(AvatarIKGoal.RightHand,1);
+					animator.SetIKRotationWeight(AvatarIKGoal.RightHand,1);  
+					animator.SetIKPosition(AvatarIKGoal.RightHand,handleRight.position);
+					animator.SetIKRotation(AvatarIKGoal.RightHand,handleRight.rotation);
+				}
 
-                if (handleLeft != null)
+				if(handleLeft != null)
 				{
-                    animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
-                    animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-                    animator.SetIKPosition(AvatarIKGoal.LeftHand, handleLeft.position);
-                    animator.SetIKRotation(AvatarIKGoal.LeftHand, handleLeft.rotation);
-                }
+					animator.SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
+					animator.SetIKRotationWeight(AvatarIKGoal.LeftHand,1);  
+					animator.SetIKPosition(AvatarIKGoal.LeftHand,handleLeft.position);
+					animator.SetIKRotation(AvatarIKGoal.LeftHand,handleLeft.rotation);
+				}
 			}
 			else
 			{
-                animator.SetLookAtWeight(0);
+//				animator.SetLookAtWeight(0);
 
-                animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
-                animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0);
+				animator.SetIKPositionWeight(AvatarIKGoal.LeftHand,0);
+				animator.SetIKRotationWeight(AvatarIKGoal.LeftHand,0); 
 
-                animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-                animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-                animator.SetLookAtWeight(0);
-            }
+				animator.SetIKPositionWeight(AvatarIKGoal.RightHand,0);
+				animator.SetIKRotationWeight(AvatarIKGoal.RightHand,0); 
+				animator.SetLookAtWeight(0);
+			}
             //Controls AnimatorIK which moves the gun and hands of the character in a realistic way.
 		}
-        */
 	}
 
 	//returns -1 when to the left, 1 to the right, and 0 for forward/backward
