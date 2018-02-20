@@ -154,7 +154,6 @@ public class WaveSpawner : MonoBehaviour
         //Set the state as waiting, while the player is killing enemies
         state = SpawnState.WAITING;
         yield break;
-
     }
 
     void SpawnEnemy(Transform _enemy)
