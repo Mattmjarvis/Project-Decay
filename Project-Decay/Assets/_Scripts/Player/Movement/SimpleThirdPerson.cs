@@ -196,7 +196,7 @@ public class SimpleThirdPerson : MonoBehaviour
         //if (inputVert > 0)
         //    transform.rotation = Quaternion.Slerp(transform.rotation, camRot, Time.deltaTime * 5.0f);      
 
-        Dive();
+        //Dive();
     }
 
     //private void Strafe()
@@ -221,17 +221,18 @@ public class SimpleThirdPerson : MonoBehaviour
 
     private void Dive()
 	{
-		if(animator.GetBool("Dive"))
-		{
-			animator.SetBool("Dive", false);
-		}
+        //if (animator.GetBool("Dive"))
+        //{
+        //    animator.SetBool("Dive", false);
+        //}
 
-		if(Input.GetKeyDown(KeyCode.Space) && speed == 8.0f)
-		{
-			animator.SetBool("Dive", true);
-		}
+        //if (Input.GetKeyDown(KeyCode.Space) && speed == 8.0f)
+        //{
+        //    animator.SetBool("Dive", true);
+        //    animator.SetLayerWeight(1, 0f);
+        //}
         //Diving animation
-	}
+    }
     #endregion
 
     void LateUpdate()
