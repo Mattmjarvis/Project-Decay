@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c841b96a7c551aa488c1285077b20f3c
-timeCreated: 1515667708
+timeCreated: 1519217766
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -113,14 +113,6 @@ ModelImporter:
   humanDescription:
     serializedVersion: 2
     human:
-    - boneName: Spine-01
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: UpperLeg_L
       humanName: LeftUpperLeg
       limit:
@@ -265,6 +257,14 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Spine-01
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
     - name: character_Rigged-3(Clone)
       parentName: 
@@ -281,6 +281,46 @@ ModelImporter:
       position: {x: -0, y: 0.040000003, z: 0.13}
       rotation: {x: -0.43552443, y: 0.4355244, z: 0.5570624, w: 0.5570623}
       scale: {x: 1, y: 1, z: 1}
+    - name: Bone
+      parentName: Spine-01
+      position: {x: -0.000000013969839, y: 1e-15, z: 0.000000007450581}
+      rotation: {x: -0.27208585, y: -0.5525689, z: 0.34801424, w: 0.7067694}
+      scale: {x: 0.9999998, y: 0.9999999, z: 1}
+    - name: UpperLeg_R
+      parentName: Bone
+      position: {x: -0.16401221, y: 0.00000002487186, z: -0.000000015408833}
+      rotation: {x: 0.634372, y: -0.31236568, z: 0.6343718, w: 0.31236577}
+      scale: {x: 0.9999998, y: 1, z: 1}
+    - name: LowerLeg_R
+      parentName: UpperLeg_R
+      position: {x: -0.49999994, y: 0.000000036874912, z: 2.98025e-10}
+      rotation: {x: -0.000492518, y: 0.032777723, z: -0.015019096, w: 0.9993497}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_R
+      parentName: LowerLeg_R
+      position: {x: -0.55740315, y: 0.000000046806235, z: 5.85741e-10}
+      rotation: {x: -0.05165924, y: -0.42778423, z: -0.036184527, w: 0.90167767}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Bone_001
+      parentName: Spine-01
+      position: {x: -0.000000013969839, y: 1e-15, z: 0.000000007450581}
+      rotation: {x: 0.27208585, y: -0.5525689, z: -0.3480144, w: 0.7067694}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999998}
+    - name: UpperLeg_L
+      parentName: Bone_001
+      position: {x: -0.1640122, y: 0.00000001552792, z: 0.00000000601564}
+      rotation: {x: 0.634372, y: 0.3123656, z: 0.63437194, w: -0.31236562}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LowerLeg_L
+      parentName: UpperLeg_L
+      position: {x: -0.50000006, y: 0.000000035682827, z: 1.49008e-10}
+      rotation: {x: 0.00049259537, y: 0.03277772, z: 0.015019093, w: 0.9993497}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_L
+      parentName: LowerLeg_L
+      position: {x: -0.5574032, y: 0.000000028543582, z: 0.000000007313909}
+      rotation: {x: 0.051659126, y: -0.42778417, z: 0.036184546, w: 0.9016777}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: Spine-02
       parentName: Spine-01
       position: {x: -0.20723341, y: 0.000000015645687, z: 0.000000002793968}
@@ -294,7 +334,7 @@ ModelImporter:
     - name: Neck
       parentName: Spine-03
       position: {x: -0.30375636, y: 0.00000002293297, z: -0.000000014901161}
-      rotation: {x: -0.00000015740967, y: -0.30904803, z: -0.000000009564056, w: 0.9510465}
+      rotation: {x: -0.00000015740966, y: -0.309048, z: -0.000000009564055, w: 0.9510464}
       scale: {x: 1, y: 1, z: 0.9999999}
     - name: Head
       parentName: Neck
@@ -341,46 +381,6 @@ ModelImporter:
       position: {x: -0.29123345, y: 0.00000001698732, z: 0}
       rotation: {x: 0.0155540835, y: -0.08060031, z: 0.06999004, w: 0.9941645}
       scale: {x: 0.9999998, y: 0.99999994, z: 1}
-    - name: Bone
-      parentName: Spine-01
-      position: {x: -0.000000013969839, y: 1e-15, z: 0.000000007450581}
-      rotation: {x: -0.27208585, y: -0.5525689, z: 0.34801424, w: 0.7067694}
-      scale: {x: 0.9999998, y: 0.9999999, z: 1}
-    - name: UpperLeg_R
-      parentName: Bone
-      position: {x: -0.16401221, y: 0.00000002487186, z: -0.000000015408833}
-      rotation: {x: 0.634372, y: -0.31236568, z: 0.6343718, w: 0.31236577}
-      scale: {x: 0.9999998, y: 1, z: 1}
-    - name: LowerLeg_R
-      parentName: UpperLeg_R
-      position: {x: -0.49999994, y: 0.000000036874912, z: 2.98025e-10}
-      rotation: {x: -0.000492518, y: 0.032777723, z: -0.015019096, w: 0.9993497}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Foot_R
-      parentName: LowerLeg_R
-      position: {x: -0.55740315, y: 0.000000046806235, z: 5.85741e-10}
-      rotation: {x: -0.05165924, y: -0.42778423, z: -0.036184527, w: 0.90167767}
-      scale: {x: 1.0000001, y: 1, z: 1}
-    - name: Bone_001
-      parentName: Spine-01
-      position: {x: -0.000000013969839, y: 1e-15, z: 0.000000007450581}
-      rotation: {x: 0.27208585, y: -0.5525689, z: -0.3480144, w: 0.7067694}
-      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999998}
-    - name: UpperLeg_L
-      parentName: Bone_001
-      position: {x: -0.1640122, y: 0.00000001552792, z: 0.00000000601564}
-      rotation: {x: 0.634372, y: 0.3123656, z: 0.63437194, w: -0.31236562}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LowerLeg_L
-      parentName: UpperLeg_L
-      position: {x: -0.50000006, y: 0.000000035682827, z: 1.49008e-10}
-      rotation: {x: 0.00049259537, y: 0.03277772, z: 0.015019093, w: 0.9993497}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Foot_L
-      parentName: LowerLeg_L
-      position: {x: -0.5574032, y: 0.000000028543582, z: 0.000000007313909}
-      rotation: {x: 0.051659126, y: -0.42778417, z: 0.036184546, w: 0.9016777}
-      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: polySurface3
       parentName: character_Rigged-3(Clone)
       position: {x: -0.0006356938, y: -0.10731649, z: -1.074691}

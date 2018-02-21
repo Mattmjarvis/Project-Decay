@@ -10,7 +10,7 @@ public class WeaponReloader : MonoBehaviour {
     private int shotsFiredInClip;
     bool isReloading;
 
-    UIManager uiManager;
+    UIManager uiManager;    
     
     public WeaponStats currentWeapon;
 

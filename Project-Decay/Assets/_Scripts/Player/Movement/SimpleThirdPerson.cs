@@ -196,7 +196,7 @@ public class SimpleThirdPerson : MonoBehaviour
         //if (inputVert > 0)
         //    transform.rotation = Quaternion.Slerp(transform.rotation, camRot, Time.deltaTime * 5.0f);      
 
-        //Dive();
+        Dive();
     }
 
     //private void Strafe()
@@ -215,22 +215,29 @@ public class SimpleThirdPerson : MonoBehaviour
     {
         if ((Input.GetAxis("WalkBackwards")) > 0)
         {
-            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.back) * Input.GetAxis("WalkBackwards") * 4);
+            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.back) * Input.GetAxis("WalkBackwards") * 2);
+            animator.SetBool("walkingBackwards",true);
+            animator.SetLayerWeight(1, 0f);
+        }
+        else
+        {
+            animator.SetBool("walkingBackwards", false);
+            animator.SetTrigger("isIdle");
         }
     }
 
     private void Dive()
 	{
-        //if (animator.GetBool("Dive"))
-        //{
-        //    animator.SetBool("Dive", false);
-        //}
+        if (animator.GetBool("Dive"))
+        {
+            animator.SetBool("Dive", false);
+        }
 
-        //if (Input.GetKeyDown(KeyCode.Space) && speed == 8.0f)
-        //{
-        //    animator.SetBool("Dive", true);
-        //    animator.SetLayerWeight(1, 0f);
-        //}
+        if (Input.GetKeyDown(KeyCode.Space) && speed == 8.0f && !gunActive)
+        {
+            animator.SetBool("Dive", true);
+            animator.SetLayerWeight(1, 0f);
+        }
         //Diving animation
     }
     #endregion
@@ -291,14 +298,13 @@ public class SimpleThirdPerson : MonoBehaviour
 			bullet.GetComponent<Rigidbody>().velocity = gun.transform.forward * 100f;
             //Instantiates the bullet prefab and add velocity to it to send it through the world along the raycast to the hitPoint.
 		}
-
-
     }
 
     public void ReloadPressed()
     {
         if (Input.GetKeyDown(KeyCode.R) && gunActive)
         {
+            animator.SetTrigger("isReloading");
             //Debug.Log("Reload Pressed");
             reloader.ReloadCheck();
         }
@@ -360,7 +366,7 @@ public class SimpleThirdPerson : MonoBehaviour
 	{
 		if(!gunActive)
 			return;
-        /*
+        
 		if(animator)
 		{
 			if(ikActive)
@@ -397,7 +403,7 @@ public class SimpleThirdPerson : MonoBehaviour
             }
             //Controls AnimatorIK which moves the gun and hands of the character in a realistic way.
 		}
-        */
+        
 	}
 
 	//returns -1 when to the left, 1 to the right, and 0 for forward/backward
