@@ -12,6 +12,9 @@ public class MissionManager : MonoBehaviour {
     public Mission currentMission = new Mission();
     public Mission nextMission = new Mission(); // The next mission
 
+    public bool allMissionsComplete = false; // checks if all missions have been completed
+    public bool hasMission = false; // Checks if the player has  a current mission
+
  // Make sure that the mission manager is not null and creates the mission manager.
     void Awake()
     {
@@ -34,7 +37,7 @@ public class MissionManager : MonoBehaviour {
     public void GetNewMission()
     { 
         // Exits if there are no more missions
-        if(nextMission == null)
+        if(allMissionsComplete == true)
         {
             return;
         }
@@ -45,6 +48,8 @@ public class MissionManager : MonoBehaviour {
 
         missionUI.HUDMissionObjective.text = currentMission.objective;
         missionUI.ShowHideHUDMission(); // Enable the mission image on the HUD
+
+        hasMission = true; // indicate that user has a mission
 
         // Ready up next quest if one is available
         if (currentMission.id < missionList.Count - 1)
@@ -58,23 +63,33 @@ public class MissionManager : MonoBehaviour {
     // Complete current  Mission
     public void CompleteMission()
     {
+        // Return if player has no mission or all missions are complete
+        if (allMissionsComplete == true || hasMission == false)
+        {
+            return;
+        }
+
         currentMission.status = Mission.MissionStatus.COMPLETE; // Sets current mission to complete
         missionList[currentMission.id].status = Mission.MissionStatus.COMPLETE;
         currentMission.missionsCompleted += 1;
         missionUI.ShowHideHUDMission(); // Disable the mission image on the HUD
 
-        Debug.Log(currentMission.id + "ml.count: " + missionList.Count);
+        // Sets all missions to complete if last mission in list is completed
         if(currentMission.id == missionList.Count - 1)
         {
+            allMissionsComplete = true;
             nextMission = null;
         }
 
         currentMission = null; // Clears current mission 
+        hasMission = false; // Indicates player has no mission
 
         if (nextMission != null)
         {
+            Debug.Log(nextMission.objective);
             GetNewMission(); // Assigns new mission when previous is complete (Comment back in if we want this, else we can have a delay until next mission)
         }
+
 
 
     }
@@ -101,6 +116,7 @@ public class MissionManager : MonoBehaviour {
     public void SetStartMission()
     {
         currentMission = missionList[0];
+        hasMission = true;
         nextMission = missionList[currentMission.id + 1];
         missionUI.HUDMissionObjective.text = currentMission.objective;
     }

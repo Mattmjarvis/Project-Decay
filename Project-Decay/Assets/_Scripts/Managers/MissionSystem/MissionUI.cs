@@ -173,6 +173,7 @@ public class MissionUI : MonoBehaviour {
         // Call the mission log to fully close. Decrease fill amount each update.
         if (missionUIActive == true)
         {
+
             while (time > 0f)
             {
                 CloseMissionLog();
@@ -186,6 +187,7 @@ public class MissionUI : MonoBehaviour {
         {
             while (time != 1f)
             {
+                missionButtons.CurrentMissionButton();
                 OpenMissionLog();
                 time = missionLogUI[missionLogUI.Length - 1].fillAmount;
                 yield return new WaitForFixedUpdate();
