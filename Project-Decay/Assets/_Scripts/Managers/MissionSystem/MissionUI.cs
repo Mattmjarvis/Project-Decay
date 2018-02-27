@@ -6,16 +6,23 @@ using UnityEngine.UI;
 public class MissionUI : MonoBehaviour {
 
     // Objects
+    public Image HUDMissionImage;
+    public Text HUDMissionObjective;
+
     public GameObject missionLog;
     MissionButtons missionButtons;
     public Image[] missionLogUI;
     InputManager inputManager;
+    MissionManager mm;
+
 
     // Variables
     bool missionUIActive = false;
+    bool hasMission = false;
 
     private void Awake()
     {
+        mm = FindObjectOfType<MissionManager>();
         inputManager = FindObjectOfType<InputManager>();
         // Gets all images components from the missionlogUI
         missionLogUI = missionLog.GetComponentsInChildren<Image>();
@@ -27,7 +34,13 @@ public class MissionUI : MonoBehaviour {
             image.fillAmount = 0f;
         }
         missionLog.gameObject.SetActive(false);
-              
+
+        // Hides missionHUD image
+        HUDMissionImage.fillAmount = 0f;
+        foreach (Text text in HUDMissionImage.GetComponentsInChildren<Text>())
+        {
+            text.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -37,9 +50,16 @@ public class MissionUI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             StartCoroutine(OpenCloseMissionUI());
+            StartCoroutine(EnableDisableHUDMission());
         }
-        
-	}
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            mm.CompleteMission();
+        }
+
+
+    }
 
     // Sets mission log to active and adds fill amounts
     public void OpenMissionLog()
@@ -71,12 +91,12 @@ public class MissionUI : MonoBehaviour {
         for (int i = 0; i < missionLogUI.Length; i++)
         {
             missionLogUI[i].fillAmount -= 0.1f;
+        }
 
-            // Disables all text element
-            foreach(Text text in missionLog.GetComponentsInChildren<Text>())
-            {
-                text.gameObject.SetActive(false);
-            }
+        // Disables all text element
+        foreach (Text text in missionLog.GetComponentsInChildren<Text>())
+        {
+            text.gameObject.SetActive(false);
         }
 
         // Disable mission log when no fill
@@ -84,6 +104,64 @@ public class MissionUI : MonoBehaviour {
         {
             missionLog.SetActive(false);
         }
+    }
+
+
+    // Shows or hides the onscreen mission 
+    public void ShowHideHUDMission()
+    {
+        StartCoroutine(EnableDisableHUDMission());
+    }
+
+    IEnumerator EnableDisableHUDMission()
+    {
+        float time = HUDMissionImage.fillAmount;
+
+        // Hides the HUD Mission Image
+        if (hasMission == true)
+        {
+            // Disables all text components in the HUD mission
+            foreach (Text text in HUDMissionImage.GetComponentsInChildren<Text>())
+            {
+                text.gameObject.SetActive(false);
+            }
+
+            // Reduces fill amount of HUD image each update
+            while (time > 0f)
+            {
+                HUDMissionImage.fillAmount -= 0.1f;
+                time = HUDMissionImage.fillAmount;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        else if(hasMission == false)
+        {
+            while (time < 1f)
+            {
+                HUDMissionImage.fillAmount += 0.1f;
+                time = HUDMissionImage.fillAmount;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        if(time == 1f)
+        {
+            hasMission = true;
+            foreach(Text text in HUDMissionImage.GetComponentsInChildren<Text>(true))
+            {
+                text.gameObject.SetActive(true);
+            }
+            StopCoroutine(EnableDisableHUDMission());
+        }
+
+        else if (time == 0f)
+        {
+            hasMission = false;
+            StopCoroutine(EnableDisableHUDMission());
+
+        }
+    
     }
 
     // Numerator will open or close mission UI to opposite

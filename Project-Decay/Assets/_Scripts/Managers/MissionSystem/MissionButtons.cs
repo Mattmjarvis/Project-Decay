@@ -209,7 +209,6 @@ public class MissionButtons : MonoBehaviour
                 return;
             }
 
-
             completedMissions[i] = Instantiate(missionBorder);
             completedMissions[i].transform.SetParent(completedMissionCanvas.transform, false);
 

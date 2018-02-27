@@ -33315,16 +33315,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 566961545}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 36.857727}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 35.792984}
+  m_LocalScale: {x: 0.77688974, y: 0.77688956, z: 0.77688956}
   m_Children: []
   m_Father: {fileID: 2031428890}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.6, y: -6}
-  m_SizeDelta: {x: 346.35, y: 100}
+  m_AnchoredPosition: {x: 0, y: 9.5489}
+  m_SizeDelta: {x: 346.4, y: 83.141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566961547
 MonoBehaviour:
@@ -33374,10 +33374,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.75
-  m_Text: 'Clear the beach of all threats
-
-
-'
+  m_Text: Mission Objective
 --- !u!222 &566961549
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38423,6 +38420,20 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -39509,6 +39520,20 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -65374,7 +65399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 69, y: 0}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1012099112
@@ -73176,6 +73201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22be4301d5b200d4e9ff00b63ce2ec01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUDMissionImage: {fileID: 2031428891}
+  HUDMissionObjective: {fileID: 566961548}
   missionLog: {fileID: 1012099110}
   missionLogUI: []
 --- !u!4 &1149418736
@@ -73202,6 +73229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa2c92c485eee14d83637bb3506e287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionUI: {fileID: 0}
   missionList:
   - title: I like walls
     id: 0
@@ -73212,80 +73240,17 @@ MonoBehaviour:
     totalObjectives: 3
     reward: 
     missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 3
-    objective: Look at a wall
+  - title: Boats
+    id: 1
+    status: 2
+    objective: Go to the boat
     bio: I am a big fan of walls so I enjoy looking at them.
     objectiveCount: 1
     totalObjectives: 3
     reward: 
     missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 0
-    objective: Look at a wall
-    bio: I am a big fan of walls so I enjoy looking at them.
-    objectiveCount: 1
-    totalObjectives: 3
-    reward: 
-    missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 0
-    objective: Look at a wall
-    bio: I am a big fan of walls so I enjoy looking at them.
-    objectiveCount: 1
-    totalObjectives: 3
-    reward: 
-    missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 0
-    objective: Look at a wall
-    bio: I am a big fan of walls so I enjoy looking at them.
-    objectiveCount: 1
-    totalObjectives: 3
-    reward: 
-    missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 0
-    objective: Look at a wall
-    bio: I am a big fan of walls so I enjoy looking at them.
-    objectiveCount: 1
-    totalObjectives: 3
-    reward: 
-    missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 0
-    objective: Look at a wall
-    bio: I am a big fan of walls so I enjoy looking at them.
-    objectiveCount: 1
-    totalObjectives: 3
-    reward: 
-    missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 0
-    objective: Look at a wall
-    bio: I am a big fan of walls so I enjoy looking at them.
-    objectiveCount: 1
-    totalObjectives: 3
-    reward: 
-    missionsCompleted: 0
-  - title: I like walls
-    id: 0
-    status: 0
-    objective: Look at a wall
-    bio: I am a big fan of walls so I enjoy looking at them.
-    objectiveCount: 1
-    totalObjectives: 3
-    reward: 
-    missionsCompleted: 0
-  - title: I like walls
-    id: 0
+  - title: Bacon
+    id: 2
     status: 0
     objective: Look at a wall
     bio: I am a big fan of walls so I enjoy looking at them.
@@ -73295,8 +73260,8 @@ MonoBehaviour:
     missionsCompleted: 0
   currentMission:
     title: 
-    id: 0
-    status: 0
+    id: 2
+    status: 2
     objective: 
     bio: 
     objectiveCount: 1
@@ -84135,16 +84100,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1390545876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 36.857727}
-  m_LocalScale: {x: 1.0000085, y: 1.0000085, z: 1.0000085}
+  m_LocalPosition: {x: 0, y: 0, z: 35.792984}
+  m_LocalScale: {x: 0.77688974, y: 0.77688956, z: 0.77688956}
   m_Children: []
   m_Father: {fileID: 2031428890}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.6, y: -84}
-  m_SizeDelta: {x: 346.35, y: 100}
+  m_AnchoredPosition: {x: -39, y: -36}
+  m_SizeDelta: {x: 247, y: 22.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390545878
 MonoBehaviour:
@@ -84795,6 +84760,20 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -86060,8 +86039,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14, y: 0}
-  m_SizeDelta: {x: 258.6, y: 77.3}
+  m_AnchoredPosition: {x: -18.9, y: 0}
+  m_SizeDelta: {x: 248.9, y: 77.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1455134111
 MonoBehaviour:
@@ -96301,7 +96280,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 2cbd3f3c061019546a09e0a70a983ef5, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1629549940}
-  m_LocalRotation: {x: -0.0031653405, y: 0.7335273, z: 0.6788055, w: 0.03392356}
+  m_LocalRotation: {x: -0.003165336, y: 0.7335273, z: 0.6788055, w: 0.03392356}
   m_LocalPosition: {x: 0.6197214, y: 3.4354925, z: -11.370628}
   m_LocalScale: {x: 15.000024, y: 15.000018, z: 150.00029}
   m_Children: []
@@ -106111,6 +106090,20 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -112588,8 +112581,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906167468}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1651.0144, y: -352.95383, z: -1979.4617}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 366.5, y: -2081.6892, z: 846.5669}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1888176731}
@@ -120386,8 +120379,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2031428890}
+  - component: {fileID: 2031428892}
+  - component: {fileID: 2031428891}
   m_Layer: 5
-  m_Name: MissionObjective
+  m_Name: HUDMission
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120402,9 +120397,8 @@ RectTransform:
   m_GameObject: {fileID: 2031428889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2356967, y: 1.2356968, z: 1.2356968}
   m_Children:
-  - {fileID: 2091076968}
   - {fileID: 566961546}
   - {fileID: 1390545877}
   m_Father: {fileID: 253570537}
@@ -120412,9 +120406,42 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 220.04993, y: -205}
-  m_SizeDelta: {x: 302.1, y: 100}
+  m_AnchoredPosition: {x: 201, y: -102}
+  m_SizeDelta: {x: 325, y: 124}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &2031428891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031428889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d7e984909bfcd4f4a83ba9b4deb8ca11, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &2031428892
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031428889}
 --- !u!1 &2032522955
 GameObject:
   m_ObjectHideFlags: 0
@@ -122081,78 +122108,6 @@ Transform:
   m_Father: {fileID: 390125068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2091076967
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1712904943292718, guid: f83ff6082bf91c640af5619da1a18d24,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2091076968}
-  - component: {fileID: 2091076970}
-  - component: {fileID: 2091076969}
-  m_Layer: 5
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2091076968
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 224680791428571098, guid: f83ff6082bf91c640af5619da1a18d24,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2091076967}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2998497, y: 1.2998495, z: 1.2998495}
-  m_Children: []
-  m_Father: {fileID: 2031428890}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.6, y: 0}
-  m_SizeDelta: {x: 322.6, y: 124}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2091076969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114728125635817736, guid: f83ff6082bf91c640af5619da1a18d24,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2091076967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d7e984909bfcd4f4a83ba9b4deb8ca11, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &2091076970
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 222567762219940720, guid: f83ff6082bf91c640af5619da1a18d24,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2091076967}
 --- !u!1 &2093149432
 GameObject:
   m_ObjectHideFlags: 0
