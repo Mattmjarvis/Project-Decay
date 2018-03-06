@@ -80,6 +80,7 @@ public class SimpleThirdPerson : MonoBehaviour
         Move();
         //Strafe();
         WalkBackwards();
+        Strafe();
 
         if (gunActive)
 		{
@@ -199,30 +200,34 @@ public class SimpleThirdPerson : MonoBehaviour
         Dive();
     }
 
-    //private void Strafe()
-    //{
-    //    if ((Input.GetAxis("Strafe")) > 0)
-    //    {
-    //        this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
-    //    }
-    //    else if ((Input.GetAxis("Strafe")) < 0)
-    //    {
-    //        this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("Strafe") * 4);
-    //    }
-    //}
+    private void Strafe()
+    {
+        if ((Input.GetAxis("StrafeLeft")) > 0)
+        {
+            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.left) * Input.GetAxis("StrafeLeft") * 2);
+            //animator.SetBool("walkingBackwards",true);
+            //animator.SetLayerWeight(1, 0f);
+        }
+        if ((Input.GetAxis("StrafeRight")) > 0)
+        {
+            this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("StrafeRight") * 2);
+            //animator.SetBool("walkingBackwards",true);
+            //animator.SetLayerWeight(1, 0f);
+        }
+    }
 
     private void WalkBackwards()
     {
         if ((Input.GetAxis("WalkBackwards")) > 0)
         {
             this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.back) * Input.GetAxis("WalkBackwards") * 2);
-            animator.SetBool("walkingBackwards",true);
-            animator.SetLayerWeight(1, 0f);
+            //animator.SetBool("walkingBackwards",true);
+            //animator.SetLayerWeight(1, 0f);
         }
         else
         {
-            animator.SetBool("walkingBackwards", false);
-            animator.SetTrigger("isIdle");
+            //animator.SetBool("walkingBackwards", false);
+            //animator.SetTrigger("isIdle");
         }
     }
 

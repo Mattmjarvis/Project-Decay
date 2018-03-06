@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    EnemyHealth enemyHealth;
+    AIHealth AIHealth;
     private int lifeSpan = 2;
     WeaponReloader reloader;
+
+    int _damage;
 
     public GameObject bulletHole_Metal;
 
     void Start()
     {
+        reloader = FindObjectOfType<WeaponReloader>();
+        _damage = reloader.currentWeapon.bulletDamage;
         Destroy(gameObject, lifeSpan);
     }
 
@@ -31,9 +35,9 @@ public class Bullet : MonoBehaviour
         // If the bullets hits an enemy then deal damage depending on weapon
         if (col.gameObject.tag == "Enemy")
         {
-            enemyHealth = col.gameObject.GetComponent<EnemyHealth>();
+            AIHealth = col.gameObject.GetComponent<AIHealth>();
             reloader = FindObjectOfType<WeaponReloader>(); // Gets the weapon player is using
-            enemyHealth.TakeDamage(reloader.currentWeapon.bulletDamage); // Deal damage to enemy based on weapon
+            AIHealth.TakeDamage(_damage); // Deal damage to enemy based on weapon
             //Debug.Log("Enemy took: " + reloader.currentWeapon.bulletDamage + "damage."); // Debug
         }        
         //		this.transform.parent = col.transform;
