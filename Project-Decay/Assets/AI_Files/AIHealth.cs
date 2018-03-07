@@ -73,13 +73,15 @@ public class AIHealth : MonoBehaviour
         healthBarParent.SetActive(true);
         yield return new WaitForSeconds(5);
         healthBarParent.SetActive(false);
-    }   
-
-    public void Death()
-    {
-        state = AIStates.DEAD;
-        Destroy(this.gameObject);
     }
+
+    IEnumerator Death()
+    {
+        anim.SetTrigger("isDead");
+        state = AIStates.DEAD;
+        yield return new WaitForSeconds(5);
+        Destroy(this.gameObject);
+    }    
 
     //public void SearchForHealth()
     //{
@@ -94,7 +96,7 @@ public class AIHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
-            Death();
+            StartCoroutine(Death());
         }
     }
 

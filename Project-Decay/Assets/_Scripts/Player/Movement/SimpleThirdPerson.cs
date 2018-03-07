@@ -38,7 +38,6 @@ public class SimpleThirdPerson : MonoBehaviour
 
     GameObject lookAtGO;
 	public GameObject bulletPr;
-    public GameObject bulletPrMetal;
     //bullet prefab
 
     public bool blockControl;
@@ -48,6 +47,9 @@ public class SimpleThirdPerson : MonoBehaviour
 	private WeaponType currentWeaponType = WeaponType.Gun;
     public float timeToShoot = 0.5f;
     //Changes firing type
+
+    //Particle system controlling muzzleFlash
+    public ParticleSystem MuzzleFlashPS;
 
     // Get components
     UIManager uiManager;
@@ -287,6 +289,7 @@ public class SimpleThirdPerson : MonoBehaviour
         if (currentWeaponType == WeaponType.Gun)
 		{
             reloader.TakeFromClip(1);
+            MuzzleFlashPS.Play();
             playerAudio.PlayOneShot(weaponStats.shotSound, 1f);
 
             if (hitPoint != Vector3.zero)
