@@ -51,7 +51,10 @@ public class AISight : MonoBehaviour {
         Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward + transform.right).normalized * sightDist, Color.green);
         Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized * sightDist, Color.green);
 
-
+        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, transform.right * 4, Color.green);
+        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, -transform.right * 4, Color.green);
+        Debug.DrawRay(transform.position + Vector3.up * heightMultiplier, -transform.forward * 2, Color.green);
+                        
         if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, transform.forward, out hit, sightDist))
         {
             if (hit.collider.gameObject.tag == "Player")
@@ -81,6 +84,51 @@ public class AISight : MonoBehaviour {
             }
         }
         if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.forward - transform.right).normalized, out hit, sightDist))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                //print("Hit Player");
+                //state = AIStates.CHASING;
+                target = hit.collider.gameObject;
+                AIMovement.StartChasing(target);
+                if (AIMovement.enemyInCombatRange == true)
+                {
+                    StartCoroutine(switchToSearching());
+                }
+            }
+        }
+
+        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (transform.right).normalized, out hit, 4))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                //print("Hit Player");
+                //state = AIStates.CHASING;
+                target = hit.collider.gameObject;
+                AIMovement.StartChasing(target);
+                if (AIMovement.enemyInCombatRange == true)
+                {
+                    StartCoroutine(switchToSearching());
+                }
+            }
+        }
+
+        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (-transform.right).normalized, out hit, 4))
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                //print("Hit Player");
+                //state = AIStates.CHASING;
+                target = hit.collider.gameObject;
+                AIMovement.StartChasing(target);
+                if (AIMovement.enemyInCombatRange == true)
+                {
+                    StartCoroutine(switchToSearching());
+                }
+            }
+        }
+
+        if (Physics.Raycast(transform.position + Vector3.up * heightMultiplier, (-transform.forward).normalized, out hit, 2))
         {
             if (hit.collider.gameObject.tag == "Player")
             {
