@@ -7,6 +7,7 @@ public class MissionButtons : MonoBehaviour
 {
 
     MissionManager missionManager;
+    MissionUI missionUI;
 
     // Elements for scrolling
     private ScrollRect scrollView;
@@ -46,6 +47,7 @@ public class MissionButtons : MonoBehaviour
     {
         // Get missionmanager component
         missionManager = gameObject.GetComponent<MissionManager>();
+        missionUI = gameObject.GetComponent<MissionUI>();
         scrollView = FindObjectOfType<ScrollRect>();
 
         // Finds all the components for the current mission description
@@ -83,7 +85,7 @@ public class MissionButtons : MonoBehaviour
         currentMissionBackground.SetActive(true);
 
         // Calculate percentage completed
-        if (missionManager.hasMission == true)
+        if (missionUI.hasMission == true)
         {
             objectivesCompleted = missionManager.currentMission.objectiveCount;
             objectivesNeeded = missionManager.currentMission.totalObjectives;
@@ -99,7 +101,7 @@ public class MissionButtons : MonoBehaviour
                 currentMissionProgress.text = progressTotal.ToString("F2") + "% Complete";
             }
         }
-        else if (missionManager.hasMission == false)
+        else if (missionUI.hasMission == false)
         {
             currentMissionTitle.text = "No Mission Available";
             currentMissionObjective.text = null;

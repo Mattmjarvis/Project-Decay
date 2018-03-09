@@ -32,19 +32,19 @@ public class Plane : MonoBehaviour
     // Spawns the supply crate from the back of plane
     public void supplyDrop()
     {
-        if (readyToDrop)
-        {
-            readyToDrop = false;
+        //if (readyToDrop)
+        //{
+
             Instantiate(supplyDropGO, dropSpawn.position, Quaternion.identity);
             //Debug.Log("Crate dropped!");
-            hasDropped = true;
+
             compassController = FindObjectOfType<CompassController>();
 
             if (compassController != null)
             { 
                     compassController.ShowCrateOnCompass();
              }
-        }
+        //}
     }
 
     // Initiates the drop

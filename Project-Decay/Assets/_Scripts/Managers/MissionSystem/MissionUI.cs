@@ -18,7 +18,8 @@ public class MissionUI : MonoBehaviour {
 
     // Variables
     bool missionUIActive = false;
-    bool hasMission = false;
+    public bool hasMission = false;
+    bool enableHUD = false;
 
     private void Awake()
     {
@@ -50,7 +51,13 @@ public class MissionUI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             StartCoroutine(OpenCloseMissionUI());
-            StartCoroutine(EnableDisableHUDMission());
+
+            // Will enable/ disable the HUD mission ONLY if the player has a mission 
+            if (hasMission)
+            {
+                StartCoroutine(EnableDisableHUDMission());
+            }
+
         }
 
         if (Input.GetKeyDown(KeyCode.P))
@@ -118,7 +125,7 @@ public class MissionUI : MonoBehaviour {
         float time = HUDMissionImage.fillAmount;
 
         // Hides the HUD Mission Image
-        if (hasMission == true)
+        if (enableHUD == true)
         {
             // Disables all text components in the HUD mission
             foreach (Text text in HUDMissionImage.GetComponentsInChildren<Text>())
@@ -135,7 +142,7 @@ public class MissionUI : MonoBehaviour {
             }
         }
 
-        else if(hasMission == false)
+        else if(enableHUD == false)
         {
             while (time < 1f)
             {
@@ -147,7 +154,7 @@ public class MissionUI : MonoBehaviour {
 
         if(time == 1f)
         {
-            hasMission = true;
+            enableHUD = true;
             foreach(Text text in HUDMissionImage.GetComponentsInChildren<Text>(true))
             {
                 text.gameObject.SetActive(true);
@@ -157,7 +164,7 @@ public class MissionUI : MonoBehaviour {
 
         else if (time == 0f)
         {
-            hasMission = false;
+            enableHUD = false;
             StopCoroutine(EnableDisableHUDMission());
 
         }

@@ -13,7 +13,7 @@ public class MissionManager : MonoBehaviour {
     public Mission nextMission = new Mission(); // The next mission
 
     public bool allMissionsComplete = false; // checks if all missions have been completed
-    public bool hasMission = false; // Checks if the player has  a current mission
+    
 
  // Make sure that the mission manager is not null and creates the mission manager.
     void Awake()
@@ -47,9 +47,10 @@ public class MissionManager : MonoBehaviour {
         missionList[currentMission.id].status = Mission.MissionStatus.CURRENT;
 
         missionUI.HUDMissionObjective.text = currentMission.objective;
+        missionUI.hasMission = true; // indicate that user has a mission
         missionUI.ShowHideHUDMission(); // Enable the mission image on the HUD
 
-        hasMission = true; // indicate that user has a mission
+
 
         // Ready up next quest if one is available
         if (currentMission.id < missionList.Count - 1)
@@ -64,7 +65,7 @@ public class MissionManager : MonoBehaviour {
     public void CompleteMission()
     {
         // Return if player has no mission or all missions are complete
-        if (allMissionsComplete == true || hasMission == false)
+        if (allMissionsComplete == true || missionUI.hasMission == false)
         {
             return;
         }
@@ -82,7 +83,7 @@ public class MissionManager : MonoBehaviour {
         }
 
         currentMission = null; // Clears current mission 
-        hasMission = false; // Indicates player has no mission
+        missionUI.hasMission = false; // Indicates player has no mission
 
         if (nextMission != null)
         {
@@ -116,7 +117,8 @@ public class MissionManager : MonoBehaviour {
     public void SetStartMission()
     {
         currentMission = missionList[0];
-        hasMission = true;
+        missionUI.hasMission = true;
+        missionUI.ShowHideHUDMission();
         nextMission = missionList[currentMission.id + 1];
         missionUI.HUDMissionObjective.text = currentMission.objective;
     }
