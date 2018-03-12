@@ -17,22 +17,14 @@ public class FadeManager : MonoBehaviour {
     {
         resetFadeOut = new Color(fadeBlackImageOut.color.r, fadeBlackImageOut.color.g, fadeBlackImageOut.color.b, 0.01f);
         resetFadeIn = new Color(fadeBlackImageIn.color.r, fadeBlackImageIn.color.g, fadeBlackImageIn.color.b, 1f);
-        fadeBlackImageOut.color = resetFadeOut;
-
-        fadeBlackImageIn.color = resetFadeIn;
-
-        StartCoroutine(SceneBlackFadeIn());
-    }
-
-    // Resets fade variables 
-    private void OnLevelWasLoaded()
-    {
 
         fadeBlackImageOut.color = resetFadeOut;
         fadeBlackImageIn.color = resetFadeIn;
 
         StartCoroutine(SceneBlackFadeIn());
     }
+
+
 
     // Fades the scene in to full colour
     public void SceneFadeInBlack()
@@ -49,7 +41,7 @@ public class FadeManager : MonoBehaviour {
     // Scene fades out to black
     IEnumerator SceneBlackFadeOut()
     {
-
+        fadeBlackImageOut.color = resetFadeOut;
         fadeImageOut.SetActive(true);
 
         while (fadeBlackImageOut.color.a < 1f)
@@ -60,7 +52,8 @@ public class FadeManager : MonoBehaviour {
 
         if (fadeBlackImageOut.color.a >= 1f)
         {
-            SceneManager.LoadScene("03_Game");
+            //fadeImageOut.SetActive(false);
+            StopCoroutine(SceneBlackFadeOut());
         }
 
     }
@@ -68,13 +61,19 @@ public class FadeManager : MonoBehaviour {
     // Fades scene in to full colour
     IEnumerator SceneBlackFadeIn()
     {
- 
+        fadeBlackImageIn.color = resetFadeIn;
         fadeImageIn.SetActive(true);
 
         while (fadeBlackImageIn.color.a > 0.01f)
         {
             fadeBlackImageIn.color = new Color(fadeBlackImageIn.color.r, fadeBlackImageIn.color.g, fadeBlackImageIn.color.b, fadeBlackImageIn.color.a - (Time.deltaTime / 3f));
             yield return null;
+        }
+
+        if (fadeBlackImageOut.color.a <= 0f)
+        {
+            fadeImageIn.SetActive(false);
+            StopCoroutine(SceneBlackFadeIn());
         }
 
     }
