@@ -170,7 +170,7 @@ public class AIMovement : MonoBehaviour {
         var _target = targetEnemy.transform.position;
         var offset = _target - transform.position;
         //Get the difference.
-        if (offset.magnitude > 2f)
+        if (offset.magnitude > 3f)
         {
             enemyInCombatRange = false;
 
@@ -191,7 +191,7 @@ public class AIMovement : MonoBehaviour {
                 //Smooth rotation based on the position it is moving towards.
             }
         }        
-        else if(offset.magnitude <= 2f)
+        else if(offset.magnitude <= 3f)
         {
             //print("In combat range");
             enemyInCombatRange = true;

@@ -296,7 +296,7 @@ public class SimpleThirdPerson : MonoBehaviour
 			{                
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
                 //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)    
-                hitTargetTr.SendMessage("GetShot", SendMessageOptions.DontRequireReceiver);
+                //hitTargetTr.SendMessage("GetShot", SendMessageOptions.DontRequireReceiver);
 
             }
         }

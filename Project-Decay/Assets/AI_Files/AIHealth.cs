@@ -45,7 +45,8 @@ public class AIHealth : MonoBehaviour
     //}
 
     public void TakeDamage(int damage)
-    {        
+    {
+        print("AI HIT");   
         //sets a random choice of animation and plays it
         //Uses a sub state mashine
         int randomAnimation = Random.Range(0, 2);
