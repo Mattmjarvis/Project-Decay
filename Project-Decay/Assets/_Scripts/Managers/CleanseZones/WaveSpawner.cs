@@ -121,7 +121,7 @@ public class WaveSpawner : MonoBehaviour
         {
             searchCountdown = 1f;
             //Creating a boolean method that checks for enemies in the cleanse mode using their tag
-            if (GameObject.FindGameObjectsWithTag("EnemyCleanseMode").Any(e => e.activeInHierarchy))
+            if (GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.activeInHierarchy))
             {
                 //if none are found, meaning they are all dead, this bool returns false
                 return true;

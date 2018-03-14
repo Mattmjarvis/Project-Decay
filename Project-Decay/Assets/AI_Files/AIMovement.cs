@@ -38,6 +38,8 @@ public class AIMovement : MonoBehaviour {
 
     public int chaseSpeed = 3;
 
+    public bool isChasing = false;
+
     void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -161,6 +163,8 @@ public class AIMovement : MonoBehaviour {
 
     public void Chase(GameObject targetEnemy)
     {
+        isChasing = true;
+        //IF AGENT STARTS TO STOP CHASING AFTER FIRST BEING HIT, ADD A BOOL TO OTHER METHODS SETTING isChasing to false
         if(_AIHealth.isDead == true)
         {
             return;
@@ -266,6 +270,11 @@ public class AIMovement : MonoBehaviour {
         //print("Chase called");
         state = AIStates.CHASING;
         _targetEnemy = target;
+        if(_targetEnemy == null)
+        {
+            _targetEnemy = _AIHealth.PlayerTarget;
+            print("Target set");
+        }
     }   
     
     //Repeatedly calculates a new direction to move towards.    

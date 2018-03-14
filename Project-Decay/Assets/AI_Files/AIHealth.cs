@@ -2,47 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
+
 
 public class AIHealth : MonoBehaviour
 {
-    AIMovement AIMovement;
+    AIMovement _AIMovement;
+    AIStates state;
+    Animator anim;
+    NavMeshAgent NMG;
 
-    float maxHealth = 100;
-    public float currentHealth = 100;
+    public float maxHealth;
+    public float currentHealth;
 
     public Image healthBar;
     public GameObject healthBarParent;
 
-    public bool isDead = false;
+    public bool isDead = false;   
     
-    AIStates state;
-    Animator anim;
-
     ParticleSystem blood;
+
+    public GameObject PlayerTarget;
+
+    BoxCollider BC;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        AIMovement = GetComponent<AIMovement>();
+        _AIMovement = GetComponent<AIMovement>();
 
-        blood = GetComponent<ParticleSystem>(); ;
+        blood = GetComponent<ParticleSystem>();
 
-        //StartCoroutine(HealthStateMachine());
-    }
+        BC = GetComponent<BoxCollider>();
 
-    //IEnumerator HealthStateMachine()
-    //{
-    //    //State machine, organises whichs state the enemy AI is in.
-    //    switch (state)
-    //    {
-    //        case AIStates.SEARCHINGFORHEALTH:
-    //            SearchForHealth();
-    //            break;
-    //    }
+        NMG = GetComponent<NavMeshAgent>();
 
-    //    yield return null;
-    //    StartCoroutine(HealthStateMachine());
-    //}
+    }    
 
     public void TakeDamage(int damage)
     {
@@ -60,12 +55,11 @@ public class AIHealth : MonoBehaviour
         currentHealth -= damage;
         healthBar.fillAmount = currentHealth/maxHealth;
         print("fill amount decreasing");
-
-        //Checks if health is below 30 and switches stae
-        //if(health <= 30 && state != AIStates.SEARCHINGFORHEALTH)
-        //{
-        //    AIMovement.StartSearchingForHealth();
-        //}
+        
+        if(_AIMovement.isChasing != true)
+        {
+            _AIMovement.StartChasing(PlayerTarget);
+        }       
     }
 
     IEnumerator ShowHealthUI()
@@ -80,17 +74,12 @@ public class AIHealth : MonoBehaviour
     {
         anim.SetTrigger("isDead");
         state = AIStates.DEAD;
+        BC.enabled = false;
+        NMG.enabled = false;
+        blood.Stop();
         yield return new WaitForSeconds(5);
         Destroy(this.gameObject);
-    }    
-
-    //public void SearchForHealth()
-    //{
-    //    if (health <= 30)
-    //    {
-    //        AIMovement.StartSearchingForHealth();
-    //    }
-    //}
+    }        
 
     private void Update()
     {       

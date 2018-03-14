@@ -6,6 +6,7 @@ public class AICombat : MonoBehaviour {
 
     AIStates state;
     AIMovement _AIMovement;
+    AIHealth _AIHealth;
     Animator anim;
     Transform targetEnemy;
     PlayerHealth PlayerHealth;
@@ -17,6 +18,7 @@ public class AICombat : MonoBehaviour {
     void Awake ()
     {
         _AIMovement = GetComponent<AIMovement>();
+        _AIHealth = GetComponent<AIHealth>();
         anim = GetComponent<Animator>();
 
         state = AIStates.NOTINCOMBAT;
@@ -45,6 +47,11 @@ public class AICombat : MonoBehaviour {
 
     public void Attack()
     {
+        if(_AIHealth.isDead == true)
+        {
+            return;
+        }
+
         float damageHit = Random.Range(20f, 30f);
 
         if (_AIMovement.enemyInCombatRange == true)
@@ -72,14 +79,5 @@ public class AICombat : MonoBehaviour {
 
             state = AIStates.PATROLLING;
         }
-    }
-
-    // Update is called once per frame
-    void Update ()
-    {
-        //if (state == AIStates.INCOMBAT)
-        //{
-        //    Attack();
-        //}
-    }
+    }  
 }
