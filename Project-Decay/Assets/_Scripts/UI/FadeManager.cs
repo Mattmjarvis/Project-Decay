@@ -10,11 +10,16 @@ public class FadeManager : MonoBehaviour {
     public Image fadeBlackImageOut;
     public GameObject fadeImageOut;
 
+    public bool cutscene = false;
+
     Color resetFadeOut;
     Color resetFadeIn;
+
+
    
     private void Awake()
     {
+
         resetFadeOut = new Color(fadeBlackImageOut.color.r, fadeBlackImageOut.color.g, fadeBlackImageOut.color.b, 0.01f);
         resetFadeIn = new Color(fadeBlackImageIn.color.r, fadeBlackImageIn.color.g, fadeBlackImageIn.color.b, 1f);
 
@@ -46,13 +51,13 @@ public class FadeManager : MonoBehaviour {
 
         while (fadeBlackImageOut.color.a < 1f)
         {
-            fadeBlackImageOut.color = new Color(fadeBlackImageOut.color.r, fadeBlackImageOut.color.g, fadeBlackImageOut.color.b, fadeBlackImageOut.color.a + (Time.deltaTime / 2f));
+            fadeBlackImageOut.color = new Color(fadeBlackImageOut.color.r, fadeBlackImageOut.color.g, fadeBlackImageOut.color.b, fadeBlackImageOut.color.a + (Time.deltaTime / 1f));
             yield return null;
         }
 
-        if (fadeBlackImageOut.color.a >= 1f)
+        if (fadeBlackImageOut.color.a >= 1f && cutscene == true)
         {
-            //fadeImageOut.SetActive(false);
+            fadeImageOut.SetActive(false);
             StopCoroutine(SceneBlackFadeOut());
         }
 
@@ -64,13 +69,13 @@ public class FadeManager : MonoBehaviour {
         fadeBlackImageIn.color = resetFadeIn;
         fadeImageIn.SetActive(true);
 
-        while (fadeBlackImageIn.color.a > 0.01f)
+        while (fadeBlackImageIn.color.a > 0.0f)
         {
             fadeBlackImageIn.color = new Color(fadeBlackImageIn.color.r, fadeBlackImageIn.color.g, fadeBlackImageIn.color.b, fadeBlackImageIn.color.a - (Time.deltaTime / 3f));
             yield return null;
         }
 
-        if (fadeBlackImageOut.color.a <= 0f)
+        if (fadeBlackImageIn.color.a <= 0f)
         {
             fadeImageIn.SetActive(false);
             StopCoroutine(SceneBlackFadeIn());
