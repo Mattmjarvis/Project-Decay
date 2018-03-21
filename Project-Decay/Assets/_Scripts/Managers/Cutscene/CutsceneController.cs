@@ -9,6 +9,8 @@ public class CutsceneController : MonoBehaviour {
     public GameObject currentImage;
     public int nextImage = 1;
 
+    public bool changing = false;
+
     FadeManager fader;
 
     public void Awake()
@@ -19,8 +21,9 @@ public class CutsceneController : MonoBehaviour {
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && changing == false)
         {
+            changing = true;
             NextImage();
         }
     }
@@ -39,10 +42,13 @@ public class CutsceneController : MonoBehaviour {
 
             yield return new WaitForSeconds(0.8f);
             currentImage.GetComponent<SpriteRenderer>().sprite = cutsceneImages[nextImage];
+            
 
             Debug.Log("Fade in");
             fader.SceneFadeInBlack();
             nextImage++;
+            yield return new WaitForSeconds(2f);
+            changing = false;
         }
         else
         {
