@@ -40,8 +40,8 @@ public class CutsceneController : MonoBehaviour {
     }
 
     // Numerator changes image if there are more available, fades in/out each image
-        IEnumerator NextImageInCutscene()
-        {
+    IEnumerator NextImageInCutscene()
+    {
         // Checks for more images
         if (nextImage <= cutsceneImages.Length - 1)
         {
@@ -51,7 +51,7 @@ public class CutsceneController : MonoBehaviour {
             yield return new WaitForSeconds(0.8f);
             // After 0.8s (black screen) the image will change and fade scene back in
             currentImage.GetComponent<Image>().sprite = cutsceneImages[nextImage];
-            
+
             fader.SceneFadeInBlack(); // Begin fade in
             nextImage++; // Increments image counter
 
@@ -66,8 +66,15 @@ public class CutsceneController : MonoBehaviour {
         {
             fader.cutscene = false;
             fader.SceneFadeOutBlack();
+
+            yield return new WaitForSeconds(2f);
+            StartGame();
+        }
+
+    }
+        public void StartGame()
+        {
             SceneManager.LoadScene(2);
         }
-    
     }
-}
+

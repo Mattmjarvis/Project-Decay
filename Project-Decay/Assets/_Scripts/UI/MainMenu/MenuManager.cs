@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     {
         //Continue game code, load last save etc.
     }
-    public void Options()
+    public void ControlMenu()
     {
         //Options menu code
     }
