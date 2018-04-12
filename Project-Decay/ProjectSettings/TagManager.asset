@@ -21,6 +21,7 @@ TagManager:
   - DayLights
   - NightLights
   - KeyPadDestroy
+  - KeyPadConsole
   layers:
   - Default
   - TransparentFX

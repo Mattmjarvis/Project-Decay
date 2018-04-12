@@ -9,6 +9,7 @@ public class ClickControl : MonoBehaviour {
     KeyPadManager keyPadManager;
     KeypadTrigger keypadTrigger;
     GameObject KeyPad;
+    GameObject KeyPadConsole;
     public bool codeGiven = false;
 
     public static string correctCode = "1234";
@@ -23,8 +24,10 @@ public class ClickControl : MonoBehaviour {
     {
         KeyPad = GameObject.FindGameObjectWithTag("KeyPadDestroy");
         keyPadManager = FindObjectOfType<KeyPadManager>();
-        keypadTrigger = FindObjectOfType<KeypadTrigger>();
-	}
+        //keypadTrigger = FindObjectOfType<KeypadTrigger>();
+        KeyPadConsole = GameObject.FindGameObjectWithTag("KeyPadConsole");
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -39,7 +42,8 @@ public class ClickControl : MonoBehaviour {
                 codeGiven = true;
                 keyPadManager.ExitKeypad();
                 Destroy(KeyPad);
-                keypadTrigger.enabled = false;
+                Destroy(KeyPadConsole);
+                //keypadTrigger.enabled = false;
             }
             else
             {
