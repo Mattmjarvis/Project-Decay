@@ -10,11 +10,6 @@ public class InputManager : MonoBehaviour {
         playerController = FindObjectOfType<SimpleThirdPerson>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-
-	}
 
     // Pauses game and unlocks mouse control
     public void PauseGameplay()
