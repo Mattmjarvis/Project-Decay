@@ -8,6 +8,7 @@ public class CutsceneController : MonoBehaviour {
 
     // Get all images and game objects
     public Sprite[] cutsceneImages;
+    public GameObject lightningFlash;
     public GameObject currentImage;
     public GameObject continueText;
     public int nextImage = 1; // Set the next image
@@ -48,9 +49,16 @@ public class CutsceneController : MonoBehaviour {
             continueText.SetActive(false); // Turns text off
             fader.SceneFadeOutBlack(); // Begin fadeout
 
+            // Creates lightning flash on image 6
+            if (nextImage == 6)
+            {
+                StartCoroutine(LightningFlash());
+            }
+
             yield return new WaitForSeconds(0.8f);
             // After 0.8s (black screen) the image will change and fade scene back in
             currentImage.GetComponent<Image>().sprite = cutsceneImages[nextImage];
+
 
             fader.SceneFadeInBlack(); // Begin fade in
             nextImage++; // Increments image counter
@@ -72,6 +80,21 @@ public class CutsceneController : MonoBehaviour {
         }
 
     }
+
+    // Causes a lightning flash effect
+    public IEnumerator LightningFlash()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            lightningFlash.SetActive(true);
+            yield return new WaitForSeconds(0.06f);
+            lightningFlash.SetActive(false);
+            yield return new WaitForSeconds(0.06f);
+        }
+    
+    }
+
+    // Starts the gamea
         public void StartGame()
         {
             SceneManager.LoadScene(2);
