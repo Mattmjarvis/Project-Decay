@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
@@ -8,9 +10,13 @@ public class PlayerHealth : MonoBehaviour {
     // Components
     SimpleThirdPerson playerController;
     public Image healthBar;
+    //Damaged Variables
     public Image damageImage;
     private float damageFlashSpeed = 5f;
     public Color damageFlashColor = Color.red;
+
+    //Damaged Variables
+    public Image deathImage;    
 
     public float health;
     public bool damaged = false;
@@ -78,16 +84,27 @@ public class PlayerHealth : MonoBehaviour {
 
         damaged = false;
     }
+    
+    //IEnumerator Respawning()
+    //{
+    //    deathImage.enabled = true;
+    //    yield return new WaitForSeconds(3);
+    //    SceneManager.LoadScene(2);
+    //    deathImage.enabled = false;
+
+    //}
 
     // Kills player and play audio
     void Death()
     {
         if (healthBar.fillAmount <= 0)
         {
+            
             Debug.Log("Player is dead");
             playerController.playerAudio.clip = deathSound;
             playerController.playerAudio.Play();
             Destroy(this.gameObject);
+            SceneManager.LoadScene(2);
         }
     }
 }

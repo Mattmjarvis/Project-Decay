@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class ClickControl : MonoBehaviour {
 
+    //Script variables
     KeyPadManager keyPadManager;
     KeypadTrigger keypadTrigger;
     GameObject KeyPad;
     GameObject KeyPadConsole;
+    BoxCollider ConsoleCollider;
     public bool codeGiven = false;
 
+    //Correct code
     public static string correctCode = "1234";
     public static string playerCode = "";
 
@@ -42,8 +45,10 @@ public class ClickControl : MonoBehaviour {
                 codeGiven = true;
                 keyPadManager.ExitKeypad();
                 Destroy(KeyPad);
-                Destroy(KeyPadConsole);
+                ConsoleCollider = KeyPadConsole.GetComponent<BoxCollider>();
+                ConsoleCollider.enabled = false;
                 //keypadTrigger.enabled = false;
+                //PLAY GATE OPENING ANIM
             }
             else
             {
