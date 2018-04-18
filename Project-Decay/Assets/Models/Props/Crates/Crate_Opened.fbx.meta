@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 1f2581691ed2c4c4cb70101084ff4e6b
-timeCreated: 1522605154
+guid: 073f6d3f8de437e42a48b59ba03e0339
+timeCreated: 1524056111
 licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
     100002: CrateLid
@@ -11,20 +11,16 @@ ModelImporter:
     400000: //RootNode
     400002: CrateLid
     400004: CrateOpen
-    2100000: CrateMain
-    2100002: CrateEdge
     2300000: CrateLid
     2300002: CrateOpen
     3300000: CrateLid
     3300002: CrateOpen
     4300000: CrateLid
     4300002: CrateOpen
-  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -37,7 +33,6 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -62,8 +57,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
