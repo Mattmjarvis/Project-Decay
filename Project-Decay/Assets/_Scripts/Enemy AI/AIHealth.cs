@@ -41,7 +41,7 @@ public class AIHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        print("AI HIT");   
+        //print("AI HIT");   
         //sets a random choice of animation and plays it
         //Uses a sub state mashine
         int randomAnimation = Random.Range(0, 2);
@@ -54,7 +54,7 @@ public class AIHealth : MonoBehaviour
         //decreases health and takes away from the fill amount of the health bar
         currentHealth -= damage;
         healthBar.fillAmount = currentHealth/maxHealth;
-        print("fill amount decreasing");
+        //print("fill amount decreasing");
         
         if(_AIMovement.isChasing != true)
         {

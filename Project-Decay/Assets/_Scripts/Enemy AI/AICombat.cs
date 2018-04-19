@@ -68,7 +68,7 @@ public class AICombat : MonoBehaviour {
             if (AttackWaitTimer <= 0)
             {
                 PlayerHealth.TakeDamage(damageHit);
-                print("Enemy hit for " + damageHit);
+                //print("Enemy hit for " + damageHit);
                 AttackWaitTimer = AttackWaitTime;
             }          
 

@@ -55,7 +55,7 @@ public class AIMovement : MonoBehaviour {
         waypointInd = Random.Range(0, waypoints.Length);
         if (waypointInd == 0)
         {
-            print("No Waypoint index");
+            //print("No Waypoint index");
         }
 
         anim = GetComponent<Animator>();

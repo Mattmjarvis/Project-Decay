@@ -11,17 +11,23 @@ public class PlayerHealth : MonoBehaviour {
     SimpleThirdPerson playerController;
     Animator Anim;
     public Image healthBar;
+
     //Damaged Variables
     public Image damageImage;
     private float damageFlashSpeed = 5f;
     public Color damageFlashColor = Color.red;
 
-    //Damaged Variables
+    //Death Variables
     public GameObject deathImage;    
 
+    //Health Variables
     public float currentHealth;
     float maxHealth = 100;
     public bool damaged = false;
+    public GameObject HealReminder;
+
+    public float reminderWaitTime = 2f;
+    float reminderWaitTimer;
 
     // Audio
     public AudioClip deathSound;
@@ -37,6 +43,8 @@ public class PlayerHealth : MonoBehaviour {
         // Set health values
         currentHealth = 100;
         //healthBar.fillAmount = health / 100;
+
+        reminderWaitTimer = reminderWaitTime;
 	}
 	
 	// Update is called once per frame
@@ -48,7 +56,6 @@ public class PlayerHealth : MonoBehaviour {
         ReduceHealthBar();
 
         healing();
-
 	}
 
     // Player takes damage
@@ -63,15 +70,9 @@ public class PlayerHealth : MonoBehaviour {
     public void ReduceHealthBar()
     {
         healthBar.fillAmount = currentHealth / maxHealth;
-
-        //// Make health bar reduce gradually
-        //if(healthBar.fillAmount > health / 100)
-        //{
-        //    healthBar.fillAmount -= 0.01f;
-        //}
-
+       
         // Player dies when health bar reaches 0
-        if (currentHealth >= 0)
+        if (currentHealth <= 0)
         {
             Death();
         }
@@ -90,20 +91,13 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         damaged = false;
-    }
-
-    IEnumerator Respawning()
-    {
-        deathImage.SetActive(true);
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(2);
-
-    }
+    }    
 
     public void healing()
     {
-        if(currentHealth < 100)
+        if (currentHealth < 100)
         {
+            HealReminder.SetActive(true);
             if (Input.GetKey(KeyCode.H))
             {
                 Anim.SetBool("Healing", true);
@@ -114,8 +108,9 @@ public class PlayerHealth : MonoBehaviour {
                 Anim.SetBool("Healing", false);
             }
         }
-        else if (currentHealth == 100)
+        else if (currentHealth >= 100)
         {
+            HealReminder.SetActive(false);
             Anim.SetBool("Healing", false);
         }
     }
@@ -123,13 +118,14 @@ public class PlayerHealth : MonoBehaviour {
     // Kills player and play audio
     void Death()
     {
-        if (healthBar.fillAmount <= 0)
-        {
-            StartCoroutine(Respawning());
-            Debug.Log("Player is dead");
-            playerController.playerAudio.clip = deathSound;
-            playerController.playerAudio.Play();
-            Destroy(this.gameObject);
-        }
+        print("Called death");
+        //StartCoroutine(Respawning());
+        Debug.Log("Player is dead");
+        playerController.playerAudio.clip = deathSound;
+        playerController.playerAudio.Play();
+        Destroy(this.gameObject);
+
+        deathImage.SetActive(true);
+        SceneManager.LoadScene(2);
     }
 }

@@ -225,15 +225,15 @@ public class SimpleThirdPerson : MonoBehaviour
 
     private void WalkBackwards()
     {
-        if ((Input.GetAxis("WalkBackwards")) > 0)
+        if ((Input.GetKey(KeyCode.S)))
         {
             this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.back) * Input.GetAxis("WalkBackwards") * 2);
-            //animator.SetBool("walkingBackwards",true);
-            //animator.SetLayerWeight(1, 0f);
+            animator.SetBool("walkingBackwards",true);
+            animator.SetLayerWeight(10, 10f);
         }
         else
         {
-            //animator.SetBool("walkingBackwards", false);
+            animator.SetBool("walkingBackwards", false);
             //animator.SetTrigger("isIdle");
         }
     }
