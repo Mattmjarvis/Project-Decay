@@ -55,6 +55,7 @@ public class SimpleThirdPerson : MonoBehaviour
     UIManager uiManager;
     WeaponReloader reloader;
     ChangeWeapon changeWeapon;
+    PlayerHealth PlayerHealth;
     #endregion
 
     public void Start()
@@ -62,7 +63,8 @@ public class SimpleThirdPerson : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         uiManager = FindObjectOfType<UIManager>();
         reloader = FindObjectOfType<WeaponReloader>();
-		animator = GetComponent<Animator> ();
+        PlayerHealth = GetComponent<PlayerHealth>();
+        animator = GetComponent<Animator> ();
         animator.SetLayerWeight(1,0f);
 
         changeWeapon = FindObjectOfType<ChangeWeapon>();
@@ -190,14 +192,17 @@ public class SimpleThirdPerson : MonoBehaviour
 
         float velocity = inputVert * speed;      
 
-        //Animation controls walking forward.        
-        animator.SetFloat("Speed", velocity, 0.25f, Time.deltaTime);
-        //animator.SetFloat("Strafe", Input.GetAxis("Horizontal"), 0.25f, Time.deltaTime);
-
-
-        //Vertical input controls the rotation of the player when A or D is held
-        //if (inputVert > 0)
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, camRot, Time.deltaTime * 5.0f);      
+        //Animation controls walking forward.      
+        if(PlayerHealth.currentHealth >= 51)
+        {
+            animator.SetBool("isInjured", false);
+            animator.SetFloat("Speed", velocity, 0.25f, Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("isInjured", true);
+            animator.SetFloat("InjuredSpeed", velocity, 0.10f, Time.deltaTime);
+        }
 
         Dive();
     }

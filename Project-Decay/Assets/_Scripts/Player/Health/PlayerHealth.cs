@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour {
 
     // Components
     SimpleThirdPerson playerController;
+    Animator Anim;
     public Image healthBar;
     //Damaged Variables
     public Image damageImage;
@@ -16,9 +17,10 @@ public class PlayerHealth : MonoBehaviour {
     public Color damageFlashColor = Color.red;
 
     //Damaged Variables
-    public Image deathImage;    
+    public GameObject deathImage;    
 
-    public float health;
+    public float currentHealth;
+    float maxHealth = 100;
     public bool damaged = false;
 
     // Audio
@@ -29,10 +31,11 @@ public class PlayerHealth : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Assign Controller component
-        playerController = FindObjectOfType<SimpleThirdPerson>();
+        playerController = GetComponent<SimpleThirdPerson>();
+        Anim = GetComponent<Animator>();
 
         // Set health values
-        health = 100;
+        currentHealth = 100;
         //healthBar.fillAmount = health / 100;
 	}
 	
@@ -44,6 +47,8 @@ public class PlayerHealth : MonoBehaviour {
         // Reduce health bar fill amount
         ReduceHealthBar();
 
+        healing();
+
 	}
 
     // Player takes damage
@@ -51,20 +56,22 @@ public class PlayerHealth : MonoBehaviour {
     {
         // If damaged is true then flash screen
         damaged = true;
-        health -= amount; // Reduce health amount
+        currentHealth -= amount; // Reduce health amount
     }
 
     // Changes fill amount of health bar
     public void ReduceHealthBar()
     {
-        // Make health bar reduce gradually
-        if(healthBar.fillAmount > health / 100)
-        {
-            healthBar.fillAmount -= 0.01f;
-        }
+        healthBar.fillAmount = currentHealth / maxHealth;
+
+        //// Make health bar reduce gradually
+        //if(healthBar.fillAmount > health / 100)
+        //{
+        //    healthBar.fillAmount -= 0.01f;
+        //}
 
         // Player dies when health bar reaches 0
-        if (healthBar.fillAmount <= 0)
+        if (currentHealth >= 0)
         {
             Death();
         }
@@ -84,27 +91,45 @@ public class PlayerHealth : MonoBehaviour {
 
         damaged = false;
     }
-    
-    //IEnumerator Respawning()
-    //{
-    //    deathImage.enabled = true;
-    //    yield return new WaitForSeconds(3);
-    //    SceneManager.LoadScene(2);
-    //    deathImage.enabled = false;
 
-    //}
+    IEnumerator Respawning()
+    {
+        deathImage.SetActive(true);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(2);
+
+    }
+
+    public void healing()
+    {
+        if(currentHealth < 100)
+        {
+            if (Input.GetKey(KeyCode.H))
+            {
+                Anim.SetBool("Healing", true);
+                currentHealth += 0.1f;
+;           }
+            else
+            {
+                Anim.SetBool("Healing", false);
+            }
+        }
+        else if (currentHealth == 100)
+        {
+            Anim.SetBool("Healing", false);
+        }
+    }
 
     // Kills player and play audio
     void Death()
     {
         if (healthBar.fillAmount <= 0)
         {
-            
+            StartCoroutine(Respawning());
             Debug.Log("Player is dead");
             playerController.playerAudio.clip = deathSound;
             playerController.playerAudio.Play();
             Destroy(this.gameObject);
-            SceneManager.LoadScene(2);
         }
     }
 }

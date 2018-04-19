@@ -25,7 +25,7 @@ public class CompassController : MonoBehaviour
     // Moves the image in relation to the camera
     public void Move()
     {
-        if(playerHealth.health <= 0)
+        if(playerHealth.currentHealth <= 0)
         {
             return;
         }
