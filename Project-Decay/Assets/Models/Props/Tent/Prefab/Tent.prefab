@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 4001802001839836}
   - component: {fileID: 33616931724928656}
   - component: {fileID: 23508826998867396}
+  - component: {fileID: 64810515952094442}
   m_Layer: 0
   m_Name: Tent_LOD0
   m_TagString: Untagged
@@ -114,9 +115,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1395210734225124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -879.8, y: 24.66, z: 887.81}
-  m_LocalScale: {x: 2.9050493, y: 2.9050505, z: 2.9050505}
+  m_LocalRotation: {x: -0, y: -0.40879354, z: -0, w: 0.9126269}
+  m_LocalPosition: {x: 206.6, y: 15.529999, z: -106.81}
+  m_LocalScale: {x: 2.9050496, y: 2.90505, z: 2.9050496}
   m_Children:
   - {fileID: 4001802001839836}
   - {fileID: 4864631970913816}
@@ -124,7 +125,7 @@ Transform:
   - {fileID: 4884853297372098}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -48.258003, z: 0}
 --- !u!4 &4864631970913816
 Transform:
   m_ObjectHideFlags: 1
@@ -320,6 +321,20 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1468077699225770}
+  m_Mesh: {fileID: 4300000, guid: 428c2fa45b17eaf4780ffc65cef46571, type: 3}
+--- !u!64 &64810515952094442
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468077699225770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 428c2fa45b17eaf4780ffc65cef46571, type: 3}
 --- !u!205 &205015810383223432
 LODGroup:
