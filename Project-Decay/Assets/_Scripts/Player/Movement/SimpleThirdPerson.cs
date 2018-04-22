@@ -20,7 +20,7 @@ public class SimpleThirdPerson : MonoBehaviour
     // Weapon Variables
     public GameObject gun; // the weapon gameObject
     public WeaponStats weaponStats;
-    private bool canFire = true;  
+    public bool canFire = true;  
     
 	public bool ikActive = false;
 
@@ -92,17 +92,17 @@ public class SimpleThirdPerson : MonoBehaviour
 		}
 
         // If the weapon is automatic then player can hold down MB1(leftclick) to shoot bullets
-        if(Input.GetMouseButton(0) && gunActive && weaponStats.firingType == FiringType.Automatic) 
-        {                        
+        if (Input.GetMouseButton(0) && gunActive && !PlayerHealth.nowHealing && weaponStats.firingType == FiringType.Automatic)
+        {
             // Stop bullets from shooting all at once
-            if(Time.time < timeToShoot)
+            if (Time.time < timeToShoot)
             {
                 return;
             }
             // Fire 
             else
             {
-                FireWeapon();                
+                FireWeapon();
             }
             // Debug checks that weapon is shooting at correct rate of fire
             //Debug.Log(Time.time);
@@ -118,13 +118,14 @@ public class SimpleThirdPerson : MonoBehaviour
         }
 
         // If weapon is semi automatic then one click = fire once
-        if (Input.GetMouseButtonDown(0) && gunActive && weaponStats.firingType == FiringType.SemiAutomatic)
-		{
+        if (Input.GetMouseButtonDown(0) && gunActive && !PlayerHealth.nowHealing && weaponStats.firingType == FiringType.SemiAutomatic)
+        {
             // Fire weapon
-			FireWeapon();
-		}
-        
-       
+            FireWeapon();
+        }
+
+
+
         switchCameraStates(); // Set camera state
         ReloadPressed(); //Reload
     }
@@ -133,7 +134,7 @@ public class SimpleThirdPerson : MonoBehaviour
     private void switchCameraStates()
     {
         //Switches to aiming gun state
-        if (Input.GetMouseButtonDown(1)) // (Rightclick)
+        if (Input.GetMouseButtonDown(1) && PlayerHealth.nowHealing == false) // (Rightclick)
         {
             // If the player does not have a weapon active and a weapon is available then switch weapon
             if (!gunActive && weaponStats.weaponAvailable == true)
@@ -324,7 +325,7 @@ public class SimpleThirdPerson : MonoBehaviour
     }
 
     private void AimWeapon()
-	{
+	{        
         // Checks if the player is out of ammo. True/false enables/disables out of ammo text
         if (weaponStats.ammoInClip == 0)
         {
@@ -333,7 +334,7 @@ public class SimpleThirdPerson : MonoBehaviour
         else
         {
             uiManager.DisableOutOfAmmoUI();
-        }
+        }       
 
         Ray ray = cam.ViewportPointToRay(new Vector3(.5f, .5f, 0));
         //converts the cameras viewport to worldspace
@@ -377,8 +378,10 @@ public class SimpleThirdPerson : MonoBehaviour
     #region IKAnimations
     public void OnAnimatorIK()
 	{
-		if(!gunActive)
+		if (!gunActive)
 			return;
+        if (PlayerHealth.nowHealing == true)
+            return;
         
 		if(animator)
 		{

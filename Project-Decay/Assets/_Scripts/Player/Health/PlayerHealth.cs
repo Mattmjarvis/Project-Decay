@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour {
     float maxHealth = 100;
     public bool damaged = false;
     public GameObject HealReminder;
+    public bool nowHealing = false;
 
     public float reminderWaitTime = 2f;
     float reminderWaitTimer;
@@ -100,16 +101,25 @@ public class PlayerHealth : MonoBehaviour {
             HealReminder.SetActive(true);
             if (Input.GetKey(KeyCode.H))
             {
+                nowHealing = true;
+                playerController.canFire = false;
+                playerController.gunActive = false;
                 Anim.SetBool("Healing", true);
                 currentHealth += 0.1f;
 ;           }
             else
             {
+                nowHealing = false;
+                playerController.canFire = true;
+                //playerController.gunActive = true;
                 Anim.SetBool("Healing", false);
             }
         }
         else if (currentHealth >= 100)
         {
+            nowHealing = false;
+            playerController.canFire = true;
+            //playerController.gunActive = true;
             HealReminder.SetActive(false);
             Anim.SetBool("Healing", false);
         }
