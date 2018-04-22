@@ -26,10 +26,7 @@ public class PlayerHealth : MonoBehaviour {
     public bool damaged = false;
     public GameObject HealReminder;
     public bool nowHealing = false;
-
-    public float reminderWaitTime = 2f;
-    float reminderWaitTimer;
-
+    
     // Audio
     public AudioClip deathSound;
     public AudioClip hurtSound;
@@ -45,7 +42,7 @@ public class PlayerHealth : MonoBehaviour {
         currentHealth = 100;
         //healthBar.fillAmount = health / 100;
 
-        reminderWaitTimer = reminderWaitTime;
+        StartCoroutine(healPrompt());       
 	}
 	
 	// Update is called once per frame
@@ -94,11 +91,33 @@ public class PlayerHealth : MonoBehaviour {
         damaged = false;
     }    
 
+    IEnumerator healPrompt()
+    {
+        while(currentHealth >= 100)
+        {
+            yield return null;
+        }
+
+        HealReminder.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        HealReminder.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(healPrompt());
+
+        //While health is 100 or greater, yield return null
+        //turn game objects off
+        //wait seconds
+        //turn back on
+        //restart coroutine
+
+    }
+
     public void healing()
     {
         if (currentHealth < 100)
         {
-            HealReminder.SetActive(true);
+            //HealReminder.SetActive(true);
             if (Input.GetKey(KeyCode.H))
             {
                 nowHealing = true;
@@ -120,7 +139,7 @@ public class PlayerHealth : MonoBehaviour {
             nowHealing = false;
             playerController.canFire = true;
             //playerController.gunActive = true;
-            HealReminder.SetActive(false);
+            //HealReminder.SetActive(false);
             Anim.SetBool("Healing", false);
         }
     }
