@@ -6,6 +6,7 @@ public class Interact : MonoBehaviour
 {
     UIManager uiManager;
     private float interactDistance = 5f;
+    //public bool searchRange;
 
     // Use this for initialization
     void Start()
@@ -37,22 +38,24 @@ public class Interact : MonoBehaviour
                 }
             }
             #endregion
-            #region UpgradeMachine check
-            // Checks see if lootpile is infront of player
-            if (hit.collider.CompareTag("Lootpile"))
-            {
-                if (hit.collider.GetComponentInParent<Lootpile>().searched == false)
-                {
-                    uiManager.enableSearchTip();
-                    // Gets key input
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        hit.collider.GetComponentInParent<Lootpile>().SpawnItems(); // Spawns loot items
-                        uiManager.disableSearchTip(); // disabled the search tip UI
-                    }
-                }
-            }
-            #endregion
+
+            // OLD CODE
+            //#region Lootpile check
+            //// Checks see if lootpile is infront of player
+            //if (hit.collider.CompareTag("Lootpile"))
+            //{
+            //    if (hit.collider.GetComponentInParent<Lootpile>().searched == false)
+            //    {
+            //        uiManager.enableSearchTip();
+            //        // Gets key input
+            //        if (Input.GetKeyDown(KeyCode.E))
+            //        {
+            //            hit.collider.GetComponentInParent<Lootpile>().SpawnItems(); // Spawns loot items
+            //            uiManager.disableSearchTip(); // disabled the search tip UI
+            //        }
+            //    }
+            //}
+            //#endregion
 
 
         }

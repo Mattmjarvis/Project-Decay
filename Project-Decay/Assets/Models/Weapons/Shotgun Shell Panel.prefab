@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300742104471230}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1059.1981, y: 11.392, z: 357.32864}
+  m_LocalPosition: {x: -780.23254, y: 7.903389, z: 356.57364}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,7 +53,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -69,7 +68,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -95,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0020284448, y: 0.008113776, z: 0.004388144}
-  m_Center: {x: -5.820766e-11, y: -0.0000000011641531, z: -0.0002478851}
+  m_Size: {x: 0.028279623, y: 0.033304833, z: 0.027471846}
+  m_Center: {x: 0.0018107097, y: 0.0019299716, z: 0.0025715453}
 --- !u!114 &114237918867239064
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,28 +5,53 @@ using UnityEngine;
 
 public class Lootpile : MonoBehaviour {
 
-    // Get lootmanager component
+    // Get components
     LootManager lm;
+    UIManager uiManager;
+    Interact interact;
 
     // Item spawn components
     public GameObject mainSpawnPoint;
     public Transform[] landPoints;
     private GameObject[] pickup = new GameObject[5];
 
+    // Distance check
+    public GameObject player;
+    public float distance;
+
     // Has the lootpile been searched
     public bool searched = false;
-
-
 
     public void Start()
     {
         lm = FindObjectOfType<LootManager>();
+        uiManager = FindObjectOfType<UIManager>();
+        interact = FindObjectOfType<Interact>();
 
     }
     public void Update()
     {
-        
+        DistanceCheck();
 
+    }
+
+
+    // Checks distance between player and lootpile
+    public void DistanceCheck()
+    {
+        // Get distance
+        distance = Vector3.Distance(player.transform.position, this.transform.position);
+
+        // If player is close enough to lootpile then show search option
+        if(distance <= 10 && !searched)
+        {
+            uiManager.enableSearchTip(); // Show search tooltip
+            // Get input and spawn items
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                this.SpawnItems();
+            }
+        }
     }
 
     // Spawns items when the player searches the lootpile
@@ -42,8 +67,12 @@ public class Lootpile : MonoBehaviour {
                 // Spawns each item relative to the main spawnpoint
                 pickup[i] = Instantiate(lm.spawnItems[randomSpawnGen], landPoints[i].transform, false);
                 pickup[i].transform.position = mainSpawnPoint.transform.position;
-                searched = true;
+
+
+
             }
+            searched = true;
+            this.GetComponent<Lootpile>().enabled = false;
         }
     }
 }
