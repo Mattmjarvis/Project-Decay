@@ -29,30 +29,38 @@ public class Lootpile : MonoBehaviour {
         interact = FindObjectOfType<Interact>();
 
     }
-    public void Update()
-    {
-        DistanceCheck();
+    //public void Update()
+    //{
+    //    DistanceCheck();
 
-    }
+    //}
 
 
-    // Checks distance between player and lootpile
-    public void DistanceCheck()
-    {
-        // Get distance
-        distance = Vector3.Distance(player.transform.position, this.transform.position);
+    //// Checks distance between player and lootpile
+    //public void DistanceCheck()
+    //{
+    //    // Get distance
+    //    distance = Vector3.Distance(player.transform.position, this.transform.position);
 
-        // If player is close enough to lootpile then show search option
-        if(distance <= 10 && !searched)
-        {
-            uiManager.enableSearchTip(); // Show search tooltip
-            // Get input and spawn items
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                this.SpawnItems();
-            }
-        }
-    }
+    //    // If player is close enough to lootpile then show search option
+    //    if(distance <= 10 && !searched)
+    //    {
+    //        player.GetComponent<SimpleThirdPerson>().isSearching = true; // Set player to searching
+    //        uiManager.enableSearchTip(); // Show search tooltip
+    //        // Get input and spawn items
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            player.GetComponent<SimpleThirdPerson>().isSearching = fa;
+    //            this.SpawnItems();
+    //        }
+    //    }
+
+    //    // Disable the search tip if player is not in range
+    //    else if(player.GetComponent<SimpleThirdPerson>().isSearching == false && distance > 10)
+    //    {
+    //        uiManager.disableSearchTip();
+    //    }
+    //}
 
     // Spawns items when the player searches the lootpile
     public void SpawnItems()

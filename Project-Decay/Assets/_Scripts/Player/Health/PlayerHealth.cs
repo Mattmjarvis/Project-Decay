@@ -93,7 +93,7 @@ public class PlayerHealth : MonoBehaviour {
 
     IEnumerator healPrompt()
     {
-        while(currentHealth >= 100)
+        while(currentHealth >= 61)
         {
             yield return null;
         }
@@ -134,6 +134,7 @@ public class PlayerHealth : MonoBehaviour {
                 Anim.SetBool("Healing", false);
             }
         }
+
         else if (currentHealth >= 100)
         {
             nowHealing = false;

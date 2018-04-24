@@ -11,6 +11,9 @@ public class SimpleThirdPerson : MonoBehaviour
 	private float speed;
     //Controls speed of player movement
 
+    // Set if the player is searching
+    public bool isSearching;
+
     public Transform spine;
     public Vector3 spineOffsetRotation;
     private Transform hitTargetTr;
@@ -376,66 +379,66 @@ public class SimpleThirdPerson : MonoBehaviour
     #endregion
 
     #region IKAnimations
-    public void OnAnimatorIK()
-	{
-		if (!gunActive)
-			return;
-        if (PlayerHealth.nowHealing == true)
-            return;
+ //   public void OnAnimatorIK()
+	//{
+	//	if (!gunActive)
+	//		return;
+ //       if (PlayerHealth.nowHealing == true)
+ //           return;
         
-		if(animator)
-		{
-			if(ikActive)
-			{
-				if(handleRight != null)
-				{
-                    animator.SetLookAtWeight(1.0f, 0.5f, 0.5f);
-                    animator.SetLookAtPosition(lookAtGO.transform.position);
+	//	if(animator)
+	//	{
+	//		if(ikActive)
+	//		{
+	//			if(handleRight != null)
+	//			{
+ //                   animator.SetLookAtWeight(1.0f, 0.5f, 0.5f);
+ //                   animator.SetLookAtPosition(lookAtGO.transform.position);
 
-                    animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-                    animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
-                    animator.SetIKPosition(AvatarIKGoal.RightHand, handleRight.position);
-                    animator.SetIKRotation(AvatarIKGoal.RightHand, handleRight.rotation);
-                }
+ //                   animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+ //                   animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+ //                   animator.SetIKPosition(AvatarIKGoal.RightHand, handleRight.position);
+ //                   animator.SetIKRotation(AvatarIKGoal.RightHand, handleRight.rotation);
+ //               }
 
-                if (handleLeft != null)
-				{
-                    animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
-                    animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-                    animator.SetIKPosition(AvatarIKGoal.LeftHand, handleLeft.position);
-                    animator.SetIKRotation(AvatarIKGoal.LeftHand, handleLeft.rotation);
-                }
-			}
-			else
-			{
-                animator.SetLookAtWeight(0);
+ //               if (handleLeft != null)
+	//			{
+ //                   animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+ //                   animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+ //                   animator.SetIKPosition(AvatarIKGoal.LeftHand, handleLeft.position);
+ //                   animator.SetIKRotation(AvatarIKGoal.LeftHand, handleLeft.rotation);
+ //               }
+	//		}
+	//		else
+	//		{
+ //               animator.SetLookAtWeight(0);
 
-                animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
-                animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0);
+ //               animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
+ //               animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0);
 
-                animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-                animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-                animator.SetLookAtWeight(0);
-            }
-            //Controls AnimatorIK which moves the gun and hands of the character in a realistic way.
-		}
+ //               animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+ //               animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
+ //               animator.SetLookAtWeight(0);
+ //           }
+ //           //Controls AnimatorIK which moves the gun and hands of the character in a realistic way.
+	//	}
         
-	}
+	//}
 
-	//returns -1 when to the left, 1 to the right, and 0 for forward/backward
-	int AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up) 
-	{
-		Vector3 perp = Vector3.Cross(fwd, targetDir);
-		float dir = Vector3.Dot(perp, up);
+	////returns -1 when to the left, 1 to the right, and 0 for forward/backward
+	//int AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up) 
+	//{
+	//	Vector3 perp = Vector3.Cross(fwd, targetDir);
+	//	float dir = Vector3.Dot(perp, up);
 
-		if (dir > 0) {
-			return 1;
-		} else if (dir < 0) {
-			return -1;
-		} else {
-			return 0;
-		}
-	}
+	//	if (dir > 0) {
+	//		return 1;
+	//	} else if (dir < 0) {
+	//		return -1;
+	//	} else {
+	//		return 0;
+	//	}
+	//}
     #endregion
 
 }
