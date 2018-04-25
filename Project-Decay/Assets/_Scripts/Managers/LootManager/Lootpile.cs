@@ -68,6 +68,7 @@ public class Lootpile : MonoBehaviour {
         // Spawn items for each spawn point
         if (searched == false)
         {
+            
             for (int i = 0; i < pickup.Length; i++)
             {
                 int randomSpawnGen = Random.Range(0, lm.spawnItems.Length); // generates random spawn
@@ -81,6 +82,7 @@ public class Lootpile : MonoBehaviour {
             }
             searched = true;
             this.GetComponent<Lootpile>().enabled = false;
+            uiManager.disableSearchTip();
         }
     }
 }
