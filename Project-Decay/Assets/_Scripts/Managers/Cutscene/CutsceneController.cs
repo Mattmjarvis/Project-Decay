@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class CutsceneController : MonoBehaviour {
 
+    // Audio
+    public AudioSource player;
+    public AudioClip lightning;
+
+
     // Get all images and game objects
     public Sprite[] cutsceneImages;
     public GameObject lightningFlash;
@@ -53,6 +58,7 @@ public class CutsceneController : MonoBehaviour {
             if (nextImage == 6)
             {
                 StartCoroutine(LightningFlash());
+                player.PlayOneShot(lightning, 0.1f);
             }
 
             yield return new WaitForSeconds(0.8f);
