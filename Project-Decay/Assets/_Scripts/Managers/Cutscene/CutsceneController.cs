@@ -20,11 +20,14 @@ public class CutsceneController : MonoBehaviour {
 
     public bool changing = false; // Bool to check if the image is already changing
 
+    // Components
     FadeManager fader; // Fade manager component
+    TextController textContol;
 
     // Find the fade manager and alert it to cutscene
     public void Awake()
-    {   
+    {
+        textContol = FindObjectOfType<TextController>();
         fader = FindObjectOfType<FadeManager>();
         fader.cutscene = true;
     }
@@ -34,6 +37,7 @@ public class CutsceneController : MonoBehaviour {
         // Moves to next point in cutscene if the spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space) && changing == false)
         {
+            textContol.StopTyping();
             changing = true; // Alert to change
             NextImage(); // Begin changing image coroutine
         }
@@ -43,6 +47,7 @@ public class CutsceneController : MonoBehaviour {
     public void NextImage()
     {
         StartCoroutine(NextImageInCutscene());
+        textContol.StartTyping();
     }
 
     // Numerator changes image if there are more available, fades in/out each image

@@ -17,16 +17,15 @@ public class Rain : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate () {
-		
+    void FixedUpdate () {	
+
         // Reduce the alpha of any active images to get a fadeout effect
         foreach(Image image in raindrops)
         {
             if (image.color.a > 0f)
             {
                 image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - (Time.deltaTime / 3f)); // Fadeout the image
-            }
-                
+            }            
         }
 	}
     
