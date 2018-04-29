@@ -81,7 +81,7 @@ public class Interact : MonoBehaviour
         // Get distance
         foreach (GameObject pile in lootpiles)
         {
-            if (Vector3.Distance(pile.transform.position, gameObject.transform.position) < 10f && pile.GetComponent<Lootpile>().searched == false) {
+            if (Vector3.Distance(pile.transform.position, gameObject.transform.position) < 10f && (pile.GetComponent<Lootpile>().searched == false)){
                 closestPile = pile;
                 uiManager.enableSearchTip(); // Show search tooltip
 
@@ -93,6 +93,7 @@ public class Interact : MonoBehaviour
             }
         }
 
+
         if (closestPile != null)
         {
             if (Vector3.Distance(closestPile.transform.position, gameObject.transform.position) > 10f || closestPile.GetComponent<Lootpile>().searched == true)
@@ -100,9 +101,9 @@ public class Interact : MonoBehaviour
                 uiManager.disableSearchTip();
             }
         }
+
     }
 }
-    
    
 
     

@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class MissionManager : MonoBehaviour {
 
+
+    /// <summary>
+    /// Mission Precompletion checks. This is incase the mission requirements have been completed before the mission has been reached.
+    /// </summary>
+        // Mission 3
+        public bool hasPistol = false;
+
+
+    MissionButtons missionButtons;
     public static MissionManager missionManager;
     public MissionUI missionUI;
 
@@ -12,6 +21,9 @@ public class MissionManager : MonoBehaviour {
     public Mission currentMission = new Mission();
     public Mission nextMission = new Mission(); // The next mission
 
+
+
+    public SimpleThirdPerson playerController;
     public bool allMissionsComplete = false; // checks if all missions have been completed
     
 
@@ -29,6 +41,8 @@ public class MissionManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         missionUI = FindObjectOfType<MissionUI>(); // Finds the mission UI object
+        missionButtons = FindObjectOfType<MissionButtons>();
+
         // Sets the start mission and next mission
         SetStartMission();
     }
@@ -41,16 +55,14 @@ public class MissionManager : MonoBehaviour {
         {
             return;
         }
-
+    
         currentMission = nextMission; // Set mission to current
         currentMission.status = Mission.MissionStatus.CURRENT; // Set mission to current
         missionList[currentMission.id].status = Mission.MissionStatus.CURRENT;
 
         missionUI.HUDMissionObjective.text = currentMission.objective;
         missionUI.hasMission = true; // indicate that user has a mission
-        missionUI.ShowHideHUDMission(); // Enable the mission image on the HUD
-
-
+        missionButtons.CurrentMissionButton();
 
         // Ready up next quest if one is available
         if (currentMission.id < missionList.Count - 1)
@@ -59,6 +71,9 @@ public class MissionManager : MonoBehaviour {
             missionList[currentMission.id + 1].status = Mission.MissionStatus.NEXT;
             nextMission.status = Mission.MissionStatus.NEXT;
         }
+
+        MissionPreCompletionCheck();
+
     }
 
     // Complete current  Mission
@@ -73,7 +88,7 @@ public class MissionManager : MonoBehaviour {
         currentMission.status = Mission.MissionStatus.COMPLETE; // Sets current mission to complete
         missionList[currentMission.id].status = Mission.MissionStatus.COMPLETE;
         currentMission.missionsCompleted += 1;
-        missionUI.ShowHideHUDMission(); // Disable the mission image on the HUD
+        //missionUI.ShowHideHUDMission(); // Disable the mission image on the HUD
 
         // Sets all missions to complete if last mission in list is completed
         if(currentMission.id == missionList.Count - 1)
@@ -93,6 +108,7 @@ public class MissionManager : MonoBehaviour {
 
 
 
+
     }
 
     //  Check mission objective
@@ -105,12 +121,20 @@ public class MissionManager : MonoBehaviour {
         {
             currentMission.objectiveCount += 1; // Count each finished objective
 
+            // Stop objective count from going over
+            if(currentMission.objectiveCount > currentMission.totalObjectives)
+            {
+                currentMission.objectiveCount = currentMission.totalObjectives;
+            }
+
             // If all objectives are finished then complete mission
             if (currentMission.objectiveCount == currentMission.totalObjectives)
-            { 
-                CompleteMission(); // Mission completed
+            {
+                missionButtons.newMissionButton.SetActive(true);
+                missionUI.CompleteMissionPopout();
             }
         }
+        missionButtons.CurrentMissionButton();
     }
 
     // Sets the start mission to the first mission in the mission list. Sets next mission to mission after
@@ -136,4 +160,16 @@ public class MissionManager : MonoBehaviour {
             return false;
         }
     
+    // This method checks if any completion has been met before the mission has been activated.
+    public void MissionPreCompletionCheck()
+    {
+        // Check for mission 3 (Obtaining pistol)
+        if (currentMission.id == 2)
+        {
+            if (hasPistol == true)
+            {
+                IncrementMissionObjective();
+            }
+        }
+    }
 }

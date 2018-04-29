@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MissionUI : MonoBehaviour {
+public class MissionUI : MonoBehaviour
+{
 
     // Objects
     public Image HUDMissionImage;
+    public Text missionCompleteOverlay;
     public Text HUDMissionObjective;
 
     public GameObject missionLog;
@@ -45,7 +47,8 @@ public class MissionUI : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
 
         // Opens/ Closes the mission UI
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -62,7 +65,7 @@ public class MissionUI : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            mm.CompleteMission();
+            mm.IncrementMissionObjective();
         }
 
 
@@ -72,6 +75,12 @@ public class MissionUI : MonoBehaviour {
     public void OpenMissionLog()
     {
         missionLog.SetActive(true);
+
+        if (mm.currentMission.id == 0)
+        {
+            mm.IncrementMissionObjective();
+        }
+
         // Increase fill value of each array element.
         for (int i = 0; i < missionLogUI.Length; i++)
         {
@@ -92,7 +101,7 @@ public class MissionUI : MonoBehaviour {
     public void CloseMissionLog()
     {
         // Resumes the gameplay as normal
-        inputManager.ResumeGameplay(); 
+        inputManager.ResumeGameplay();
 
         // Decrease fill value of each array element.
         for (int i = 0; i < missionLogUI.Length; i++)
@@ -142,7 +151,7 @@ public class MissionUI : MonoBehaviour {
             }
         }
 
-        else if(enableHUD == false)
+        else if (enableHUD == false)
         {
             while (time < 1f)
             {
@@ -152,10 +161,10 @@ public class MissionUI : MonoBehaviour {
             }
         }
 
-        if(time == 1f)
+        if (time == 1f)
         {
             enableHUD = true;
-            foreach(Text text in HUDMissionImage.GetComponentsInChildren<Text>(true))
+            foreach (Text text in HUDMissionImage.GetComponentsInChildren<Text>(true))
             {
                 text.gameObject.SetActive(true);
             }
@@ -168,14 +177,14 @@ public class MissionUI : MonoBehaviour {
             StopCoroutine(EnableDisableHUDMission());
 
         }
-    
+
     }
 
     // Numerator will open or close mission UI to opposite
     IEnumerator OpenCloseMissionUI()
     {
         missionLogUI = missionLog.GetComponentsInChildren<Image>(true);
-        float time = missionLogUI[missionLogUI.Length- 1].fillAmount;
+        float time = missionLogUI[missionLogUI.Length - 1].fillAmount;
 
         // Call the mission log to fully close. Decrease fill amount each update.
         if (missionUIActive == true)
@@ -202,14 +211,14 @@ public class MissionUI : MonoBehaviour {
         }
 
         // Stops the coroutine if the missionUI is fully closed
-        if(time == 0f)
+        if (time == 0f)
         {
             missionUIActive = false;
-            StopCoroutine(OpenCloseMissionUI());                
+            StopCoroutine(OpenCloseMissionUI());
         }
 
         // Stops the coroutine if the missionUI is fully open & pause game
-        else if(time == 1f)
+        else if (time == 1f)
         {
             missionUIActive = true;
             inputManager.PauseGameplay();
@@ -219,7 +228,46 @@ public class MissionUI : MonoBehaviour {
 
     }
 
+
+    // Begins the fade for the complete mission overlay
+    public void CompleteMissionPopout()
+    {
+        StartCoroutine(MissionCompletePopout());
+    }
+
+    // Shows then hides overlay
+    IEnumerator MissionCompletePopout()
+    {
+        // Fades in overlay
+        while (missionCompleteOverlay.color.a < 1f)
+        {
+            missionCompleteOverlay.color = new Color(missionCompleteOverlay.color.r, missionCompleteOverlay.color.g, missionCompleteOverlay.color.b, missionCompleteOverlay.color.a + Time.deltaTime / 1f);
+            yield return null;
+            if (missionCompleteOverlay.color.a >= 1)
+            {
+                break;
+            }
+        }
+
+        // Wait for seconds until dissapearing
+        yield return new WaitForSeconds(3);
+        // Hides overlay with fade out
+        while (missionCompleteOverlay.color.a > 0f)
+        {
+            missionCompleteOverlay.color = new Color(missionCompleteOverlay.color.r, missionCompleteOverlay.color.g, missionCompleteOverlay.color.b, missionCompleteOverlay.color.a - Time.deltaTime / 1f);
+            yield return null;
+
+            // Stop coroutine
+            if (missionCompleteOverlay.color.a <= 0f)
+            {
+                break;
+            }
+        }
+
+
+
+    }
 }
 
-    
+
 

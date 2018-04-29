@@ -1784,7 +1784,7 @@ GameObject:
   - component: {fileID: 1889862830}
   - component: {fileID: 1889862831}
   m_Layer: 0
-  m_Name: Choir
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1812,9 +1812,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 915b3b76e0ad65e498954fb9cc27649e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 196a1392595fefb40979c2a60f5ee5d5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.02
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0

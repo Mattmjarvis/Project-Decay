@@ -19,6 +19,7 @@ public enum PickupType
 public class Pickup : MonoBehaviour {
 
     UIManager uiManager;
+    MissionManager mm;
     public PickupType pickupType;
 
     public int amountToGive;
@@ -37,8 +38,13 @@ public class Pickup : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         uiManager = FindObjectOfType<UIManager>();
+        mm = FindObjectOfType<MissionManager>();
         FindWeaponStats();
-	}
+
+        weaponslotAR = GameObject.FindGameObjectWithTag("ARUI").GetComponent<Image>();
+        weaponslotSG = GameObject.FindGameObjectWithTag("ShotgunUI").GetComponent<Image>();
+        weaponslotPS = GameObject.FindGameObjectWithTag("PistolUI").GetComponent<Image>();
+    }
 	
     public void OnTriggerEnter(Collider other)
     {
@@ -49,6 +55,8 @@ public class Pickup : MonoBehaviour {
             PickupObject();            
             Destroy(gameObject);
  
+
+
         }
     }
 
@@ -89,6 +97,7 @@ public class Pickup : MonoBehaviour {
         {
             weaponStatsAR.weaponAvailable = true;
             weaponslotAR.color = Color.white;
+            
         }
 
         // Gives access to shotgun
@@ -103,6 +112,11 @@ public class Pickup : MonoBehaviour {
         {
             weaponStatsPS.weaponAvailable = true;
             weaponslotPS.color = Color.white;
+            mm.hasPistol = true;
+            if(mm.currentMission.id == 2)
+            {
+                mm.IncrementMissionObjective();
+            }
         }
 
         // Gives ammo to assault Rifle

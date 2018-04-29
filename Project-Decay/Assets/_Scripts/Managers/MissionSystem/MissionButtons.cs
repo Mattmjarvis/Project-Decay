@@ -39,6 +39,8 @@ public class MissionButtons : MonoBehaviour
     public GameObject completedMissionCanvas;
     public GameObject[] completedMissions;
 
+    public GameObject newMissionButton;
+
     // Gameobject ready to instantiate
     public GameObject missionBorder;
 
@@ -65,6 +67,13 @@ public class MissionButtons : MonoBehaviour
         // Sets size of the array to the maximum mission count
         allMissions = new GameObject[missionManager.missionList.Count];
         completedMissions = new GameObject[missionManager.missionList.Count];
+    }
+
+    // Gets a new mission for the player
+    public void NewMissionButton()
+    {
+        newMissionButton.SetActive(false);
+        missionManager.CompleteMission();
     }
 
     // Displays the players current mission

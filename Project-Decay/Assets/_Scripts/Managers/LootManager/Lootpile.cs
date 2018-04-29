@@ -21,6 +21,7 @@ public class Lootpile : MonoBehaviour {
 
     // Has the lootpile been searched
     public bool searched = false;
+    public bool pistolSpawn = false;
 
     public void Start()
     {
@@ -36,14 +37,22 @@ public class Lootpile : MonoBehaviour {
         // Spawn items for each spawn point
         if (searched == false)
         {
-            
-            for (int i = 0; i < pickup.Length; i++)
+            if (pistolSpawn == false)
             {
-                int randomSpawnGen = Random.Range(0, lm.spawnItems.Length); // generates random spawn
+                for (int i = 0; i < pickup.Length; i++)
+                {
+                    int randomSpawnGen = Random.Range(0, lm.spawnItems.Length); // generates random spawn
 
-                // Spawns each item relative to the main spawnpoint
-                pickup[i] = Instantiate(lm.spawnItems[randomSpawnGen], landPoints[i].transform, false);
-                pickup[i].transform.position = mainSpawnPoint.transform.position;
+                    // Spawns each item relative to the main spawnpoint
+                    pickup[i] = Instantiate(lm.spawnItems[randomSpawnGen], landPoints[i].transform, false);
+                    pickup[i].transform.position = mainSpawnPoint.transform.position;
+                }
+            }
+            // Check if pile is meant to spawn the pistol
+            else if(pistolSpawn == true)
+            {
+                pickup[0] = Instantiate(lm.pistol, landPoints[0].transform, false);
+                pickup[0].transform.position = mainSpawnPoint.transform.position;
             }
             searched = true;
 

@@ -6,6 +6,7 @@ public class LootManager : MonoBehaviour {
 
     // all the items a lootpile can spawn
     public GameObject[] spawnItems;
+    public GameObject pistol;
 
 
 }
