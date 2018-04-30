@@ -12,6 +12,7 @@ public class ClickControl : MonoBehaviour {
     GameObject KeyPad;
     GameObject KeyPadConsole;
     BoxCollider ConsoleCollider;
+    public GameObject GateDoor;
     public bool codeGiven = false;
 
     //Correct code
@@ -29,7 +30,7 @@ public class ClickControl : MonoBehaviour {
         keyPadManager = FindObjectOfType<KeyPadManager>();
         //keypadTrigger = FindObjectOfType<KeypadTrigger>();
         KeyPadConsole = GameObject.FindGameObjectWithTag("KeyPadConsole");
-
+        GateDoor = GameObject.FindGameObjectWithTag("GateDoor1");
     }
 	
 	// Update is called once per frame
@@ -48,7 +49,7 @@ public class ClickControl : MonoBehaviour {
                 ConsoleCollider = KeyPadConsole.GetComponent<BoxCollider>();
                 ConsoleCollider.enabled = false;
                 //keypadTrigger.enabled = false;
-                //PLAY GATE OPENING ANIM
+                Destroy(GateDoor);
             }
             else
             {

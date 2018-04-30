@@ -25,6 +25,7 @@ TagManager:
   - PistolUI
   - ShotgunUI
   - ARUI
+  - GateDoor1
   layers:
   - Default
   - TransparentFX
