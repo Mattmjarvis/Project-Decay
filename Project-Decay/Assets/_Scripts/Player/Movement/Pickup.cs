@@ -53,8 +53,6 @@ public class Pickup : MonoBehaviour {
             FindWeaponStats();
             PickupObject();            
             Destroy(gameObject);
- 
-
 
         }
     }
@@ -94,14 +92,16 @@ public class Pickup : MonoBehaviour {
         // Gives access to assault rifle
         if (pickupType == PickupType.Weapon_AR)
         {
+            MCI.hasAR = true;
             weaponStatsAR.weaponAvailable = true;
             weaponslotAR.color = Color.white;
-            
+           
         }
 
         // Gives access to shotgun
         else if (pickupType == PickupType.Weapon_SG)
         {
+            MCI.hasShotgun = true;
             weaponStatsSG.weaponAvailable = true;
             weaponslotSG.color = Color.white;
         }
@@ -119,7 +119,6 @@ public class Pickup : MonoBehaviour {
         else if (pickupType == PickupType.AssaultRifleAmmo)
         {
             weaponStatsAR.maxAmmo += amountToGive;
-            print("MaxAmmo is " + weaponStatsAR.maxAmmo);
 
             if (weaponStatsAR.weaponAvailable == true)
             {

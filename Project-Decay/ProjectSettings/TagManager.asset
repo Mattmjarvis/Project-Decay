@@ -26,6 +26,8 @@ TagManager:
   - ShotgunUI
   - ARUI
   - GateDoor1
+  - Terrain
+  - Metal
   layers:
   - Default
   - TransparentFX

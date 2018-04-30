@@ -48,16 +48,19 @@ public class Lootpile : MonoBehaviour {
                     // If the player only has a shotgun only spawn shotgun ammo
                     if (MCI.hasShotgun == true && MCI.hasAR ==false )
                     {
+                        Debug.Log("SG No AR");
                         randomSpawnGen = 0;
                     }
                     // If the player only has an AR only spawn AR ammo
                     else if(MCI.hasShotgun == false && MCI.hasAR == true)
                     {
+                        Debug.Log("AR No SG");
                         randomSpawnGen = 1;
                     }
                     // If the player has both weapons then spawn both ammo
                     else if(MCI.hasShotgun == true && MCI.hasAR == true)
                     {
+                        Debug.Log("AR + SG");
                         randomSpawnGen = Random.Range(0, 1); // generates random spawn
                     }
 

@@ -19,6 +19,12 @@ public class SimpleThirdPerson : MonoBehaviour
     private Transform hitTargetTr;
     private Vector3 hitTarget = Vector3.zero;
 
+    // Weapon hit effects
+    RaycastHit objectHit;
+    public GameObject metalHit;
+    public GameObject terrainHit;
+    public GameObject enemyHit;
+
 
     // Weapon Variables
     public GameObject gun; // the weapon gameObject
@@ -304,6 +310,23 @@ public class SimpleThirdPerson : MonoBehaviour
             if (hitPoint != Vector3.zero)
 			{                
 				GameObject bullet = (GameObject)Instantiate(bulletPr, hitPoint, gun.transform.rotation);
+
+                // Sparky particle system if player shoots metal
+                if(objectHit.collider.tag == "Metal")
+                {
+                    GameObject hitEffects =(GameObject)Instantiate(metalHit, hitPoint, gun.transform.rotation);
+                }
+                // Blood particle system if player shoots enemy
+                else if(objectHit.collider.tag == "Enemy")
+                {
+                    GameObject hitEffects = (GameObject)Instantiate(enemyHit, hitPoint, gun.transform.rotation);
+                }
+                // Regular particle system if player hits anything else
+                else
+                {
+                    GameObject hitEffects = (GameObject)Instantiate(terrainHit, hitPoint, gun.transform.rotation);
+                }
+
                 //instantiates the bullet prefab wherever the raycast is interupted (the hitPoint)    
                 //hitTargetTr.SendMessage("GetShot", SendMessageOptions.DontRequireReceiver);
 
@@ -351,6 +374,7 @@ public class SimpleThirdPerson : MonoBehaviour
 		{
 			Debug.DrawLine(gun.transform.position, hit.point, Color.red);
             //Creates a raycast and visualises it
+            objectHit = hit;
 
             hitTarget = hit.point;
             hitPoint = hit.point;

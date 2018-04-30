@@ -24,10 +24,10 @@ GameObject:
   - component: {fileID: 23359041683917688}
   m_Layer: 0
   m_Name: Plain_Gate_Singular
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1278802796359092
 GameObject:
@@ -42,10 +42,10 @@ GameObject:
   - component: {fileID: 23852670326679586}
   m_Layer: 0
   m_Name: Plain_Gate_Singular
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1336936040568330
 GameObject:
@@ -60,10 +60,10 @@ GameObject:
   - component: {fileID: 23244148676071082}
   m_Layer: 0
   m_Name: Bio_Gate
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1528537555725764
 GameObject:
@@ -78,10 +78,10 @@ GameObject:
   - component: {fileID: 23786939830128520}
   m_Layer: 0
   m_Name: Plain_Gate_Singular
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1772695120102712
 GameObject:
@@ -93,10 +93,10 @@ GameObject:
   - component: {fileID: 4687137688087690}
   m_Layer: 0
   m_Name: Walls_Bio
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4391741021111014
 Transform:
@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772695120102712}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1044.7759, y: 29.55, z: 433.6}
+  m_LocalPosition: {x: 111.73422, y: 16.9, z: 41.58333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4701302748876498}

@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 1
-  amountToGive: 10
+  amountToGive: 2
   weaponslotAR: {fileID: 0}
   weaponslotSG: {fileID: 0}
   weaponslotPS: {fileID: 0}

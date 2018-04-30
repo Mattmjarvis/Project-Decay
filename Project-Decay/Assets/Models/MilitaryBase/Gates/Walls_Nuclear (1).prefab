@@ -24,10 +24,10 @@ GameObject:
   - component: {fileID: 23203867916415088}
   m_Layer: 0
   m_Name: Plain_Gate_Singular
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1116501224564032
 GameObject:
@@ -42,10 +42,10 @@ GameObject:
   - component: {fileID: 23409057530635714}
   m_Layer: 0
   m_Name: Plain_Gate_Singular
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1295851536247874
 GameObject:
@@ -57,10 +57,10 @@ GameObject:
   - component: {fileID: 4342094519609350}
   m_Layer: 0
   m_Name: Walls_Nuclear (1)
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1782754366498408
 GameObject:
@@ -75,10 +75,10 @@ GameObject:
   - component: {fileID: 23376109583391042}
   m_Layer: 0
   m_Name: Nuclear_Gate
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1870898554024228
 GameObject:
@@ -93,10 +93,10 @@ GameObject:
   - component: {fileID: 23245935305225462}
   m_Layer: 0
   m_Name: Plain_Gate_Singular
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4022788342978808
 Transform:
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1060815371315390}
   m_LocalRotation: {x: -0, y: -0.7455019, z: -0, w: 0.6665036}
-  m_LocalPosition: {x: 9.9264, y: 0, z: 1.2148}
+  m_LocalPosition: {x: -0.000012159, y: 0, z: -0.000013232}
   m_LocalScale: {x: 0.10000006, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 4342094519609350}
@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1782754366498408}
   m_LocalRotation: {x: -0, y: -0.7455019, z: -0, w: 0.6665036}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.9488, y: 0, z: 1.0161}
   m_LocalScale: {x: 0.10000011, y: 10, z: 10.000031}
   m_Children: []
   m_Father: {fileID: 4342094519609350}
@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1295851536247874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1025.8682, y: 29.86241, z: 408.108}
+  m_LocalPosition: {x: 131.59427, y: 16.9, z: 43.913315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4022788342978808}

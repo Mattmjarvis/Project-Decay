@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 23037885524466088}
   m_Layer: 0
   m_Name: FenceGateDoorL
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4089576765279494}
   m_Layer: 0
   m_Name: FenceGateDouble
-  m_TagString: Untagged
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
