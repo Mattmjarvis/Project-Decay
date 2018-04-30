@@ -9,6 +9,7 @@ public class Lootpile : MonoBehaviour {
     LootManager lm;
     UIManager uiManager;
     Interact interact;
+    MissionCompletionInfo MCI;
 
     // Item spawn components
     public GameObject mainSpawnPoint;
@@ -23,11 +24,14 @@ public class Lootpile : MonoBehaviour {
     public bool searched = false;
     public bool pistolSpawn = false;
 
+    int randomSpawnGen;
+
     public void Start()
     {
         lm = FindObjectOfType<LootManager>();
         uiManager = FindObjectOfType<UIManager>();
         interact = FindObjectOfType<Interact>();
+        MCI = FindObjectOfType<MissionCompletionInfo>();
 
     }
 
@@ -41,7 +45,24 @@ public class Lootpile : MonoBehaviour {
             {
                 for (int i = 0; i < pickup.Length; i++)
                 {
-                    int randomSpawnGen = Random.Range(0, lm.spawnItems.Length); // generates random spawn
+                    // If the player only has a shotgun only spawn shotgun ammo
+                    if (MCI.hasShotgun == true && MCI.hasAR ==false )
+                    {
+                        randomSpawnGen = 0;
+                    }
+                    // If the player only has an AR only spawn AR ammo
+                    else if(MCI.hasShotgun == false && MCI.hasAR == true)
+                    {
+                        randomSpawnGen = 1;
+                    }
+                    // If the player has both weapons then spawn both ammo
+                    else if(MCI.hasShotgun == true && MCI.hasAR == true)
+                    {
+                        randomSpawnGen = Random.Range(0, 1); // generates random spawn
+                    }
+
+                    else { return; }
+
 
                     // Spawns each item relative to the main spawnpoint
                     pickup[i] = Instantiate(lm.spawnItems[randomSpawnGen], landPoints[i].transform, false);

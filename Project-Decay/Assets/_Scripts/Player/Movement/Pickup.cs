@@ -14,14 +14,13 @@ public enum PickupType
     Weapon_PS
 }
 
-
-
 public class Pickup : MonoBehaviour {
 
+    // Get managers
     UIManager uiManager;
-    MissionManager mm;
-    public PickupType pickupType;
+    MissionCompletionInfo MCI;
 
+    public PickupType pickupType;
     public int amountToGive;
 
     // Each stats are needed to be assigned manually so it can find inactive objects
@@ -38,7 +37,7 @@ public class Pickup : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         uiManager = FindObjectOfType<UIManager>();
-        mm = FindObjectOfType<MissionManager>();
+        MCI = FindObjectOfType<MissionCompletionInfo>();
         FindWeaponStats();
 
         weaponslotAR = GameObject.FindGameObjectWithTag("ARUI").GetComponent<Image>();
@@ -112,11 +111,8 @@ public class Pickup : MonoBehaviour {
         {
             weaponStatsPS.weaponAvailable = true;
             weaponslotPS.color = Color.white;
-            mm.hasPistol = true;
-            if(mm.currentMission.id == 2)
-            {
-                mm.IncrementMissionObjective();
-            }
+            MCI.hasPistol = true;
+            MCI.MissionCompletionCheck();
         }
 
         // Gives ammo to assault Rifle

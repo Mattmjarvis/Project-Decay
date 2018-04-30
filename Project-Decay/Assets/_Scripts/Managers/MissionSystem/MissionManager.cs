@@ -5,14 +5,7 @@ using UnityEngine;
 
 public class MissionManager : MonoBehaviour {
 
-
-    /// <summary>
-    /// Mission Precompletion checks. This is incase the mission requirements have been completed before the mission has been reached.
-    /// </summary>
-        // Mission 3
-        public bool hasPistol = false;
-
-
+    MissionCompletionInfo MCI; // Information that checks to complete some missions
     MissionButtons missionButtons;
     public static MissionManager missionManager;
     public MissionUI missionUI;
@@ -40,6 +33,7 @@ public class MissionManager : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
 
+        MCI = FindObjectOfType<MissionCompletionInfo>();
         missionUI = FindObjectOfType<MissionUI>(); // Finds the mission UI object
         missionButtons = FindObjectOfType<MissionButtons>();
 
@@ -72,7 +66,8 @@ public class MissionManager : MonoBehaviour {
             nextMission.status = Mission.MissionStatus.NEXT;
         }
 
-        MissionPreCompletionCheck();
+
+        MCI.MissionCompletionCheck();
 
     }
 
@@ -88,7 +83,6 @@ public class MissionManager : MonoBehaviour {
         currentMission.status = Mission.MissionStatus.COMPLETE; // Sets current mission to complete
         missionList[currentMission.id].status = Mission.MissionStatus.COMPLETE;
         currentMission.missionsCompleted += 1;
-        //missionUI.ShowHideHUDMission(); // Disable the mission image on the HUD
 
         // Sets all missions to complete if last mission in list is completed
         if(currentMission.id == missionList.Count - 1)
@@ -105,17 +99,11 @@ public class MissionManager : MonoBehaviour {
             Debug.Log(nextMission.objective);
             GetNewMission(); // Assigns new mission when previous is complete (Comment back in if we want this, else we can have a delay until next mission)
         }
-
-
-
-
     }
 
     //  Check mission objective
     public void IncrementMissionObjective()
     {
-        currentMission.objectiveCount++;
-
         // Makes sure quest is current and set mission objective
         if (currentMission.status == Mission.MissionStatus.CURRENT)
         {
@@ -160,16 +148,5 @@ public class MissionManager : MonoBehaviour {
             return false;
         }
     
-    // This method checks if any completion has been met before the mission has been activated.
-    public void MissionPreCompletionCheck()
-    {
-        // Check for mission 3 (Obtaining pistol)
-        if (currentMission.id == 2)
-        {
-            if (hasPistol == true)
-            {
-                IncrementMissionObjective();
-            }
-        }
-    }
+
 }

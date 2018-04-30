@@ -7,6 +7,10 @@ using UnityEngine.AI;
 
 public class AIHealth : MonoBehaviour
 {
+    // Component
+    MissionCompletionInfo MCI;
+    MissionManager MM;
+
     AIMovement _AIMovement;
     AIStates state;
     Animator anim;
@@ -18,16 +22,23 @@ public class AIHealth : MonoBehaviour
     public Image healthBar;
     public GameObject healthBarParent;
 
-    public bool isDead = false;   
+    public bool isDead = false;
+    public bool isStarterEnemy = false; // Tick this box so game knows that the start enemy is complete when the mission has been reached.
+    public bool isMission6 = false;
     
     ParticleSystem blood;
 
     public GameObject PlayerTarget;
 
+    bool kcAdded = false; // When enemy dies alert that it has updated missioninfo
+
     BoxCollider BC;
 
     private void Awake()
     {
+        MCI = FindObjectOfType<MissionCompletionInfo>();
+        MM = FindObjectOfType<MissionManager>();
+
         anim = GetComponent<Animator>();
         _AIMovement = GetComponent<AIMovement>();
 
@@ -77,9 +88,30 @@ public class AIHealth : MonoBehaviour
         BC.enabled = false;
         NMG.enabled = false;
         blood.Stop();
-        yield return new WaitForSeconds(5);
-        Destroy(this.gameObject);
-    }        
+
+        // Notify mission completion info
+        if (isStarterEnemy == true)
+        {
+            MCI.startEnemyisDead = true; // Alerts mission info
+            MCI.MissionCompletionCheck();
+        }
+
+        // Notify mission completion info
+        if (isMission6 == true)
+        {
+            if (kcAdded == false)
+            {
+                kcAdded = true; // Stops numerator from adding too many
+                MCI.startKilling = true; // Stops mission manager from completing objective before any have been killed
+                MCI.killCount += 1;
+                MCI.MissionCompletionCheck();
+                MCI.startKilling = false; // Stops mission manager from completing objective without any being killed
+            }
+
+            yield return new WaitForSeconds(5);
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Update()
     {       
