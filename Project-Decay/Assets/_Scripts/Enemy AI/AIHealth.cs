@@ -24,7 +24,8 @@ public class AIHealth : MonoBehaviour
 
     public bool isDead = false;
     public bool isStarterEnemy = false; // Tick this box so game knows that the start enemy is complete when the mission has been reached.
-    public bool isMission6 = false;
+    public bool isMission7 = false;
+    public bool isMission11 = false;
     
     ParticleSystem blood;
 
@@ -97,20 +98,30 @@ public class AIHealth : MonoBehaviour
         }
 
         // Notify mission completion info
-        if (isMission6 == true)
+        if (isMission7 == true)
         {
             if (kcAdded == false)
             {
                 kcAdded = true; // Stops numerator from adding too many
-                MCI.startKilling = true; // Stops mission manager from completing objective before any have been killed
-                MCI.killCount += 1;
+                MCI.M7killCount += 1;
                 MCI.MissionCompletionCheck();
-                MCI.startKilling = false; // Stops mission manager from completing objective without any being killed
             }
+        }
+
+        // Notify mission completion info
+        if (isMission11 == true)
+        {
+            if (kcAdded == false)
+            {
+                kcAdded = true; // Stops numerator from adding too many
+                MCI.M11killCount += 1;
+                MCI.MissionCompletionCheck();
+            }
+        }
 
             yield return new WaitForSeconds(5);
             Destroy(this.gameObject);
-        }
+        
     }
 
     private void Update()
@@ -121,6 +132,5 @@ public class AIHealth : MonoBehaviour
             StartCoroutine(Death());
         }
     }
-
 
 }

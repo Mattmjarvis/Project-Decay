@@ -6,34 +6,38 @@ public class KeypadTrigger : MonoBehaviour {
 
     public GameObject KeypadUI;
     InputManager inputManager;
+    UIManager uIManager;
     public GameObject KeyPadPrompt;
 
 
     private void Start()
     {
+        uIManager = FindObjectOfType<UIManager>();
         inputManager = FindObjectOfType<InputManager>();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.tag == "Player")
         {
-            KeyPadPrompt.SetActive(true);
+            uIManager.enableInteractTip();
+            //KeyPadPrompt.SetActive(true);
             //print("Press E to Access");
             if (Input.GetKeyDown(KeyCode.E))
             {
                 inputManager.PauseGameplay();
                 KeypadUI.SetActive(true);
-                KeyPadPrompt.SetActive(false);
+                uIManager.disableInteractTip();
             }
         }        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
-            KeyPadPrompt.SetActive(false);
+            uIManager.disableInteractTip();
+            
         }
     }
 }

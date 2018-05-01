@@ -46,7 +46,7 @@ public class Lootpile : MonoBehaviour {
                 for (int i = 0; i < pickup.Length; i++)
                 {
                     // If the player only has a shotgun only spawn shotgun ammo
-                    if (MCI.hasShotgun == true && MCI.hasAR ==false )
+                    if (MCI.hasShotgun == true && MCI.hasAR == false )
                     {
                         Debug.Log("SG No AR");
                         randomSpawnGen = 0;
@@ -61,7 +61,7 @@ public class Lootpile : MonoBehaviour {
                     else if(MCI.hasShotgun == true && MCI.hasAR == true)
                     {
                         Debug.Log("AR + SG");
-                        randomSpawnGen = Random.Range(0, 1); // generates random spawn
+                        randomSpawnGen = Random.Range(0, 2); // generates random spawn
                     }
 
                     else { return; }

@@ -7,18 +7,21 @@ using UnityEngine.UI;
 public class ClickControl : MonoBehaviour {
 
     //Script variables
+    MissionCompletionInfo MCI;
+
+    GateAccessHUD codeHUD;
     KeyPadManager keyPadManager;
     KeypadTrigger keypadTrigger;
     GameObject KeyPad;
-    GameObject KeyPadConsole;
+    public GameObject KeyPadConsole;
     BoxCollider ConsoleCollider;
     public GameObject GateDoor;
     public bool codeGiven = false;
 
     //Correct code
-    public static string correctCode = "1234";
+    public static string correctCode = "7355608";
     public static string playerCode = "";
-
+    public bool HUDHidden = false;
     public static int totalDigits = 0;
 
     public Text codeDisplayText;
@@ -26,11 +29,12 @@ public class ClickControl : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        MCI = FindObjectOfType<MissionCompletionInfo>();
+        codeHUD = FindObjectOfType<GateAccessHUD>();
         KeyPad = GameObject.FindGameObjectWithTag("KeyPadDestroy");
         keyPadManager = FindObjectOfType<KeyPadManager>();
         //keypadTrigger = FindObjectOfType<KeypadTrigger>();
         KeyPadConsole = GameObject.FindGameObjectWithTag("KeyPadConsole");
-        GateDoor = GameObject.FindGameObjectWithTag("GateDoor1");
     }
 	
 	// Update is called once per frame
@@ -38,13 +42,25 @@ public class ClickControl : MonoBehaviour {
     {
         codeDisplayText.text = " " + playerCode;
         //Debug.Log(playerCode);
-        if (totalDigits == 4)
+        if (totalDigits == 7)
         {            
             if (playerCode == correctCode)
             {
                 Debug.Log("Correct!");
                 codeGiven = true;
                 keyPadManager.ExitKeypad();
+                    
+                // Stops from reenabling HUD
+                if (HUDHidden == false)
+                {
+                    HUDHidden = true;
+                    codeHUD.ShowHideCodeHUD();
+                }
+
+                // Complete the mission
+                MCI.gateOpened = true;
+                MCI.MissionCompletionCheck();
+
                 Destroy(KeyPad);
                 ConsoleCollider = KeyPadConsole.GetComponent<BoxCollider>();
                 ConsoleCollider.enabled = false;

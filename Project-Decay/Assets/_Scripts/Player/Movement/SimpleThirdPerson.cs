@@ -90,53 +90,56 @@ public class SimpleThirdPerson : MonoBehaviour
 
     public void Update()
 	{
-        Move();
-        //Strafe();
-        WalkBackwards();
-        Strafe();
-
-        if (gunActive)
-		{
-			AimWeapon();
-		}
-
-        // If the weapon is automatic then player can hold down MB1(leftclick) to shoot bullets
-        if (Input.GetMouseButton(0) && gunActive && !PlayerHealth.nowHealing && weaponStats.firingType == FiringType.Automatic)
+        if (blockControl != true)
         {
-            // Stop bullets from shooting all at once
-            if (Time.time < timeToShoot)
+            Move();
+            //Strafe();
+            WalkBackwards();
+            Strafe();
+
+            if (gunActive)
             {
-                return;
+                AimWeapon();
             }
-            // Fire 
-            else
+
+            // If the weapon is automatic then player can hold down MB1(leftclick) to shoot bullets
+            if (Input.GetMouseButton(0) && gunActive && !PlayerHealth.nowHealing && weaponStats.firingType == FiringType.Automatic)
             {
+                // Stop bullets from shooting all at once
+                if (Time.time < timeToShoot)
+                {
+                    return;
+                }
+                // Fire 
+                else
+                {
+                    FireWeapon();
+                }
+                // Debug checks that weapon is shooting at correct rate of fire
+                //Debug.Log(Time.time);
+                //Debug.Log("Before: " + timeToShoot);
+
+                // Set time to shoot next bullet
+                timeToShoot = Time.time + 0.1f;
+
+                // Debug checks that weapon is shooting at correct rate of fire
+                //Debug.Log(Time.time);
+                //Debug.Log("After: "+ timeToShoot);
+
+            }
+
+            // If weapon is semi automatic then one click = fire once
+            if (Input.GetMouseButtonDown(0) && gunActive && !PlayerHealth.nowHealing && weaponStats.firingType == FiringType.SemiAutomatic)
+            {
+                // Fire weapon
                 FireWeapon();
             }
-            // Debug checks that weapon is shooting at correct rate of fire
-            //Debug.Log(Time.time);
-            //Debug.Log("Before: " + timeToShoot);
 
-            // Set time to shoot next bullet
-            timeToShoot = Time.time + 0.1f;
 
-            // Debug checks that weapon is shooting at correct rate of fire
-            //Debug.Log(Time.time);
-            //Debug.Log("After: "+ timeToShoot);
 
+            switchCameraStates(); // Set camera state
+            ReloadPressed(); //Reload
         }
-
-        // If weapon is semi automatic then one click = fire once
-        if (Input.GetMouseButtonDown(0) && gunActive && !PlayerHealth.nowHealing && weaponStats.firingType == FiringType.SemiAutomatic)
-        {
-            // Fire weapon
-            FireWeapon();
-        }
-
-
-
-        switchCameraStates(); // Set camera state
-        ReloadPressed(); //Reload
     }
 
     #region Camera

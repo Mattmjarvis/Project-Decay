@@ -47,7 +47,7 @@ public class MissionTriggers : MonoBehaviour
         #region Complete Mission 8
         if (other.tag == "Player" && missionBeingTriggered == 7)
         {
-            MCI.forestExit = true;
+            MCI.gateFound = true;
             MCI.MissionCompletionCheck();
         }
         #endregion
@@ -55,7 +55,23 @@ public class MissionTriggers : MonoBehaviour
         #region Complete Mission 9
         if (other.tag == "Player" && missionBeingTriggered == 8)
         {
-            MCI.forestExit = true;
+            MCI.pathFound = true;
+            MCI.MissionCompletionCheck();
+        }
+        #endregion
+
+        #region Complete Mission 10
+        if (other.tag == "Player" && missionBeingTriggered == 9)
+        {
+            MCI.forestBaseReached = true;
+            MCI.MissionCompletionCheck();
+        }
+        #endregion
+
+        #region Complete Mission 12
+        if (other.tag == "Player" && missionBeingTriggered == 11)
+        {
+            MCI.codeFound = true;
             MCI.MissionCompletionCheck();
         }
         #endregion
