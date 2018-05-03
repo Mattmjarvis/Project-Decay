@@ -118,7 +118,9 @@ public class MissionManager : MonoBehaviour {
             // If all objectives are finished then complete mission
             if (currentMission.objectiveCount == currentMission.totalObjectives)
             {
-                missionButtons.newMissionButton.SetActive(true);
+
+                //missionButtons.newMissionButton.SetActive(true);
+                CompleteMission();
                 missionUI.CompleteMissionPopout();
             }
         }

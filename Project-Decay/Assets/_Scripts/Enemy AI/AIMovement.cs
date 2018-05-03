@@ -36,7 +36,7 @@ public class AIMovement : MonoBehaviour {
 
     public bool enemyInCombatRange = false;
 
-    public int chaseSpeed = 3;
+    public int chaseSpeed = 10;
 
     public bool isChasing = false;
 

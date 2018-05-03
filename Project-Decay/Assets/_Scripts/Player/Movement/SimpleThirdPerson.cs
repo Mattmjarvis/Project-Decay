@@ -387,7 +387,7 @@ public class SimpleThirdPerson : MonoBehaviour
 
             lookAtVector = hit.point - gun.transform.position;
 			camRot = Quaternion.LookRotation(lookAtVector);
-			gun.transform.rotation = camRot;
+			//gun.transform.rotation = camRot;
             //The ray is sent from the camera, when the ray interacts with a collider it finds the position of the gun and sends a bullet to meet the hitPoint along the raycast.
 		}
 		else
