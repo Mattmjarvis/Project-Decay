@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 503180ef65ab21144973f31a5e13f3e7
+timeCreated: 1525445494
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Axle
+    100002: AxleFlange-Left
+    100004: AxleFlange-Left.001
+    100006: AxleFlange-Right
+    100008: BodyCasing
+    100010: ChaseBase
+    100012: ControlePanal
+    100014: Exsaust
+    100016: FloodLight-Array
+    100018: FloodLight-Frame
+    100020: FloodLight-Genarator
+    100022: FloodLightArray
+    100024: FloodLightBoom
+    100026: //RootNode
+    100028: HookUp-Bar
+    100030: Stabaliser-Left
+    100032: Stabaliser-Right
+    100034: Wheel-Left
+    100036: Wheel-Left.001
+    400000: Axle
+    400002: AxleFlange-Left
+    400004: AxleFlange-Left.001
+    400006: AxleFlange-Right
+    400008: BodyCasing
+    400010: ChaseBase
+    400012: ControlePanal
+    400014: Exsaust
+    400016: FloodLight-Array
+    400018: FloodLight-Frame
+    400020: FloodLight-Genarator
+    400022: FloodLightArray
+    400024: FloodLightBoom
+    400026: //RootNode
+    400028: HookUp-Bar
+    400030: Stabaliser-Left
+    400032: Stabaliser-Right
+    400034: Wheel-Left
+    400036: Wheel-Left.001
+    2300000: Axle
+    2300002: AxleFlange-Left
+    2300004: AxleFlange-Left.001
+    2300006: AxleFlange-Right
+    2300008: BodyCasing
+    2300010: ChaseBase
+    2300012: ControlePanal
+    2300014: Exsaust
+    2300016: FloodLight-Frame
+    2300018: FloodLightArray
+    2300020: FloodLightBoom
+    2300022: HookUp-Bar
+    2300024: Stabaliser-Left
+    2300026: Stabaliser-Right
+    2300028: Wheel-Left
+    2300030: Wheel-Left.001
+    3300000: Axle
+    3300002: AxleFlange-Left
+    3300004: AxleFlange-Left.001
+    3300006: AxleFlange-Right
+    3300008: BodyCasing
+    3300010: ChaseBase
+    3300012: ControlePanal
+    3300014: Exsaust
+    3300016: FloodLight-Frame
+    3300018: FloodLightArray
+    3300020: FloodLightBoom
+    3300022: HookUp-Bar
+    3300024: Stabaliser-Left
+    3300026: Stabaliser-Right
+    3300028: Wheel-Left
+    3300030: Wheel-Left.001
+    4300000: FloodLight-Frame
+    4300002: FloodLightArray
+    4300004: FloodLightBoom
+    4300006: HookUp-Bar
+    4300008: Wheel-Left.001
+    4300010: Stabaliser-Right
+    4300012: Stabaliser-Left
+    4300014: AxleFlange-Left.001
+    4300016: AxleFlange-Left
+    4300018: AxleFlange-Right
+    4300020: Wheel-Left
+    4300022: Axle
+    4300024: BodyCasing
+    4300026: ChaseBase
+    4300028: Exsaust
+    4300030: ControlePanal
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
