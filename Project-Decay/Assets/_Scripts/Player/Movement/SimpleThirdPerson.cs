@@ -21,6 +21,8 @@ public class SimpleThirdPerson : MonoBehaviour
 
     // Weapon hit effects
     RaycastHit objectHit;
+    public Image crosshair;
+    public Image reload;
     public GameObject metalHit;
     public GameObject terrainHit;
     public GameObject enemyHit;
@@ -376,7 +378,6 @@ public class SimpleThirdPerson : MonoBehaviour
 		if(Physics.Raycast(ray, out hit, 50f))
 		{
 			Debug.DrawLine(gun.transform.position, hit.point, Color.red);
-            //Creates a raycast and visualises it
             objectHit = hit;
 
             hitTarget = hit.point;
@@ -387,12 +388,31 @@ public class SimpleThirdPerson : MonoBehaviour
 
             lookAtVector = hit.point - gun.transform.position;
 			camRot = Quaternion.LookRotation(lookAtVector);
-			//gun.transform.rotation = camRot;
+
+            // Set crosshair colour to red if enemy is in the crosshair
+            if(objectHit.collider.tag == "Enemy")
+            {
+                crosshair.color = Color.red;
+                reload.color = Color.red;
+         
+            }
+            // Change crosshair colour back to default if raycast hit is not enemy
+            else
+            {
+                crosshair.color = Color.green;
+                reload.color = Color.green;
+            }
+            //gun.transform.rotation = camRot;
             //The ray is sent from the camera, when the ray interacts with a collider it finds the position of the gun and sends a bullet to meet the hitPoint along the raycast.
-		}
+        }
 		else
 		{
-			//hitPoint = Vector3.zero;
+
+            // Set crosshair colour back to default if raycast hits nothing
+            crosshair.color = Color.green;
+            reload.color = Color.green;
+
+            //hitPoint = Vector3.zero;
             hitTarget = Vector3.zero;
             lookAtVector = ray.GetPoint(50f) - ray.origin;
             hitTargetTr = null;
