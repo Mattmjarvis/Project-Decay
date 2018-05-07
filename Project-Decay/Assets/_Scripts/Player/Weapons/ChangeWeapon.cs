@@ -12,6 +12,11 @@ public class ChangeWeapon : MonoBehaviour {
     // UI Variables
     public GameObject[] weaponBoxImage;
     public GameObject[] weaponIcon;
+    public GameObject ammoCounter;
+
+    public Image weaponslotAR;
+    public Image weaponslotSG;
+    public Image weaponslotPS;
 
     // Components
     WeaponReloader weaponReloader;
@@ -94,7 +99,12 @@ public class ChangeWeapon : MonoBehaviour {
             // Change to the weapon related to the number
             if (i == num)
             {
-                weaponReloader.StopReload();
+                // If gun is active then end reload if weapon gets changed
+                if (playerController.gunActive)
+                {
+                    weaponReloader.StopReload();
+                }
+
                 playerController.gun = weapons[i];
                 playerController.handleLeft = weapons[i].GetComponentInChildren<WeaponStats>().handleLeft;
                 playerController.handleRight = weapons[i].GetComponentInChildren<WeaponStats>().handleRight;

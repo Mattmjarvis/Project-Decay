@@ -19,6 +19,7 @@ public class Pickup : MonoBehaviour {
     // Get managers
     UIManager uiManager;
     MissionCompletionInfo MCI;
+    ChangeWeapon changeWeapon;
 
     public PickupType pickupType;
     public int amountToGive;
@@ -30,19 +31,15 @@ public class Pickup : MonoBehaviour {
     private WeaponStats weaponStatsPS;
 
     // Weapon slot UI to change color
-    public Image weaponslotAR;
-    public Image weaponslotSG;
-    public Image weaponslotPS;
+
 
 	// Use this for initialization
 	void Start () {
         uiManager = FindObjectOfType<UIManager>();
         MCI = FindObjectOfType<MissionCompletionInfo>();
-        FindWeaponStats();
+        changeWeapon = FindObjectOfType<ChangeWeapon>();
 
-        weaponslotAR = GameObject.FindGameObjectWithTag("ARUI").GetComponent<Image>();
-        weaponslotSG = GameObject.FindGameObjectWithTag("ShotgunUI").GetComponent<Image>();
-        weaponslotPS = GameObject.FindGameObjectWithTag("PistolUI").GetComponent<Image>();
+        FindWeaponStats();
     }
 	
     public void OnTriggerEnter(Collider other)
@@ -94,7 +91,10 @@ public class Pickup : MonoBehaviour {
         {
             MCI.hasAR = true;
             weaponStatsAR.weaponAvailable = true;
-            weaponslotAR.color = Color.white;
+            changeWeapon.weaponslotAR.color = Color.white;
+            changeWeapon.ammoCounter.SetActive(true);
+            changeWeapon.weaponslotAR.gameObject.SetActive(true);
+
            
         }
 
@@ -103,14 +103,18 @@ public class Pickup : MonoBehaviour {
         {
             MCI.hasShotgun = true;
             weaponStatsSG.weaponAvailable = true;
-            weaponslotSG.color = Color.white;
+            changeWeapon.weaponslotSG.color = Color.white;
+            changeWeapon.ammoCounter.SetActive(true);
+            changeWeapon.weaponslotSG.gameObject.SetActive(true);
         }
 
         // Gives access to pistol
         if (pickupType == PickupType.Weapon_PS)
         {
             weaponStatsPS.weaponAvailable = true;
-            weaponslotPS.color = Color.white;
+            changeWeapon.weaponslotPS.color = Color.white;
+            changeWeapon.ammoCounter.SetActive(true);
+            changeWeapon.weaponslotPS.gameObject.SetActive(true);
             MCI.hasPistol = true;
             MCI.MissionCompletionCheck();
         }

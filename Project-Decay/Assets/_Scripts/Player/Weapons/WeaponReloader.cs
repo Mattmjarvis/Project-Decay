@@ -70,7 +70,8 @@ public class WeaponReloader : MonoBehaviour {
 
     public void StopReload()
     {
-        StopCoroutine(Reload(0f));
+        //StopCoroutine(Reload(0f));
+        StopAllCoroutines();
         isReloading = false;
         uiManager.TurnOffReloadProgressBar(); // Turns off the progress bar
         uiManager.turnOnCrosshair(); // Turns on the crosshair

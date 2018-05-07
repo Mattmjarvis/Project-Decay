@@ -96,7 +96,7 @@ public class MissionManager : MonoBehaviour {
 
         if (nextMission != null)
         {
-            Debug.Log(nextMission.objective);
+            //Debug.Log(nextMission.objective);
             GetNewMission(); // Assigns new mission when previous is complete (Comment back in if we want this, else we can have a delay until next mission)
         }
     }

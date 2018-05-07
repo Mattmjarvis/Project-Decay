@@ -28,6 +28,7 @@ TagManager:
   - GateDoor1
   - Terrain
   - Metal
+  - AmmoCounter
   layers:
   - Default
   - TransparentFX
