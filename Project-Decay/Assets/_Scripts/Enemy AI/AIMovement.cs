@@ -174,6 +174,7 @@ public class AIMovement : MonoBehaviour {
         var _target = targetEnemy.transform.position;
         var offset = _target - transform.position;
         //Get the difference.
+
         if (offset.magnitude > 3f)
         {
             enemyInCombatRange = false;

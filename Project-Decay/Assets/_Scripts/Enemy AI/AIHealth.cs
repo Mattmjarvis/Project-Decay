@@ -66,6 +66,7 @@ public class AIHealth : MonoBehaviour
         //decreases health and takes away from the fill amount of the health bar
         currentHealth -= damage;
         healthBar.fillAmount = currentHealth/maxHealth;
+        //alertOtherEnemies();
         //print("fill amount decreasing");
         
         if(_AIMovement.isChasing != true)
@@ -82,8 +83,23 @@ public class AIHealth : MonoBehaviour
         healthBarParent.SetActive(false);
     }
 
+    //void alertOtherEnemies()
+    //{
+    //    Collider[] collidersHit = Physics.OverlapSphere(transform.position, 20);
+    //    //Check for enemy tags
+
+    //    for (int i = 0; i < collidersHit.Length; i++)
+    //    {
+    //        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
+            
+
+    //    }
+    //    //call isChasing from those enemies
+    //}
+
     IEnumerator Death()
     {
+        anim.SetLayerWeight(1, 0);
         anim.SetTrigger("isDead");
         state = AIStates.DEAD;
         BC.enabled = false;
