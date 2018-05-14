@@ -33,4 +33,4 @@ public class SearchCrate : MonoBehaviour {
             uiManager.disableSearchTip();
         }
     }
-}
+
