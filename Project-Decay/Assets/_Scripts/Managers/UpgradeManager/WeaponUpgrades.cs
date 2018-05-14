@@ -15,10 +15,10 @@ public class WeaponUpgrades : MonoBehaviour {
     public Image[] tier3Buttons;
     public Image[] tier4Buttons;
 
-    private int tier1Price = 1000;
-    private int tier2Price = 5000;
-    private int tier3Price = 10000;
-    private int tier4Price = 20000;
+    private int tier1Price = 1;
+    private int tier2Price = 1;
+    private int tier3Price = 1;
+    private int tier4Price = 1;
 
     Color redFade = new Color(255, 0, 0);
     // Use this for initialization

@@ -12,6 +12,8 @@ public class MissionCompletionInfo : MonoBehaviour
     public bool hasShotgun;
     public bool hasAR;
 
+    public bool hasRadSuit = false;
+
     /// <summary>
     /// Mission Precompletion checks. This is incase the mission requirements have been completed before the mission has been reached.
     /// </summary>

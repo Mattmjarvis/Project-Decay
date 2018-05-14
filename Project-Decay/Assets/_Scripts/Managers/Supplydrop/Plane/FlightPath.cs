@@ -16,7 +16,6 @@ public class FlightPath : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        EnablePlane();
         plane.GetComponent<Plane>();
 	}
 	

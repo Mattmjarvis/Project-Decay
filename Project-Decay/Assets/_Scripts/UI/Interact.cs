@@ -45,23 +45,23 @@ public class Interact : MonoBehaviour
             }
             #endregion
 
-            // OLD CODE
-            //#region Lootpile check
-            //// Checks see if lootpile is infront of player
-            //if (hit.collider.CompareTag("Lootpile"))
-            //{
-            //    if (hit.collider.GetComponentInParent<Lootpile>().searched == false)
-            //    {
-            //        uiManager.enableSearchTip();
-            //        // Gets key input
-            //        if (Input.GetKeyDown(KeyCode.E))
-            //        {
-            //            hit.collider.GetComponentInParent<Lootpile>().SpawnItems(); // Spawns loot items
-            //            uiManager.disableSearchTip(); // disabled the search tip UI
-            //        }
-            //    }
-            //}
-            //#endregion
+            
+            #region Supply crate check
+            // Checks see if lootpile is infront of player
+            if (hit.collider.CompareTag("SupplyCrate"))
+            {
+                if (hit.collider.GetComponentInParent<SearchCrate>().searched == false)
+                {
+                    uiManager.enableSearchTip();
+                    // Gets key input
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        hit.collider.GetComponentInParent<SearchCrate>().Search(); // Searches the supply crate
+                        uiManager.disableSearchTip(); // disabled the search tip UI
+                    }
+                }
+            }
+            #endregion
 
 
         }

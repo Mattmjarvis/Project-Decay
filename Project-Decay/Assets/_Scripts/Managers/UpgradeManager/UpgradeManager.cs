@@ -7,7 +7,7 @@ public class UpgradeManager : MonoBehaviour {
 
     public GameObject upgradeInterface;
     public GameObject[] upgradeMenus;
-
+    FlightPath Supplycrate;
     private InputManager inputManger;
 
 
@@ -44,6 +44,7 @@ public class UpgradeManager : MonoBehaviour {
         previouslySelected = weaponSelection[1];
         currentlySelected = weaponSelection[0];
         inputManger = FindObjectOfType<InputManager>();
+        Supplycrate = FindObjectOfType<FlightPath>();
 
         ClickUpgradeAR();
     }
@@ -53,6 +54,7 @@ public class UpgradeManager : MonoBehaviour {
     {
         upgradeInterface.SetActive(false);
         inputManger.ResumeGameplay();
+        Supplycrate.EnablePlane();
     }
 
     // Changes to the upgrades for AR
@@ -166,8 +168,7 @@ public class UpgradeManager : MonoBehaviour {
 
         else if (timesClicked == 5)
         {
-            ArmyDudeText.text = "Welcome to the Upgrade O Matic, Soldier!";
-            timesClicked = 1;
+            ArmyDudeText.text = "And by the way.. NO REFUNDS!!!";
         }
     }
 
@@ -199,6 +200,6 @@ public class UpgradeManager : MonoBehaviour {
     public void ArmyDudeInsufficientFunds()
     {
         Debug.Log("insufficient funds");
-        ArmyDudeText.text = "Insufficient funds, Private!";
+        ArmyDudeText.text = "Well.. Looks like you're all out of upgrades!";
     }
 }
