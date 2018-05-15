@@ -17,7 +17,7 @@ public class DeleteChute : MonoBehaviour {
     // Deletes the parachute and strings on the supply crate
     IEnumerator DeleteParachute()
     {
-        yield return new WaitForSeconds(25f);
+        yield return new WaitForSeconds(65f);
         Transform[] allChildren = GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {

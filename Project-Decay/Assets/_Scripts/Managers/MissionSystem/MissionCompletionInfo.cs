@@ -69,7 +69,22 @@ public class MissionCompletionInfo : MonoBehaviour
     #region Mission 13 Requirement - Open the gate to the compound
     public bool gateOpened = false;
     #endregion
-    
+
+    #region Mission 14 Requirement - Investigate the bunker
+    public bool bunkerInvestigated = false;
+    #endregion
+
+    #region Mission 15 Requirement - Use the Upgrade Station
+    public bool upgradeStationUsed = false;
+    #endregion
+
+    #region Mission 16 Requirement - Search the supply crate
+    public bool supplyCrateSearched = false;
+    #endregion
+
+    #region Mission 17 Requirement - Reach the office building
+    public bool officeBulidingReached = false;
+    #endregion
 
     // Use this for initialization
     void Awake()
@@ -206,6 +221,47 @@ public class MissionCompletionInfo : MonoBehaviour
             if (gateOpened == true)
             {
                 MM.IncrementMissionObjective();
+            }
+        }
+        #endregion
+
+        #region Mission14 Check
+        if (MM.currentMission.id == 13)
+        {
+            if (bunkerInvestigated == true)
+            {
+                MM.IncrementMissionObjective();
+            }
+        }
+        #endregion
+
+        #region Mission15 Check
+        if (MM.currentMission.id == 14)
+        {
+            if (upgradeStationUsed == true)
+            {
+                MM.IncrementMissionObjective();
+            }
+        }
+        #endregion
+
+        #region Mission16 Check
+        if (MM.currentMission.id == 15)
+        {
+            if (supplyCrateSearched == true)
+            {
+                hasRadSuit = true;
+                MM.IncrementMissionObjective();
+            }
+        }
+        #endregion
+
+        #region Mission17 Check
+        if (MM.currentMission.id == 16)
+        {
+            if (officeBulidingReached == true)
+            {
+                // END GAME CODE HERE
             }
         }
         #endregion

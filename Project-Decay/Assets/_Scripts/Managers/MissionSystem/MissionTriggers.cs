@@ -75,5 +75,13 @@ public class MissionTriggers : MonoBehaviour
             MCI.MissionCompletionCheck();
         }
         #endregion
+
+        #region Complete Mission 14
+        if (other.tag == "Player" && missionBeingTriggered == 13)
+        {
+            MCI.bunkerInvestigated = true;
+            MCI.MissionCompletionCheck();
+        }
+        #endregion
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Interact : MonoBehaviour
 {
     UIManager uiManager;
+    MissionCompletionInfo MCI;
     private float interactDistance = 5f;
-
 
     // Variables for checking lootpiles
     public float distance;
@@ -17,6 +17,7 @@ public class Interact : MonoBehaviour
     void Start()
     {
         uiManager = FindObjectOfType<UIManager>();
+        MCI = FindObjectOfType<MissionCompletionInfo>();
     }
 
     // Update is called once per frame
@@ -40,7 +41,9 @@ public class Interact : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     // Opens the upgrade interface
+                    uiManager.upgradeInterfaceOpen = true;
                     uiManager.EnableUpgradeInterface();
+
                 }
             }
             #endregion
@@ -50,6 +53,7 @@ public class Interact : MonoBehaviour
             // Checks see if lootpile is infront of player
             if (hit.collider.CompareTag("SupplyCrate"))
             {
+                Debug.Log("I see a crate");
                 if (hit.collider.GetComponentInParent<SearchCrate>().searched == false)
                 {
                     uiManager.enableSearchTip();

@@ -10,9 +10,7 @@ public class SearchCrate : MonoBehaviour {
     Interact interact;
     MissionCompletionInfo MCI;
 
-    // Distance check
-    public GameObject player;
-    public float distance;
+
 
     public bool searched = false;
 
@@ -26,9 +24,12 @@ public class SearchCrate : MonoBehaviour {
     // Gives the player radiation suit and checks missioncompletioninfo
     public void Search()
     {
-            MCI.hasRadSuit = true;
-         
-            this.GetComponent<SearchCrate>().enabled = false;
+        // Complete mission 14
+        MCI.supplyCrateSearched = true;
+        MCI.hasRadSuit = true;
+        MCI.MissionCompletionCheck();
+
+        this.GetComponent<SearchCrate>().enabled = false;
             searched = true;
             uiManager.disableSearchTip();
         }

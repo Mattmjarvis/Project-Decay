@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class WeaponUpgrades : MonoBehaviour {
 
     public WeaponStats weapon;
-    public GameObject[] bullet;
     private Wallet wallet;
     private UpgradeManager upgradeManager;
 
@@ -68,6 +67,7 @@ public class WeaponUpgrades : MonoBehaviour {
             {
                 weapon.clipSize += 6;
             }
+
             
             // Display joke
             upgradeManager.ArmyDudeJoke();

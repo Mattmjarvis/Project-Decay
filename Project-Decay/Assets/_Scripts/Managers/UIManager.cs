@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour {
     InputManager inputManager;
     FadeManager fader;
 
-
+    public bool upgradeInterfaceOpen = false;
     public float reloadCurrentTime;
 
     // Use this for initialization

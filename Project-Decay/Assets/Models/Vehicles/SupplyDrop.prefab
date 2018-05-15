@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4160152373048754}
   - component: {fileID: 95654071125749258}
   - component: {fileID: 54817155823649760}
-  - component: {fileID: 65860174006167690}
+  - component: {fileID: 114589290110193588}
   m_Layer: 0
   m_Name: SupplyDrop
   m_TagString: Untagged
@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4802854178064574}
   - component: {fileID: 33482261389448358}
   - component: {fileID: 23204262703999178}
+  - component: {fileID: 64603082200080868}
   m_Layer: 0
   m_Name: Crate
   m_TagString: SupplyCrate
@@ -120,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740183962581396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1331.8086, y: -301.93753, z: -67.65933}
+  m_LocalPosition: {x: -822.7581, y: 26, z: 877.84924}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.2}
   m_Children:
   - {fileID: 4802854178064574}
@@ -368,18 +369,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &65860174006167690
-BoxCollider:
+--- !u!64 &64603082200080868
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1740183962581396}
+  m_GameObject: {fileID: 1855145415719970}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 289612eeaf05e2046b7dbc6f2ea5e771, type: 3}
 --- !u!95 &95654071125749258
 Animator:
   serializedVersion: 3
@@ -397,6 +400,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114589290110193588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740183962581396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6fc9ac16eda984da67e627eeb9a763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searched: 0
 --- !u!114 &114946206475995788
 MonoBehaviour:
   m_ObjectHideFlags: 1

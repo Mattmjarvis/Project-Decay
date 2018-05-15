@@ -16,10 +16,12 @@ public class MissionUI : MonoBehaviour
     public Image[] missionLogUI;
     InputManager inputManager;
     MissionManager mm;
+    UIManager MUI;
+    PauseManager PM;
 
 
     // Variables
-    bool missionUIActive = false;
+    public bool missionUIActive = false;
     public bool hasMission = false;
     bool enableHUD = false;
 
@@ -30,6 +32,8 @@ public class MissionUI : MonoBehaviour
         // Gets all images components from the missionlogUI
         missionLogUI = missionLog.GetComponentsInChildren<Image>();
         missionButtons = FindObjectOfType<MissionButtons>();
+        MUI = FindObjectOfType<UIManager>();
+        PM = FindObjectOfType<PauseManager>();
 
         // Hides missionLOGUI 
         foreach (Image image in missionLogUI)
@@ -53,14 +57,23 @@ public class MissionUI : MonoBehaviour
         // Opens/ Closes the mission UI
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            StartCoroutine(OpenCloseMissionUI());
-
-            // Will enable/ disable the HUD mission ONLY if the player has a mission 
-            if (hasMission)
+            // Prevents missionUI being opened while player can see upgrade interface
+            if (MUI.upgradeInterfaceOpen == true || PM.pauseMenuOpen == true)
             {
-                StartCoroutine(EnableDisableHUDMission());
-            }
+                missionUIActive = false;
 
+                return;
+            }
+            else
+            {
+                StartCoroutine(OpenCloseMissionUI());
+
+                // Will enable/ disable the HUD mission ONLY if the player has a mission 
+                if (hasMission)
+                {
+                    StartCoroutine(EnableDisableHUDMission());
+                }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.P))

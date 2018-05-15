@@ -8,6 +8,8 @@ public class UpgradeManager : MonoBehaviour {
     public GameObject upgradeInterface;
     public GameObject[] upgradeMenus;
     FlightPath Supplycrate;
+    MissionCompletionInfo MCI;
+    UIManager UIM;
     private InputManager inputManger;
 
 
@@ -45,6 +47,8 @@ public class UpgradeManager : MonoBehaviour {
         currentlySelected = weaponSelection[0];
         inputManger = FindObjectOfType<InputManager>();
         Supplycrate = FindObjectOfType<FlightPath>();
+        MCI = FindObjectOfType<MissionCompletionInfo>();
+        UIM = FindObjectOfType<UIManager>();
 
         ClickUpgradeAR();
     }
@@ -53,7 +57,13 @@ public class UpgradeManager : MonoBehaviour {
     public void clickExit()
     {
         upgradeInterface.SetActive(false);
+        UIM.upgradeInterfaceOpen = false; 
         inputManger.ResumeGameplay();
+        // Complete mission 14
+        MCI.upgradeStationUsed = true;
+        MCI.MissionCompletionCheck();
+
+        // Start airdrop
         Supplycrate.EnablePlane();
     }
 
