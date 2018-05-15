@@ -27,7 +27,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1216856587625696
 GameObject:
@@ -45,7 +45,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1229425266355448
 GameObject:
@@ -63,7 +63,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1470616860234652
 GameObject:
@@ -81,7 +81,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1747763550909124
 GameObject:
@@ -99,7 +99,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1895531371871356
 GameObject:
@@ -117,7 +117,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1973418317382864
 GameObject:
@@ -128,12 +128,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4899948325260092}
   - component: {fileID: 65404665480462524}
+  - component: {fileID: 205375354506828120}
   m_Layer: 0
   m_Name: ATV-Truck-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4273255953247060
 Transform:
@@ -219,9 +220,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973418317382864}
-  m_LocalRotation: {x: -0, y: 0.9278039, z: -0, w: -0.37306842}
-  m_LocalPosition: {x: -448.16, y: -0.51, z: -348.51}
-  m_LocalScale: {x: 1.59601, y: 1.59601, z: 1.59601}
+  m_LocalRotation: {x: -0, y: 0.9330535, z: -0, w: 0.3597377}
+  m_LocalPosition: {x: 155.17749, y: 23.91, z: -14.008911}
+  m_LocalScale: {x: 1.596011, y: 1.59601, z: 1.596011}
   m_Children:
   - {fileID: 4308641185488954}
   - {fileID: 4300116715733624}
@@ -231,7 +232,7 @@ Transform:
   - {fileID: 4484430279851460}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 223.81, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 137.832, z: 0}
 --- !u!23 &23083783177640908
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -586,3 +587,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8154259, y: 3.1133409, z: 6.011959}
   m_Center: {x: 0.08419359, y: 1.0566707, z: -0.21623534}
+--- !u!205 &205375354506828120
+LODGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973418317382864}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.008272409, y: 1.2746793, z: -0.13545513}
+  m_Size: 5.6475124
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LODs:
+  - screenRelativeHeight: 0.20058267
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 23440934264766436}
+    - renderer: {fileID: 23083783177640908}
+    - renderer: {fileID: 23490807054637074}
+    - renderer: {fileID: 23502619450051216}
+    - renderer: {fileID: 23307666449570216}
+    - renderer: {fileID: 23262284973402802}
+  m_Enabled: 1
