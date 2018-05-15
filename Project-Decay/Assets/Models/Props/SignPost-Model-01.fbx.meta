@@ -3,7 +3,7 @@ guid: 7abd8797c43d5fa40b891a06d536e335
 timeCreated: 1515694380
 licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: SignBoard
     100002: SignBoard.001
@@ -52,27 +52,10 @@ ModelImporter:
     6400008: TextPlane
     6400010: TextPlane.001
     6400012: TextPlane.002
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal-Material
-    second: {fileID: 2100000, guid: 6cba6e664f65b1f498e915ae89500c86, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Text-Material
-    second: {fileID: 2100000, guid: 14cdc1ba426c62244a9a025cf4b76846, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: WoodGrain-Material
-    second: {fileID: 2100000, guid: 14cdc1ba426c62244a9a025cf4b76846, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -85,7 +68,6 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -105,13 +87,11 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
