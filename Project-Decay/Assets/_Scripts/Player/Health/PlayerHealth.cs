@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour
+{
 
     // Components
     SimpleThirdPerson playerController;
@@ -18,7 +19,7 @@ public class PlayerHealth : MonoBehaviour {
     public Color damageFlashColor = Color.red;
 
     //Death Variables
-    public GameObject deathImage;    
+    public GameObject deathImage;
 
     //Health Variables
     public float currentHealth;
@@ -26,14 +27,15 @@ public class PlayerHealth : MonoBehaviour {
     public bool damaged = false;
     public GameObject HealReminder;
     public bool nowHealing = false;
-    
+    public bool dead = false;
+
     // Audio
     public AudioClip deathSound;
     public AudioClip hurtSound;
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         // Assign Controller component
         playerController = GetComponent<SimpleThirdPerson>();
         Anim = GetComponent<Animator>();
@@ -42,11 +44,12 @@ public class PlayerHealth : MonoBehaviour {
         currentHealth = 100;
         //healthBar.fillAmount = health / 100;
 
-        StartCoroutine(healPrompt());       
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        StartCoroutine(healPrompt());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         // When damage flash screen
         DamageFlash();
 
@@ -54,7 +57,7 @@ public class PlayerHealth : MonoBehaviour {
         ReduceHealthBar();
 
         healing();
-	}
+    }
 
     // Player takes damage
     public void TakeDamage(float amount)
@@ -68,11 +71,18 @@ public class PlayerHealth : MonoBehaviour {
     public void ReduceHealthBar()
     {
         healthBar.fillAmount = currentHealth / maxHealth;
-       
+
         // Player dies when health bar reaches 0
         if (currentHealth <= 0)
         {
-            Death();
+            // Stops update from playing lots of audio
+            if(dead == false)
+            {
+
+                StartCoroutine(Death());
+                dead = true;
+            }
+
         }
     }
 
@@ -89,11 +99,11 @@ public class PlayerHealth : MonoBehaviour {
         }
 
         damaged = false;
-    }    
+    }
 
     IEnumerator healPrompt()
     {
-        while(currentHealth >= 61)
+        while (currentHealth >= 61)
         {
             yield return null;
         }
@@ -125,7 +135,8 @@ public class PlayerHealth : MonoBehaviour {
                 playerController.gunActive = false;
                 Anim.SetBool("Healing", true);
                 currentHealth += 0.1f;
-;           }
+                
+            }
             else
             {
                 nowHealing = false;
@@ -146,16 +157,18 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     // Kills player and play audio
-    void Death()
+    IEnumerator Death()
     {
-        print("Called death");
-        //StartCoroutine(Respawning());
-        Debug.Log("Player is dead");
-        playerController.playerAudio.clip = deathSound;
-        playerController.playerAudio.Play();
-        Destroy(this.gameObject);
-
+        // Disable all audio sources
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audio in allAudioSources)
+        {
+            audio.Stop();
+        }
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(deathSound, 1f);
         deathImage.SetActive(true);
+
+        yield return new WaitForSeconds(15);
         SceneManager.LoadScene(2);
     }
 }
