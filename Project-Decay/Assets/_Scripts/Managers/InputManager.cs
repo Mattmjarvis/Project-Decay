@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour {
 
@@ -20,6 +21,13 @@ public class InputManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         
+    }
+
+    // Restarts level
+    public void RestartGame()
+    {
+        ResumeGameplay();
+        SceneManager.LoadScene(2);
     }
 
     // Resumes game and locks mouse control

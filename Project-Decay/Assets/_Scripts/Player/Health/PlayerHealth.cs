@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     // Components
     SimpleThirdPerson playerController;
     Animator Anim;
+    InputManager IM;
     public Image healthBar;
 
     //Damaged Variables
@@ -19,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     public Color damageFlashColor = Color.red;
 
     //Death Variables
-    public GameObject deathImage;
+    public GameObject deathScreen;
 
     //Health Variables
     public float currentHealth;
@@ -38,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // Assign Controller component
         playerController = GetComponent<SimpleThirdPerson>();
+        IM = FindObjectOfType<InputManager>();
         Anim = GetComponent<Animator>();
 
         // Set health values
@@ -78,8 +80,7 @@ public class PlayerHealth : MonoBehaviour
             // Stops update from playing lots of audio
             if(dead == false)
             {
-
-                StartCoroutine(Death());
+                Death();
                 dead = true;
             }
 
@@ -157,8 +158,10 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // Kills player and play audio
-    IEnumerator Death()
+    public void Death()
     {
+
+        IM.PauseGameplay(); // Pauses game
         // Disable all audio sources
         AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
         foreach (AudioSource audio in allAudioSources)
@@ -166,9 +169,7 @@ public class PlayerHealth : MonoBehaviour
             audio.Stop();
         }
         this.gameObject.GetComponent<AudioSource>().PlayOneShot(deathSound, 1f);
-        deathImage.SetActive(true);
+        deathScreen.SetActive(true);
 
-        yield return new WaitForSeconds(15);
-        SceneManager.LoadScene(2);
     }
 }
