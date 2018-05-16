@@ -157,9 +157,18 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // Kills player and play audio
-    public void Death()
+    IEnumerator StartDeathSequence()
     {
+        //Stops player from firing
+        playerController.canFire = false;
+        playerController.gunActive = false;
+
+        //Switches animation layer
+        Anim.SetLayerWeight(0, 1);
+        Anim.SetBool("isDead", true);
+
+        //Waits for 3 seconds before activating audio and UI
+        yield return new WaitForSeconds(3);
 
         IM.PauseGameplay(); // Pauses game
         // Disable all audio sources
@@ -170,6 +179,12 @@ public class PlayerHealth : MonoBehaviour
         }
         this.gameObject.GetComponent<AudioSource>().PlayOneShot(deathSound, 1f);
         deathScreen.SetActive(true);
+    }
 
+    // Kills player and play audio
+    public void Death()
+    {
+        
+        StartCoroutine(StartDeathSequence());
     }
 }
