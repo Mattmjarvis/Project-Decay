@@ -162,6 +162,7 @@ public class PlayerHealth : MonoBehaviour
         //Stops player from firing
         playerController.canFire = false;
         playerController.gunActive = false;
+        playerController.blockControl = true;
 
         //Switches animation layer
         Anim.SetLayerWeight(0, 1);

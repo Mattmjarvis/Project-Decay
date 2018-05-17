@@ -7,28 +7,33 @@ public class GasDeterrent : MonoBehaviour {
 
     PlayerHealth playerHealth;
     UIManager uiManager;
+    MissionCompletionInfo MCI;
 
-    private int gasDamage = 5;
+    private int gasDamage = 15;
     //public int currentGasMultiplier = 1;
     //This can be changed in late game to damage the player more.
-    private int gasLifeTime = 60;
     private float GasDamageTimer = 5;
    
-    public bool radiated;
 
     // Use this for initialization
     void Start ()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
+        MCI = FindObjectOfType<MissionCompletionInfo>();
         uiManager = FindObjectOfType<UIManager>();
-        Destroy(gameObject, gasLifeTime);        
     }
 
     // Reset the gasdamagetimer relative to the current time
     private void OnTriggerEnter(Collider other)
     {
+        // Player doesn't take damage if they have radiation protection
+        if(MCI.hasRadSuit == true)
+        {
+            return;
+        }
         if(other.gameObject.tag == "Player")
         {
+            playerHealth.TakeDamage(gasDamage);
             GasDamageTimer = Time.time + 2;
             //Debug.Log(GasDamageTimer);
         }
@@ -36,9 +41,13 @@ public class GasDeterrent : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
+        // Player doesn't take damage if they have radiation protection
+        if (MCI.hasRadSuit == true)
+        {
+            return;
+        }
         //sets the damaged boolean to true which activates the damage screen effect while player is in gas      
-
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             playerHealth.damaged = true;
             uiManager.turnOnRadiationSymbol();

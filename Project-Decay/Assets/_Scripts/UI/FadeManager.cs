@@ -60,7 +60,6 @@ public class FadeManager : MonoBehaviour {
             fadeImageOut.SetActive(false);
             StopCoroutine(SceneBlackFadeOut());
         }
-
     }
 
     // Fades scene in to full colour

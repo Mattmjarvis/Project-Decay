@@ -53,33 +53,37 @@ public class TextController : MonoBehaviour
         //Small delay until start
         yield return new WaitForSeconds(3.0f);
 
-        if (textLog[nextText] == "")
+        if (nextText > textLog.Length -1)
         {
-            source.Stop();
+            StopAllCoroutines();
         }
         else
         {
-            source.Play();
-        }
-
-
-        //loops through each letter with a small delay in between each
-        foreach (char c in textLog[nextText])
-        {
-            textBox.text += c;
-            charNumber++;
-            yield return new WaitForSeconds(type_speed);
-
-            //Debug.Log(charNumber);   
-            
-            if(charNumber == textLog[nextText].Length)
+            if (textLog[nextText] == "")
             {
                 source.Stop();
             }
+            else
+            {
+                source.Play();
+            }
+            //loops through each letter with a small delay in between each
+            foreach (char c in textLog[nextText])
+            {
+                textBox.text += c;
+                charNumber++;
+                yield return new WaitForSeconds(type_speed);
+
+                //Debug.Log(charNumber);   
+
+                if (charNumber == textLog[nextText].Length)
+                {
+                    source.Stop();
+                }
 
 
+            }
         }
-
 
 
     }

@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MissionCompletionInfo : MonoBehaviour
 {
 
     // Get mission manager
     MissionManager MM;
+    FadeManager fader;
 
     // Weapon check
     public bool hasShotgun;
     public bool hasAR;
-
     public bool hasRadSuit = false;
 
     /// <summary>
@@ -90,6 +91,7 @@ public class MissionCompletionInfo : MonoBehaviour
     void Awake()
     {
         MM = FindObjectOfType<MissionManager>();
+        fader = FindObjectOfType<FadeManager>();
     }
 
     // This method checks if any completion has been met before the mission has been activated.
@@ -251,6 +253,7 @@ public class MissionCompletionInfo : MonoBehaviour
             if (supplyCrateSearched == true)
             {
                 hasRadSuit = true;
+              //  finalMissionTrigger.SetActive(true);
                 MM.IncrementMissionObjective();
             }
         }
@@ -261,10 +264,16 @@ public class MissionCompletionInfo : MonoBehaviour
         {
             if (officeBulidingReached == true)
             {
-                // END GAME CODE HERE
+                StartCoroutine(EndGame());
             }
         }
         #endregion
     }
 
+    IEnumerator EndGame()
+    {
+        fader.SceneFadeOutBlack();
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(3);
+    }
 }

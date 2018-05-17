@@ -83,5 +83,13 @@ public class MissionTriggers : MonoBehaviour
             MCI.MissionCompletionCheck();
         }
         #endregion
+
+        #region Complete Mission 17
+        if (other.tag == "Player" && missionBeingTriggered == 16)
+        {
+            MCI.officeBulidingReached = true;
+            MCI.MissionCompletionCheck();
+        }
+        #endregion
     }
 }
