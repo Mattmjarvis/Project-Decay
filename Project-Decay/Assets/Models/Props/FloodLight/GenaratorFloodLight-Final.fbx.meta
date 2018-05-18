@@ -91,6 +91,22 @@ ModelImporter:
     4300026: ChaseBase
     4300028: Exsaust
     4300030: ControlePanal
+    6400000: Axle
+    6400002: AxleFlange-Left
+    6400004: AxleFlange-Left.001
+    6400006: AxleFlange-Right
+    6400008: BodyCasing
+    6400010: ChaseBase
+    6400012: ControlePanal
+    6400014: Exsaust
+    6400016: FloodLight-Frame
+    6400018: FloodLightArray
+    6400020: FloodLightBoom
+    6400022: HookUp-Bar
+    6400024: Stabaliser-Left
+    6400026: Stabaliser-Right
+    6400028: Wheel-Left
+    6400030: Wheel-Left.001
   materials:
     importMaterials: 1
     materialName: 0
@@ -120,7 +136,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

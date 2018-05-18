@@ -196,7 +196,7 @@ public class SimpleThirdPerson : MonoBehaviour
             camera.eulerAngles.y,
             transform.eulerAngles.z));
         //Handles rotation of camera
-
+        
         float maxSpeed = 3.5f;
         if (Input.GetKey(KeyCode.LeftShift)) maxSpeed = 8f;
         //Shift to sprint
@@ -224,18 +224,29 @@ public class SimpleThirdPerson : MonoBehaviour
 
     private void Strafe()
     {
-        if ((Input.GetAxis("StrafeLeft")) > 0)
+        animator.SetLayerWeight(2, 1);
+
+        if ((Input.GetKey(KeyCode.A)))
         {
             this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.left) * Input.GetAxis("StrafeLeft") * 2);
-            //animator.SetBool("walkingBackwards",true);
-            //animator.SetLayerWeight(1, 0f);
+            animator.SetBool("isStrafeingLeft", true);
         }
-        if ((Input.GetAxis("StrafeRight")) > 0)
+        else if ((Input.GetKeyUp(KeyCode.A)))
+        {
+            animator.SetBool("isStrafeingLeft", false);
+        }
+
+
+        if ((Input.GetKey(KeyCode.D)))
         {
             this.gameObject.GetComponent<CharacterController>().SimpleMove(transform.TransformDirection(Vector3.right) * Input.GetAxis("StrafeRight") * 2);
-            //animator.SetBool("walkingBackwards",true);
-            //animator.SetLayerWeight(1, 0f);
+            animator.SetBool("isStrafeingRight", true);
         }
+        else if ((Input.GetKeyUp(KeyCode.D)))
+        {
+            animator.SetBool("isStrafeingRight", false);
+        }
+
     }
 
     private void WalkBackwards()

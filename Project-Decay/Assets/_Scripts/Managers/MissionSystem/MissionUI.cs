@@ -74,14 +74,8 @@ public class MissionUI : MonoBehaviour
                     StartCoroutine(EnableDisableHUDMission());
                 }
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            mm.IncrementMissionObjective();
-        }
-
-
+        }    
+        
     }
 
     // Sets mission log to active and adds fill amounts

@@ -1323,8 +1323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7f660f71defdd40809e67e3af86d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
-  currentHealth: 500
+  maxHealth: 200
+  currentHealth: 200
   healthBar: {fileID: 114727436528727962}
   healthBarParent: {fileID: 1319596337082718}
   isDead: 0
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   patrolWaitTime: 3
   AttackWaitTime: 3.2
   enemyInCombatRange: 0
-  chaseSpeed: 12
+  chaseSpeed: 8
   isChasing: 0
 --- !u!114 &114957930827202926
 MonoBehaviour:
@@ -1902,7 +1902,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 10755765
+  randomSeed: -1716738825
   InitialModule:
     serializedVersion: 3
     enabled: 1

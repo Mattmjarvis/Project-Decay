@@ -988,7 +988,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157468904836544}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.55, y: 5.01, z: -6.9804688}
+  m_LocalPosition: {x: -25.676392, y: 4.411847, z: -6.980438}
   m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
   m_Children:
   - {fileID: 4134098378320564}
@@ -1295,12 +1295,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   patrolWaitTime: 3
   AttackWaitTime: 3.2
   enemyInCombatRange: 0
-  chaseSpeed: 12
+  chaseSpeed: 8
   isChasing: 0
 --- !u!114 &114915785094340786
 MonoBehaviour:
@@ -1340,12 +1338,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7f660f71defdd40809e67e3af86d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 80
+  currentHealth: 80
   healthBar: {fileID: 114529418678597808}
   healthBarParent: {fileID: 1311450025325366}
   isDead: 0
-  isStarterEnemy: 0
+  isStarterEnemy: 1
   isMission7: 0
   isMission11: 0
   PlayerTarget: {fileID: 0}
@@ -1525,7 +1523,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -491873219
+  randomSeed: 1179897370
   InitialModule:
     serializedVersion: 3
     enabled: 1
